@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -91,22 +92,27 @@ public class StartApp extends Application {
 
     public void switchToChoiceScene() {
         stage.setScene(choiceViewScene);
+        stage.centerOnScreen();
     }
 
     public void switchToAdminLoginScene() {
         stage.setScene(adminScene);
+        stage.centerOnScreen();
     }
 
     public void switchToDoctorLoginScene() {
         stage.setScene(doctorScene);
+        stage.centerOnScreen();
     }
 
     public void switchToPatientLoginScene() {
         stage.setScene(patientLoginScene);
+        stage.centerOnScreen();
     }
 
     public void switchToPatientRegisterScene() {
         stage.setScene(patientRegisterScene);
+        stage.centerOnScreen();
     }
 
     public static void main(String[] args) {
