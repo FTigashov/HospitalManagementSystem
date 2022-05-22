@@ -1,6 +1,7 @@
 module com.example.qualifiedwork {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.example.qualifiedwork to javafx.fxml;

@@ -4,6 +4,7 @@ import com.example.qualifiedwork.authenticaton.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -113,6 +114,22 @@ public class StartApp extends Application {
     public void switchToPatientRegisterScene() {
         stage.setScene(patientRegisterScene);
         stage.centerOnScreen();
+    }
+
+    public void showErrorLoginAlert(String errorName, String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Уведомление об ошибке");
+        alert.setHeaderText(errorName);
+        alert.setContentText(errorMessage);
+        alert.show();
+    }
+
+    public void showSuccessMessage(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.show();
     }
 
     public static void main(String[] args) {

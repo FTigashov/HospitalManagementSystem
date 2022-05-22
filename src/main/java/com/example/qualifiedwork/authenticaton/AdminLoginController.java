@@ -1,11 +1,18 @@
 package com.example.qualifiedwork.authenticaton;
 
+import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AdminLoginController {
     @FXML
@@ -25,9 +32,42 @@ public class AdminLoginController {
         startApp.switchToChoiceScene();
     }
 
-    private StartApp startApp;
+    @FXML
+    void adminAuth(MouseEvent event) {
+        String login = adminLoginFiled.getText().trim();
+        String password = adminPasswordField.getText().trim();
 
+        String passwordDB = null;
+
+        if (login.length() == 0 || password.length() == 0) {
+            startApp.showErrorLoginAlert("Ошибка авторизации", "Необходимо, чтобы все поля были заполнены!");
+            return;
+        }
+
+        try {
+            Connection connection = DBHandler.getConnection();
+            ResultSet resultSet;
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM adminAuth WHERE login = ?");
+            preparedStatement.setString(1, login);
+            resultSet = preparedStatement.executeQuery();
+
+            passwordDB = resultSet.getString("password");
+            if (passwordDB != null && passwordDB.equals(password)) {
+                startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");
+            } else {
+                startApp.showErrorLoginAlert("Ошибка", "Неверный пароль");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private StartApp startApp;
     public void setModelApp(StartApp startApp) {
         this.startApp = startApp;
     }
+
 }
