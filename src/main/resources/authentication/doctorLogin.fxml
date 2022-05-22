@@ -24,7 +24,7 @@
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="doctorAuthBtn" layoutX="158.0" layoutY="418.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #62ace0;" text="Войти в систему" textFill="WHITE">
+            <Button fx:id="doctorAuthBtn" layoutX="158.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#doctorAuth" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #62ace0;" text="Войти в систему" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
