@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="477.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.authenticaton.ChoiceViewController">
+   <children>
+      <AnchorPane layoutY="36.0" prefHeight="74.0" prefWidth="599.0" style="-fx-background-color: #62ace0;">
+         <children>
+            <Label layoutX="134.0" layoutY="19.0" prefHeight="35.0" prefWidth="332.0" text="Hostpital Management System" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="127.0" fitWidth="98.0" layoutX="75.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Desktop/Диплом/icons/Admin.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="127.0" fitWidth="98.0" layoutX="250.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Desktop/Диплом/icons/doctors.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="adminBtn" layoutX="67.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#switchToSceneAdminLogin" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #62ace0;" text="Администратор" textFill="WHITE" />
+      <Button fx:id="doctorBtn" layoutX="242.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#switchToSceneDoctorLogin" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #62ace0;" text="Врач" textFill="WHITE" />
+      <Label layoutX="174.0" layoutY="119.0" prefHeight="29.0" prefWidth="251.0" text="Выберите тип учетной записи" textFill="#62ace0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="patientBtn" layoutX="425.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#switchToScenePatientLogin" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #62ace0;" text="Пациент" textFill="WHITE" />
+      <ImageView fitHeight="127.0" fitWidth="98.0" layoutX="425.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Desktop/Диплом/icons/Пациент.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
