@@ -80,10 +80,13 @@ public class PatientRegisterController {
 
             if (resultSet.isBeforeFirst()) {
                 startApp.showErrorLoginAlert("Ошибка регистрации", "Пользователь с данным логином уже есть в системе.\nПопробуйте использовать другой.");
+                connection.close();
             } else {
                 psRegisterNewUser = connection.prepareStatement("INSERT INTO patientsAuth (login, password) VALUES (?, ?)");
                 psRegisterNewUser.setString(1, login);
                 psRegisterNewUser.setString(2, password);
+
+                psRegisterNewUser.executeUpdate();
 
                 psRegisterNewUserData = connection.prepareStatement("INSERT INTO patientDefaultData (secondName, name, fatherName, login) VALUES (?, ?, ?, ?)");
                 psRegisterNewUserData.setString(1, secondName);
@@ -91,8 +94,8 @@ public class PatientRegisterController {
                 psRegisterNewUserData.setString(3, fatherName);
                 psRegisterNewUserData.setString(4, login);
 
-                psRegisterNewUser.executeUpdate();
                 psRegisterNewUserData.executeUpdate();
+                connection.close();
 
                 patientSecondNameField.setText("");
                 patientNameField.setText("");
