@@ -29,7 +29,9 @@ public class StartApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        stage.setTitle("Hostpital management system");
+        stage.setTitle("Hospital management system");
+        stage.setResizable(false);
+        stage.setFullScreen(false);
 
         choiceViewScene = createChoiceViewScene();
         adminScene = createAdminScene();

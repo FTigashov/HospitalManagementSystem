@@ -4,8 +4,6 @@ import com.example.qualifiedwork.authenticaton.AdminLoginController;
 import java.sql.*;
 
 public class DBHandler {
-    private Statement statement;
-    private ResultSet resultSet;
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");

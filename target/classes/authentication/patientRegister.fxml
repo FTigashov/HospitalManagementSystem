@@ -14,42 +14,52 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="480.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="patientLoginFiled" layoutX="117.0" layoutY="265.0" prefHeight="32.0" prefWidth="244.0" promptText="Логин" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="patientLoginFiled" layoutX="118.0" layoutY="265.0" prefHeight="38.0" prefWidth="244.0" promptText="Логин" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="patientPasswordField" layoutX="117.0" layoutY="307.0" prefHeight="32.0" prefWidth="243.0" promptText="Пароль" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <PasswordField fx:id="patientPasswordField" layoutX="119.0" layoutY="303.0" prefHeight="38.0" prefWidth="243.0" promptText="Пароль" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="patientRegisterBtn" layoutX="153.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #62ace0;" text="Зарегистрироваться" textFill="WHITE">
+            <Button fx:id="patientRegisterBtn" layoutX="156.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#startRegistration" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #62ace0;" text="Зарегистрироваться" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="patientBackToLoginBtn" layoutX="153.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="47.0" prefWidth="170.0" style="-fx-background-color: orange;" text="Отмена" textFill="WHITE">
+            <Button fx:id="patientBackToLoginBtn" layoutX="156.0" layoutY="484.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="47.0" prefWidth="170.0" style="-fx-background-color: orange;" text="Отмена" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <ImageView fitHeight="136.0" fitWidth="139.0" layoutX="184.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="71.0" layoutX="207.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../Desktop/Диплом/icons/patientBlue.png" />
                </image>
             </ImageView>
-            <Label layoutX="201.0" layoutY="177.0" prefHeight="27.0" prefWidth="84.0" text="Пациент" textFill="#62ace0">
+            <Label layoutX="136.0" layoutY="101.0" prefHeight="27.0" prefWidth="207.0" text="Регистрация пациента" textFill="#62ace0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="patientPasswordField1" layoutX="117.0" layoutY="351.0" prefHeight="32.0" prefWidth="243.0" promptText="Подтвердите пароль" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <PasswordField fx:id="patientConfirmPasswordField" layoutX="118.0" layoutY="341.0" prefHeight="38.0" prefWidth="243.0" promptText="Подтвердите пароль" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="patientLoginFiled1" layoutX="117.0" layoutY="221.0" prefHeight="32.0" prefWidth="244.0" promptText="ФИО" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="patientFatherNameField" layoutX="118.0" layoutY="227.0" prefHeight="38.0" prefWidth="244.0" promptText="Отчество" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="patientNameField" layoutX="118.0" layoutY="189.0" prefHeight="38.0" prefWidth="244.0" promptText="Имя" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="patientSecondNameField" layoutX="119.0" layoutY="151.0" prefHeight="38.0" prefWidth="244.0" promptText="Фамилия" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
