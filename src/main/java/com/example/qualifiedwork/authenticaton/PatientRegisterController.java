@@ -68,6 +68,7 @@ public class PatientRegisterController {
         Connection connection = null;
         PreparedStatement psCheckUser = null;
         PreparedStatement psRegisterNewUser = null;
+        PreparedStatement psRegisterNewUserData = null;
         ResultSet resultSet = null;
 
         try {
@@ -84,7 +85,14 @@ public class PatientRegisterController {
                 psRegisterNewUser.setString(1, login);
                 psRegisterNewUser.setString(2, password);
 
+                psRegisterNewUserData = connection.prepareStatement("INSERT INTO patientDefaultData (secondName, name, fatherName, login) VALUES (?, ?, ?, ?)");
+                psRegisterNewUserData.setString(1, secondName);
+                psRegisterNewUserData.setString(2, name);
+                psRegisterNewUserData.setString(3, fatherName);
+                psRegisterNewUserData.setString(4, login);
+
                 psRegisterNewUser.executeUpdate();
+                psRegisterNewUserData.executeUpdate();
 
                 patientSecondNameField.setText("");
                 patientNameField.setText("");
