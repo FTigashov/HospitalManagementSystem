@@ -1,0 +1,24 @@
+.buttonToGo {
+    -fx-background-color: orange;
+    -fx-border-color: orange;
+    -fx-text-fill: white;
+}
+
+.buttonToGo:hover {
+    -fx-background-color: white;
+    -fx-border-color: orange;
+    -fx-background-radius: 15;
+    -fx-text-fill: orange;
+}
+
+.buttonLogin {
+    -fx-background-color: #62ace0;
+    -fx-border-color: #62ace0;
+    -fx-text-fill: white;
+}
+
+.buttonLogin:hover {
+    -fx-background-color: white;
+    -fx-border-color: #62ace0;
+    -fx-text-fill: #62ace0;
+}

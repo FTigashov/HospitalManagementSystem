@@ -24,12 +24,12 @@
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="adminAuthBtn" layoutX="158.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#adminAuth" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #62ace0;" text="Войти в систему" textFill="WHITE">
+            <Button fx:id="adminAuthBtn" layoutX="158.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#adminAuth" prefHeight="46.0" prefWidth="170.0" styleClass="buttonLogin" stylesheets="@../styleForAuth.css" text="Войти в систему" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="adminBackToChoiceBtn" layoutX="158.0" layoutY="481.0" mnemonicParsing="false" onMouseClicked="#backToChoiceView" prefHeight="47.0" prefWidth="170.0" style="-fx-background-color: orange;" text="Вернуться на главную" textFill="WHITE">
+            <Button fx:id="adminBackToChoiceBtn" layoutX="158.0" layoutY="481.0" mnemonicParsing="false" onMouseClicked="#backToChoiceView" prefHeight="47.0" prefWidth="170.0" styleClass="buttonToGo" stylesheets="@../styleForAuth.css" text="Вернуться на главную" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

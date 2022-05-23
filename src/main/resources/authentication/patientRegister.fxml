@@ -24,12 +24,12 @@
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="patientRegisterBtn" layoutX="156.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#startRegistration" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #62ace0;" text="Зарегистрироваться" textFill="WHITE">
+            <Button fx:id="patientRegisterBtn" layoutX="156.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#startRegistration" prefHeight="46.0" prefWidth="170.0" styleClass="buttonLogin" stylesheets="@../styleForAuth.css" text="Зарегистрироваться" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="patientBackToLoginBtn" layoutX="156.0" layoutY="484.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="47.0" prefWidth="170.0" style="-fx-background-color: orange;" text="Отмена" textFill="WHITE">
+            <Button fx:id="patientBackToLoginBtn" layoutX="156.0" layoutY="484.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="47.0" prefWidth="170.0" styleClass="buttonToGo" stylesheets="@../styleForAuth.css" text="Отмена" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
