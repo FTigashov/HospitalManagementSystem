@@ -9,18 +9,12 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Optional;
 
-public class PatientMenuController {
+public class PatientInfoController {
     @FXML
-    private Button archiveOfRecords;
+    private Button patientInfoBtn;
 
     @FXML
-    private Button doctorsDirection;
-
-    @FXML
-    private Button listOfReceipts;
-
-    @FXML
-    private Button makeRecordToVisitDoctor;
+    private Button patientLogOutBtn;
 
     @FXML
     private Button patientMenuMainBtn;
@@ -29,16 +23,14 @@ public class PatientMenuController {
     private Button patientProfileBtn;
 
     @FXML
-    private Button patientInfoBtn;
+    void openPatientMenu(MouseEvent event) {
 
-    private StartApp startApp;
-
-    public void setStartApp(StartApp startApp) {
-        this.startApp = startApp;
     }
 
     @FXML
-    private Button patientLogOutBtn;
+    void openPatientProfile(MouseEvent event) {
+
+    }
 
     @FXML
     void patientLogOut(MouseEvent event) {
@@ -53,13 +45,10 @@ public class PatientMenuController {
         } else { return; }
     }
 
-    @FXML
-    void openPatientInfo(MouseEvent event) {
+    private StartApp startApp;
 
+    public void setStartApp(StartApp startApp) {
+        this.startApp = startApp;
     }
 
-    @FXML
-    void openPatientProfile(MouseEvent event) {
-
-    }
 }
