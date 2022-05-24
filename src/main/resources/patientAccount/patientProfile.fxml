@@ -74,6 +74,37 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="97.0" fitWidth="99.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/patientBlue.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="136.0" text="Фамилия" textFill="#949191" />
+            <Label layoutX="14.0" layoutY="153.0" text="Фамилия">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="180.0" text="Имя" textFill="#949191" />
+            <Label layoutX="14.0" layoutY="197.0" text="Имя">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="224.0" text="Отчество" textFill="#949191" />
+            <Label layoutX="14.0" layoutY="241.0" text="Отчество">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="268.0" text="Дата рожддения" textFill="#949191" />
+            <Label layoutX="14.0" layoutY="285.0" text="Дата рожддения">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </center>
 </BorderPane>
