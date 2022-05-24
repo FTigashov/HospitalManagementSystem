@@ -37,12 +37,12 @@ public class PatientProfileController {
 
     @FXML
     void patientOpenInfoPage(MouseEvent event) {
-
+        startApp.switchToPatientInfoScene();
     }
 
     @FXML
     void patientOpenMainPage(MouseEvent event) {
-
+        startApp.switchToPatientMainMenuScene();
     }
 
     private StartApp startApp;

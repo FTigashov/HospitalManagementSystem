@@ -1,7 +1,9 @@
 package com.example.qualifiedwork;
 
 import com.example.qualifiedwork.authenticaton.*;
+import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
+import com.example.qualifiedwork.patientAccount.PatientProfileController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +31,12 @@ public class StartApp extends Application {
 
     //patientAccount
     private PatientMenuController patientMenuController;
+    private PatientInfoController patientInfoController;
+    private PatientProfileController patientProfileController;
+
     private Scene patientMenuScene;
+    private Scene patientProfileScene;
+    private Scene patientInfoScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -45,6 +52,8 @@ public class StartApp extends Application {
         patientRegisterScene = createPatientRegisterScene();
 
         patientMenuScene = createPatientMenuScene();
+        patientProfileScene = createPatientProfileScene();
+        patientInfoScene = createPatientInfoScene();
 
         stage.setScene(choiceViewScene);
         stage.show();
@@ -59,6 +68,26 @@ public class StartApp extends Application {
         patientMenuController.setStartApp(this);
 
         return patientMenuScene;
+    }
+
+    private Scene createPatientProfileScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/patientAccount/patientProfile.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        patientProfileScene = new Scene(loader.load());
+        patientProfileController = loader.getController();
+        patientProfileController.setStartApp(this);
+
+        return patientProfileScene;
+    }
+
+    private Scene createPatientInfoScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/patientAccount/patientInfo.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        patientInfoScene = new Scene(loader.load());
+        patientInfoController = loader.getController();
+        patientInfoController.setStartApp(this);
+
+        return patientInfoScene;
     }
 
     private Scene createChoiceViewScene() throws IOException {
@@ -138,6 +167,16 @@ public class StartApp extends Application {
 
     public void switchToPatientMainMenuScene() {
         stage.setScene(patientMenuScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToPatientProfileScene() {
+        stage.setScene(patientProfileScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToPatientInfoScene() {
+        stage.setScene(patientInfoScene);
         stage.centerOnScreen();
     }
 

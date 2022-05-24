@@ -37,7 +37,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="patientProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
+            <Button fx:id="patientProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#openPatientProfile" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,7 +49,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="patientInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
+            <Button fx:id="patientInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#openPatientInfo" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>

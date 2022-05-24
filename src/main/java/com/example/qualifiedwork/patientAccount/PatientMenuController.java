@@ -55,11 +55,11 @@ public class PatientMenuController {
 
     @FXML
     void openPatientInfo(MouseEvent event) {
-
+        startApp.switchToPatientInfoScene();
     }
 
     @FXML
     void openPatientProfile(MouseEvent event) {
-
+        startApp.switchToPatientProfileScene();
     }
 }
