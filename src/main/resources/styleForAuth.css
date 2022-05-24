@@ -22,3 +22,21 @@
     -fx-border-color: #62ace0;
     -fx-text-fill: #62ace0;
 }
+
+.patientButton {
+    -fx-background-color: #62ace0;
+    -fx-text-fill: white;
+}
+
+.patientButton:hover {
+    -fx-background-color: #6495ed;
+}
+
+.patientMenuButton{
+    -fx-background-color: #62ace0;
+    -fx-text-fill: white;
+}
+
+.patientMenuButton:hover {
+    -fx-background-color: #6495ed;
+}

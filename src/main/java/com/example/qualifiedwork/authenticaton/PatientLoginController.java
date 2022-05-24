@@ -64,7 +64,9 @@ public class PatientLoginController {
             if (passwordDB != null && passwordDB.equals(password)) {
                 patientLoginFiled.setText("");
                 patientPasswordField.setText("");
+                connection.close();
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента");
+                startApp.switchToPatientMainMenuScene();
             } else {
                 startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
             }

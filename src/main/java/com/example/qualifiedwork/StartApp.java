@@ -1,12 +1,12 @@
 package com.example.qualifiedwork;
 
 import com.example.qualifiedwork.authenticaton.*;
+import com.example.qualifiedwork.patientAccount.PatientMenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,6 +14,7 @@ import java.net.URL;
 public class StartApp extends Application {
     private Stage stage;
 
+    //authentication
     private ChoiceViewController choiceViewController;
     private AdminLoginController adminLoginController;
     private DoctorLoginController doctorLoginController;
@@ -25,6 +26,10 @@ public class StartApp extends Application {
     private Scene doctorScene;
     private Scene patientLoginScene;
     private Scene patientRegisterScene;
+
+    //patientAccount
+    private PatientMenuController patientMenuController;
+    private Scene patientMenuScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -39,8 +44,21 @@ public class StartApp extends Application {
         patientLoginScene = createPatientLoginScene();
         patientRegisterScene = createPatientRegisterScene();
 
+        patientMenuScene = createPatientMenuScene();
+
         stage.setScene(choiceViewScene);
         stage.show();
+
+    }
+
+    private Scene createPatientMenuScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/patientAccount/mainMenu.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        patientMenuScene = new Scene(loader.load());
+        patientMenuController = loader.getController();
+        patientMenuController.setStartApp(this);
+
+        return patientMenuScene;
     }
 
     private Scene createChoiceViewScene() throws IOException {
@@ -115,6 +133,11 @@ public class StartApp extends Application {
 
     public void switchToPatientRegisterScene() {
         stage.setScene(patientRegisterScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToPatientMainMenuScene() {
+        stage.setScene(patientMenuScene);
         stage.centerOnScreen();
     }
 
