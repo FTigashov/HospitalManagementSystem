@@ -56,6 +56,7 @@ public class AdminLoginController {
                 adminLoginFiled.setText("");
                 adminPasswordField.setText("");
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");
+                startApp.switchToAdminMainMenuScene();
             } else {
                 startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
             }

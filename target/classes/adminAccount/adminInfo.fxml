@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminInfoController">
+   <left>
+      <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="181.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Меню" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="adminMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openAdminMenu" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Главная">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/main.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+            <Button fx:id="adminProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#openAdminProfile" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/profileWhite.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+            <Button fx:id="adminInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#openAdminInfo" prefHeight="49.0" prefWidth="193.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/infoWhite.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+            <Button fx:id="adminLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#adminLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выйти">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/exitWhite.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="43.0" layoutY="179.0" text="Проект: АИС для учета и наблюдения пациентов в медицинском учреждении">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="43.0" layoutY="207.0" text="Версия: v0.5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" depthTest="ENABLE" layoutX="43.0" layoutY="240.0" prefHeight="258.0" prefWidth="666.0" text="О проекте: Данное программное обеспечение реализовано для операционной системы windows 10. Основная задача системы, предоставление набора инструментов для проведения различных работ с пациентами, а именно произведение учета, осмотров и наблюдение за тенденциями болезней." wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="117.0" fitWidth="128.0" layoutX="43.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/creating.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

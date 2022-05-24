@@ -1,5 +1,8 @@
 package com.example.qualifiedwork;
 
+import com.example.qualifiedwork.adminAccount.AdminInfoController;
+import com.example.qualifiedwork.adminAccount.AdminMenuController;
+import com.example.qualifiedwork.adminAccount.AdminProfileController;
 import com.example.qualifiedwork.authenticaton.*;
 import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
@@ -38,6 +41,15 @@ public class StartApp extends Application {
     private Scene patientProfileScene;
     private Scene patientInfoScene;
 
+    //adminAccount
+    private AdminProfileController adminProfileController;
+    private AdminMenuController adminMenuController;
+    private AdminInfoController adminInfoController;
+
+    private Scene adminProfileScene;
+    private Scene adminMenuScene;
+    private Scene adminInfoScene;
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
@@ -55,9 +67,43 @@ public class StartApp extends Application {
         patientProfileScene = createPatientProfileScene();
         patientInfoScene = createPatientInfoScene();
 
+        adminProfileScene = createAdminProfileScene();
+        adminInfoScene = createAdminInfoScene();
+        adminMenuScene = createAdminMenuScene();
+
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createAdminMenuScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminMenu.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        adminMenuScene = new Scene(loader.load());
+        adminMenuController = loader.getController();
+        adminMenuController.setStartApp(this);
+
+        return adminMenuScene;
+    }
+
+    private Scene createAdminProfileScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminProfile.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        adminProfileScene = new Scene(loader.load());
+        adminProfileController = loader.getController();
+        adminProfileController.setStartApp(this);
+
+        return adminProfileScene;
+    }
+
+    private Scene createAdminInfoScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminInfo.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        adminInfoScene = new Scene(loader.load());
+        adminInfoController = loader.getController();
+        adminInfoController.setStartApp(this);
+
+        return adminInfoScene;
     }
 
     private Scene createPatientMenuScene() throws IOException {
@@ -177,6 +223,21 @@ public class StartApp extends Application {
 
     public void switchToPatientInfoScene() {
         stage.setScene(patientInfoScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToAdminMainMenuScene() {
+        stage.setScene(adminMenuScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToAdminProfileScene() {
+        stage.setScene(adminProfileScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToAdminInfoScene() {
+        stage.setScene(adminInfoScene);
         stage.centerOnScreen();
     }
 
