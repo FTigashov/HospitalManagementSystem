@@ -55,9 +55,11 @@ public class DoctorLoginController {
             if (passwordDB != null && passwordDB.equals(password)) {
                 doctorLoginFiled.setText("");
                 doctorPasswordField.setText("");
+                connection.close();
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли врача");
             } else {
                 startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
+                connection.close();
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

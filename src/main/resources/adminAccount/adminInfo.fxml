@@ -91,7 +91,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="117.0" fitWidth="128.0" layoutX="43.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="98.0" fitWidth="103.0" layoutX="36.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
                <image>
                   <Image url="@../../../../../../Desktop/Диплом/icons/creating.png" />
                </image>

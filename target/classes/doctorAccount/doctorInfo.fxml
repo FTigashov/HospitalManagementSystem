@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +22,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="adminMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openAdminMenu" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Главная">
+            <Button fx:id="doctorMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMainMenu" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Главная">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,7 +34,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="adminProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#openAdminProfile" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
+            <Button fx:id="doctorProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#openDoctorProfile" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="adminInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#openAdminInfo" prefHeight="49.0" prefWidth="193.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
+            <Button fx:id="doctorInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#doctorShowInfo" prefHeight="49.0" prefWidth="193.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +58,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="adminLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#adminLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выйти">
+            <Button fx:id="doctorLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#doctorLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выйти">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -76,6 +76,11 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="98.0" fitWidth="103.0" layoutX="36.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/creating.png" />
+               </image>
+            </ImageView>
             <Label layoutX="43.0" layoutY="179.0" text="Проект: АИС для учета и наблюдения пациентов в медицинском учреждении">
                <font>
                   <Font size="14.0" />
@@ -91,11 +96,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="98.0" fitWidth="103.0" layoutX="36.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
-               <image>
-                  <Image url="@../../../../../../Desktop/Диплом/icons/creating.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </center>

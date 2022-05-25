@@ -55,9 +55,11 @@ public class AdminLoginController {
             if (passwordDB != null && passwordDB.equals(password)) {
                 adminLoginFiled.setText("");
                 adminPasswordField.setText("");
+                connection.close();
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");
                 startApp.switchToAdminMainMenuScene();
             } else {
+                connection.close();
                 startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
             }
         } catch (ClassNotFoundException e) {
