@@ -1,14 +1,22 @@
 package com.example.qualifiedwork.adminAccount;
 
+import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class AdminListOfAllAdminsController {
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class AdminListOfAllAdminsController implements Initializable {
 
     @FXML
     private Button DeleteRecordBtn;
@@ -26,28 +34,31 @@ public class AdminListOfAllAdminsController {
     private Button changeRecordBtn;
 
     @FXML
-    private TableColumn<?, ?> columnBirthDate;
+    private TableColumn<AdminRecord, String> columnBirthDate;
 
     @FXML
-    private TableColumn<?, ?> columnDateEmpl;
+    private TableColumn<AdminRecord, String> columnDateEmpl;
 
     @FXML
-    private TableColumn<?, ?> columnFatherName;
+    private TableColumn<AdminRecord, String> columnFatherName;
 
     @FXML
-    private TableColumn<?, ?> columnLogin;
+    private TableColumn<AdminRecord, String> columnLogin;
 
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableColumn<AdminRecord, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnPassword;
+    private TableColumn<AdminRecord, String> columnPassword;
 
     @FXML
-    private TableColumn<?, ?> columnRespons;
+    private TableColumn<AdminRecord, String> columnRespons;
 
     @FXML
-    private TableColumn<?, ?> columnSecondName;
+    private TableColumn<AdminRecord, String> columnSecondName;
+
+    @FXML
+    private TableView<AdminRecord> listOfAdmins;
 
     @FXML
     private TextField dateEmplField;
@@ -72,11 +83,47 @@ public class AdminListOfAllAdminsController {
 
     private StartApp startApp;
 
+    private DBHandler dbHandler;
+
     public void setStartApp(StartApp startApp) {
         this.startApp = startApp;
     }
 
     public void openMainMenu(MouseEvent mouseEvent) {
         startApp.switchToAdminMainMenuScene();
+    }
+
+    private ObservableList<AdminRecord> oblist = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            Connection connection = DBHandler.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM adminDefaultData");
+
+            while (resultSet.next()) {
+                oblist.add(new AdminRecord(resultSet.getString("secondName"),
+                        resultSet.getString("name"),
+                        resultSet.getString("fatherName"),
+                        resultSet.getString("birthDate"),
+                        resultSet.getString("emplDate"),
+                        resultSet.getString("responsStatus"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password")));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        columnSecondName.setCellValueFactory(new PropertyValueFactory<>("secondName"));
+        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnFatherName.setCellValueFactory(new PropertyValueFactory<>("fatherName"));
+        columnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+        columnDateEmpl.setCellValueFactory(new PropertyValueFactory<>("dateEmpl"));
+        columnRespons.setCellValueFactory(new PropertyValueFactory<>("responsStatus"));
+        columnLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
+        columnPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+
+        listOfAdmins.setItems(oblist);
     }
 }

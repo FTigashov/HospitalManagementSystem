@@ -44,7 +44,7 @@
    <center>
       <AnchorPane prefHeight="639.0" prefWidth="707.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="18.0" layoutY="103.0" prefHeight="515.0" prefWidth="855.0">
+            <TableView fx:id="listOfAdmins" layoutX="18.0" layoutY="103.0" prefHeight="515.0" prefWidth="855.0">
               <columns>
                 <TableColumn fx:id="columnSecondName" prefWidth="112.44447898864746" text="Фамилия" />
                   <TableColumn fx:id="columnName" prefWidth="112.44447898864746" text="Имя" />
