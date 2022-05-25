@@ -98,10 +98,12 @@ public class AdminListOfAllAdminsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        responsStatusChoice.setValue("Гл. врач");
-        responsStatusChoice.getItems().add("Гл. врач");
+        responsStatusChoice.setValue("Зав. отделения");
+        responsStatusChoice.getItems().add("Зам. Гл. врача");
         responsStatusChoice.getItems().add("Зав. отделения");
+        responsStatusChoice.getItems().add("Зам. Гл. отделения");
         responsStatusChoice.getItems().add("Гл. медсестра");
+        responsStatusChoice.getItems().add("Ст. медсестра");
 
         showDataFromTable();
     }
@@ -119,6 +121,18 @@ public class AdminListOfAllAdminsController implements Initializable {
         String responsStatus = responsStatusChoice.getValue();
         String login = loginField.getText().trim();
         String password = passwordField.getText().trim();
+
+        if (secondName.length() == 0 &&
+                name.length() == 0 &&
+                fatherName.length() == 0 &&
+                birthDate.length() == 0 &&
+                employDate.length() == 0 &&
+                responsStatus.length() == 0 &&
+                login.length() == 0 &&
+                password.length() == 0) {
+            startApp.showErrorLoginAlert("Ошибка добавления записи", "Убедитесь, что все поля заполнены.");
+            return;
+        }
 
         try {
             connection = DBHandler.getConnection();
@@ -138,45 +152,6 @@ public class AdminListOfAllAdminsController implements Initializable {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-//        Connection connection = null;
-//        PreparedStatement psCheckUser = null;
-//        PreparedStatement psRegisterNewUser = null;
-//        PreparedStatement psRegisterNewUserData = null;
-//        ResultSet resultSet = null;
-//
-//        try {
-//            connection = DBHandler.getConnection();
-//            psCheckUser = connection.prepareStatement("SELECT * FROM patientsAuth WHERE login = ?");
-//            psCheckUser.setString(1, login);
-//
-//            resultSet = psCheckUser.executeQuery();
-//
-//            if (resultSet.isBeforeFirst()) {
-//                startApp.showErrorLoginAlert("Ошибка регистрации", "Пользователь с данным логином уже есть в системе.\nПопробуйте использовать другой.");
-//                connection.close();
-//            } else {
-//                psRegisterNewUser = connection.prepareStatement("INSERT INTO patientsAuth (login, password) VALUES (?, ?)");
-//                psRegisterNewUser.setString(1, login);
-//                psRegisterNewUser.setString(2, password);
-//
-//                psRegisterNewUser.executeUpdate();
-//
-//                psRegisterNewUserData = connection.prepareStatement("INSERT INTO patientDefaultData (secondName, name, fatherName, login) VALUES (?, ?, ?, ?)");
-//                psRegisterNewUserData.setString(1, secondName);
-//                psRegisterNewUserData.setString(2, name);
-//                psRegisterNewUserData.setString(3, fatherName);
-//                psRegisterNewUserData.setString(4, login);
-//
-//                psRegisterNewUserData.executeUpdate();
-//                connection.close();
-//
-//
-//                startApp.showSuccessMessage("Уведомление о регистрации", "Регистрация прошла успешно!", "Пользователь был добавлен в систему.\nТеперь вы можете выполнить авторизацию.");
-//                startApp.switchToPatientLoginScene();
-//            }
-//        } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 
     private void showDataFromTable() {
@@ -209,5 +184,30 @@ public class AdminListOfAllAdminsController implements Initializable {
         columnPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
 
         listOfAdmins.setItems(oblist);
+    }
+
+    @FXML
+    void deleteRecord(MouseEvent event) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        AdminRecord record = listOfAdmins.getSelectionModel().getSelectedItem();
+        System.out.println(record);
+        if (record == null) {
+            startApp.showErrorLoginAlert("Ошибка удаления", "Необходимо выбрать запись в таблице.");
+            return;
+        } else {
+            String loginRecord = record.getLogin();
+            System.out.println(loginRecord);
+            try {
+                connection = DBHandler.getConnection();
+                preparedStatement = connection.prepareStatement("DELETE FROM adminDefaultData WHERE login = ?");
+                preparedStatement.setString(1, loginRecord);
+
+                preparedStatement.executeUpdate();
+                showDataFromTable();
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
