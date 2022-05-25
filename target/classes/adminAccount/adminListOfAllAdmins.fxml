@@ -196,7 +196,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="changeRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Изменить">
+                  <Button fx:id="changeRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeRecord" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Изменить">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
