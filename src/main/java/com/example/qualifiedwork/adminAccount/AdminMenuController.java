@@ -54,7 +54,7 @@ public class AdminMenuController {
 
     @FXML
     void openAdminList(MouseEvent event) {
-
+        startApp.switchToListOfAdmins();
     }
 
     @FXML

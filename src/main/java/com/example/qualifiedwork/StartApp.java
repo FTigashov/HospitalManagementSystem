@@ -1,6 +1,7 @@
 package com.example.qualifiedwork;
 
 import com.example.qualifiedwork.adminAccount.AdminInfoController;
+import com.example.qualifiedwork.adminAccount.AdminListOfAllAdminsController;
 import com.example.qualifiedwork.adminAccount.AdminMenuController;
 import com.example.qualifiedwork.adminAccount.AdminProfileController;
 import com.example.qualifiedwork.authenticaton.*;
@@ -8,6 +9,7 @@ import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
 import com.example.qualifiedwork.patientAccount.PatientProfileController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -45,10 +47,12 @@ public class StartApp extends Application {
     private AdminProfileController adminProfileController;
     private AdminMenuController adminMenuController;
     private AdminInfoController adminInfoController;
+    private AdminListOfAllAdminsController adminListOfAllAdminsController;
 
     private Scene adminProfileScene;
     private Scene adminMenuScene;
     private Scene adminInfoScene;
+    private Scene listOfAllAdminsScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -70,10 +74,21 @@ public class StartApp extends Application {
         adminProfileScene = createAdminProfileScene();
         adminInfoScene = createAdminInfoScene();
         adminMenuScene = createAdminMenuScene();
+        listOfAllAdminsScene = createListOfAllAdmins();
 
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createListOfAllAdmins() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminListOfAllAdmins.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        listOfAllAdminsScene = new Scene(loader.load());
+        adminListOfAllAdminsController = loader.getController();
+        adminListOfAllAdminsController.setStartApp(this);
+
+        return listOfAllAdminsScene;
     }
 
     private Scene createAdminMenuScene() throws IOException {
@@ -238,6 +253,11 @@ public class StartApp extends Application {
 
     public void switchToAdminInfoScene() {
         stage.setScene(adminInfoScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToListOfAdmins() {
+        stage.setScene(listOfAllAdminsScene);
         stage.centerOnScreen();
     }
 
