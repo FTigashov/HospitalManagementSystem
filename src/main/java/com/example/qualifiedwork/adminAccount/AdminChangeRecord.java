@@ -57,8 +57,6 @@ public class AdminChangeRecord {
     void changeRecord(MouseEvent event) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        PreparedStatement psCheckExistsLogin = null;
-        ResultSet resultSet = null;
 
         String updateResponsibleStatus = responsStatusChoice.getValue();
         String updateLogin = loginField.getText();

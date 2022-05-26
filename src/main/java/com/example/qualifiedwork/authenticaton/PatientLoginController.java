@@ -62,9 +62,6 @@ public class PatientLoginController {
 
             if (passwordDB != null && passwordDB.equals(password)) {
                 if (resultSet.isBeforeFirst()) {
-                    startApp.showErrorLoginAlert("Ошибка авторизации", "По введенным вами данным\nаккаунт не был найден.");
-                    return;
-                } else {
                     String secondName = resultSet.getString("secondName");
                     String name = resultSet.getString("name");
                     startApp.getInfoAboutAccountFromController(secondName, name);
@@ -72,15 +69,16 @@ public class PatientLoginController {
                     patientLoginFiled.setText("");
                     patientPasswordField.setText("");
                     connection.close();
-                    startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента");
+                    startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента.");
                     startApp.switchToPatientMainMenuScene();
+                } else {
+                    startApp.showErrorLoginAlert("Ошибка авторизации", "По введенным вами данным\nаккаунт не был найден.");
+                    return;
                 }
             } else {
-                startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
+                startApp.showErrorLoginAlert("Ошибка авторизации", "Некорректный логин или пароль.\nПроверьте правильность введенных данных.");
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

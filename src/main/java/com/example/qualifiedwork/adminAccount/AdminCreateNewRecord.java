@@ -133,6 +133,8 @@ public class AdminCreateNewRecord implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         responsStatusChoice.setValue("Зав. отделения");
         responsStatusChoice.getItems().add("Зам. Гл. врача");
+        responsStatusChoice.getItems().add("Гл. бухгалгер");
+        responsStatusChoice.getItems().add("Зам. по мед. части");
         responsStatusChoice.getItems().add("Зав. отделения");
         responsStatusChoice.getItems().add("Зам. Гл. отделения");
         responsStatusChoice.getItems().add("Гл. медсестра");
