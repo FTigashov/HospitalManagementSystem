@@ -33,7 +33,7 @@ public class AdminListOfAllAdminsController implements Initializable {
     private Button adminMenuMainBtn;
 
     @FXML
-    private TextField birthDateField;
+    private Label birthDateField;
 
     @FXML
     private Button changeRecordBtn;
@@ -66,31 +66,25 @@ public class AdminListOfAllAdminsController implements Initializable {
     private TableView<AdminRecord> listOfAdmins;
 
     @FXML
-    private TextField dateEmplField;
+    private Label dateEmplField;
 
     @FXML
-    private TextField fatherNameField;
+    private Label fatherNameField;
 
     @FXML
-    private TextField loginField;
+    private Label loginField;
 
     @FXML
-    private TextField nameField;
+    private Label nameField;
 
     @FXML
-    private TextField passwordField;
+    private Label passwordField;
 
     @FXML
-    private ChoiceBox<String> responsStatusChoice;
+    private Label responsStatusChoice;
 
     @FXML
-    private TextField searchField;
-
-    @FXML
-    private Button searchBtn;
-
-    @FXML
-    private TextField secondNameField;
+    private Label secondNameField;
 
     private StartApp startApp;
 
@@ -109,12 +103,6 @@ public class AdminListOfAllAdminsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        responsStatusChoice.setValue("Зав. отделения");
-        responsStatusChoice.getItems().add("Зам. Гл. врача");
-        responsStatusChoice.getItems().add("Зав. отделения");
-        responsStatusChoice.getItems().add("Зам. Гл. отделения");
-        responsStatusChoice.getItems().add("Гл. медсестра");
-        responsStatusChoice.getItems().add("Ст. медсестра");
 
         listOfAdmins.setRowFactory(event -> {
            TableRow<AdminRecord> row = new TableRow<>();
@@ -126,23 +114,23 @@ public class AdminListOfAllAdminsController implements Initializable {
                    fatherNameField.setText(clickedRow.getFatherName());
                    birthDateField.setText(clickedRow.getBirthDate());
                    dateEmplField.setText(clickedRow.getDateEmpl());
-                   responsStatusChoice.setValue(clickedRow.getResponsStatus());
+                   responsStatusChoice.setText(clickedRow.getResponsStatus());
                    loginField.setText(clickedRow.getLogin());
                    passwordField.setText(clickedRow.getPassword());
                } else {
 //                   System.out.println("Не выбрано поле");
                }
-
            });
             return row;
         });
-
         showDataFromTable();
     }
 
     @FXML
     void addNewRecordIntoTable(MouseEvent event) {
-        Connection connection = null;
+        startApp.switchToCreateNewRecordForm();
+
+        /*Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement psCheckExistsLogin = null;
         ResultSet resultSet = null;
@@ -175,7 +163,7 @@ public class AdminListOfAllAdminsController implements Initializable {
 
             if (resultSet.isBeforeFirst()) {
                 startApp.showErrorLoginAlert("Ошибка добавления записи", "Пользователь с данным логином уже есть в системе.");
-                connection.close();
+                return;
             } else {
                 preparedStatement = connection.prepareStatement("INSERT INTO adminDefaultData (secondName, name, fatherName, birthDate, emplDate, responsStatus, login, password) VALUES" +
                         " (?, ?, ?, ?, ?, ?, ?, ?) ");
@@ -199,7 +187,7 @@ public class AdminListOfAllAdminsController implements Initializable {
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void showDataFromTable() {
@@ -273,7 +261,7 @@ public class AdminListOfAllAdminsController implements Initializable {
         String fatherName = fatherNameField.getText().trim();
         String birthDate = birthDateField.getText().trim();
         String employDate = dateEmplField.getText().trim();
-        String responsStatus = responsStatusChoice.getValue();
+        String responsStatus = responsStatusChoice.getText().trim();
         String login = loginField.getText().trim();
         String password = passwordField.getText().trim();
 

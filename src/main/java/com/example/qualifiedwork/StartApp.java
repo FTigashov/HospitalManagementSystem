@@ -1,9 +1,6 @@
 package com.example.qualifiedwork;
 
-import com.example.qualifiedwork.adminAccount.AdminInfoController;
-import com.example.qualifiedwork.adminAccount.AdminListOfAllAdminsController;
-import com.example.qualifiedwork.adminAccount.AdminMenuController;
-import com.example.qualifiedwork.adminAccount.AdminProfileController;
+import com.example.qualifiedwork.adminAccount.*;
 import com.example.qualifiedwork.authenticaton.*;
 import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
@@ -48,11 +45,14 @@ public class StartApp extends Application {
     private AdminMenuController adminMenuController;
     private AdminInfoController adminInfoController;
     private AdminListOfAllAdminsController adminListOfAllAdminsController;
+    private AdminCreateNewRecord adminCreateNewRecord;
 
     private Scene adminProfileScene;
     private Scene adminMenuScene;
     private Scene adminInfoScene;
     private Scene listOfAllAdminsScene;
+    private Scene createNewAdminRecordScene;
+
     private String getSecondName;
     private String getName;
 
@@ -77,10 +77,21 @@ public class StartApp extends Application {
         adminInfoScene = createAdminInfoScene();
         adminMenuScene = createAdminMenuScene();
         listOfAllAdminsScene = createListOfAllAdmins();
+        createNewAdminRecordScene = createNewAdminRecordScene();
 
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createNewAdminRecordScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminCreateNewRecord.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        createNewAdminRecordScene = new Scene(loader.load());
+        adminCreateNewRecord = loader.getController();
+        adminCreateNewRecord.setStartApp(this);
+
+        return createNewAdminRecordScene;
     }
 
     private Scene createListOfAllAdmins() throws IOException {
@@ -291,5 +302,10 @@ public class StartApp extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public void switchToCreateNewRecordForm() {
+        stage.setScene(createNewAdminRecordScene);
+        stage.centerOnScreen();
     }
 }

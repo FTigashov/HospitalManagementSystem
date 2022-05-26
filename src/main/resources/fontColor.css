@@ -1,0 +1,14 @@
+.textField {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.textField:selected {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.text {
+    -fx-font-style: normal;
+    -fx-text-fill: white;
+}

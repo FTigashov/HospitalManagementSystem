@@ -111,8 +111,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="279.0" layoutY="275.0" text="Должность" textFill="#949191" />
-            <Label fx:id="responsStatusLabel" layoutX="279.0" layoutY="292.0" text="Должность">
+            <Label layoutX="217.0" layoutY="279.0" text="Должность" textFill="#949191" />
+            <Label fx:id="responsStatusLabel" layoutX="217.0" layoutY="296.0" text="Должность">
                <font>
                   <Font size="16.0" />
                </font>
@@ -128,8 +128,8 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="279.0" layoutY="358.0" text="Пароль" textFill="#949191" />
-            <Label fx:id="passwordLabel" layoutX="278.0" layoutY="375.0" text="Пароль">
+            <Label layoutX="217.0" layoutY="362.0" text="Пароль" textFill="#949191" />
+            <Label fx:id="passwordLabel" layoutX="216.0" layoutY="379.0" text="Пароль">
                <font>
                   <Font size="16.0" />
                </font>
