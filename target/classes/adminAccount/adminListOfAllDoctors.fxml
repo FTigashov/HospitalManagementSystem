@@ -1,14 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.qualifiedwork.adminAccount.AdminListOfAllDoctorsController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1319.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminListOfAllDoctorsController">
+   <left>
+      <VBox prefHeight="662.0" prefWidth="141.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="284.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Меню" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="adminMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMainMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="На главную">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/main.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="639.0" prefWidth="707.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="listOfDoctors" layoutX="18.0" layoutY="86.0" prefHeight="532.0" prefWidth="855.0">
+               <columns>
+                  <TableColumn fx:id="columnSecondName" prefWidth="112.44447898864746" text="Фамилия" />
+                  <TableColumn fx:id="columnName" prefWidth="112.44447898864746" text="Имя" />
+                  <TableColumn fx:id="columnFatherName" prefWidth="112.44447898864746" text="Отчество" />
+                  <TableColumn fx:id="columnBirthDate" prefWidth="94.66668701171875" text="Дата рождения" />
+                  <TableColumn fx:id="columnDateEmpl" prefWidth="94.66671752929688" text="Дата устройства" />
+                  <TableColumn fx:id="columnRespons" prefWidth="118.66668701171875" text="Должность" />
+                  <TableColumn fx:id="columnLogin" prefWidth="100.8887939453125" text="Логин" />
+                  <TableColumn fx:id="columnPassword" prefWidth="106.66659206814234" text="Пароль" />
+               </columns>
+            </TableView>
+            <Label layoutX="18.0" layoutY="43.0" text="Врачи">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane prefHeight="662.0" prefWidth="237.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="284.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Выбранная запись" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox layoutY="60.0" prefHeight="389.0" prefWidth="285.0">
+               <children>
+                  <Label fx:id="secondNameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fatherNameField" layoutX="10.0" layoutY="90.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="birthDateField" layoutX="10.0" layoutY="136.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateEmplField" layoutX="10.0" layoutY="181.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="responsStatusChoice" layoutX="25.0" layoutY="226.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="loginField" layoutX="10.0" layoutY="272.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="passwordField" layoutX="10.0" layoutY="317.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutY="458.0" prefHeight="203.0" prefWidth="285.0" style="-fx-border-color: white; -fx-border-width: 1px 0px 0px 0px;">
+               <children>
+                  <Button fx:id="addNewRecordBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#addNewRecordIntoTable" prefHeight="49.0" prefWidth="289.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Добавить">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" right="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="changeRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeRecord" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Изменить">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/changeButton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" right="15.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="DeleteRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#deleteRecord" prefHeight="49.0" prefWidth="286.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Удалить">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/deleteButton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" right="15.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

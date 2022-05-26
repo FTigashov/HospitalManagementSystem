@@ -46,6 +46,7 @@ public class StartApp extends Application {
     private AdminListOfAllAdminsController adminListOfAllAdminsController;
     private AdminCreateNewRecord adminCreateNewRecord;
     private AdminChangeRecord adminChangeRecord;
+    private AdminListOfAllDoctorsController adminListOfAllDoctorsController;
 
     private Scene adminProfileScene;
     private Scene adminMenuScene;
@@ -53,6 +54,7 @@ public class StartApp extends Application {
     private Scene listOfAllAdminsScene;
     private Scene createNewAdminRecordScene;
     private Scene changeAdminRecordScene;
+    private Scene listOfAllDoctorsScene;
 
     private String getSecondName;
     private String getName;
@@ -82,10 +84,21 @@ public class StartApp extends Application {
         listOfAllAdminsScene = createListOfAllAdmins();
         createNewAdminRecordScene = createNewAdminRecordScene();
         changeAdminRecordScene = createNewChangeAdminRecordScene();
+        listOfAllDoctorsScene = createListOfAllDoctors();
 
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createListOfAllDoctors() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/AdminListOfAllDoctors.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        listOfAllDoctorsScene = new Scene(loader.load());
+        adminListOfAllDoctorsController = loader.getController();
+        adminListOfAllDoctorsController.setStartApp(this);
+
+        return listOfAllDoctorsScene;
     }
 
     private Scene createNewChangeAdminRecordScene() throws IOException {
@@ -340,6 +353,11 @@ public class StartApp extends Application {
 
     public void switchToChangeAdminRecordScene() {
         stage.setScene(changeAdminRecordScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToListOfDoctors() {
+        stage.setScene(listOfAllDoctorsScene);
         stage.centerOnScreen();
     }
 }
