@@ -47,7 +47,7 @@ public class AdminLoginController {
         try {
             Connection connection = DBHandler.getConnection();
             ResultSet resultSet;
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM adminAuth WHERE login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM adminDefaultData WHERE login = ?");
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
 

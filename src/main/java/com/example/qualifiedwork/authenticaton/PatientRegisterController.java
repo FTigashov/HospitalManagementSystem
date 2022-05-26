@@ -8,7 +8,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 public class PatientRegisterController {
@@ -35,6 +34,18 @@ public class PatientRegisterController {
     private Button patientRegisterBtn;
 
     @FXML
+    private TextField medCardField;
+
+    @FXML
+    private TextField snilsField;
+
+    @FXML
+    private TextField addressField;
+
+    @FXML
+    private TextField birthDateField;
+
+    @FXML
     private TextField patientSecondNameField;
 
     @FXML
@@ -48,23 +59,27 @@ public class PatientRegisterController {
         String secondName = patientSecondNameField.getText().trim();
         String name = patientNameField.getText().trim();
         String fatherName = patientFatherNameField.getText().trim();
+        String birthDate = birthDateField.getText().trim();
+        String address = addressField.getText().trim();
+        String medCard = medCardField.getText().trim();
+        String snils = snilsField.getText().trim();
         String login = patientLoginFiled.getText().trim();
         String password = patientPasswordField.getText().trim();
         String confirmPassword = patientConfirmPasswordField.getText().trim();
 
-        if (secondName.length() == 0 && name.length() == 0 && fatherName.length() == 0 && login.length() == 0 && password.length() == 0 && confirmPassword.length() == 0) {
+        if (secondName.length() == 0 && name.length() == 0 && birthDate.length() == 0 && address.length() == 0 && fatherName.length() == 0 && medCard.length() == 0 && snils.length() == 0 && login.length() == 0 && password.length() == 0 && confirmPassword.length() == 0) {
             startApp.showErrorLoginAlert("Ошибка регистрации", "Необходимо, чтобы все поля были заполнены!");
             return;
         }
         if (password.equals(confirmPassword)) {
-            checkLoginForExistsAndRegister(secondName, name, fatherName, login, password);
+            checkLoginForExistsAndRegister(secondName, name, fatherName, birthDate, address, medCard, snils, login, password);
         } else { startApp.showErrorLoginAlert("Ошибка регистрации", "Необходимо, чтобы введенные пароли совпадали."); }
 
     }
 
 
 
-    private void checkLoginForExistsAndRegister(String secondName, String name, String fatherName, String login, String password) {
+    private void checkLoginForExistsAndRegister(String secondName, String name, String fatherName, String birthDate, String address, String medCard, String snils, String login, String password) {
         Connection connection = null;
         PreparedStatement psCheckUser = null;
         PreparedStatement psRegisterNewUser = null;
@@ -82,17 +97,17 @@ public class PatientRegisterController {
                 startApp.showErrorLoginAlert("Ошибка регистрации", "Пользователь с данным логином уже есть в системе.\nПопробуйте использовать другой.");
                 connection.close();
             } else {
-                psRegisterNewUser = connection.prepareStatement("INSERT INTO patientsAuth (login, password) VALUES (?, ?)");
-                psRegisterNewUser.setString(1, login);
-                psRegisterNewUser.setString(2, password);
-
-                psRegisterNewUser.executeUpdate();
-
-                psRegisterNewUserData = connection.prepareStatement("INSERT INTO patientDefaultData (secondName, name, fatherName, login) VALUES (?, ?, ?, ?)");
+                psRegisterNewUserData = connection.prepareStatement("INSERT INTO patientDefaultData (secondName, name, fatherName, login, password, birthDate, medCard, snilsCard, address)" +
+                        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 psRegisterNewUserData.setString(1, secondName);
                 psRegisterNewUserData.setString(2, name);
                 psRegisterNewUserData.setString(3, fatherName);
                 psRegisterNewUserData.setString(4, login);
+                psRegisterNewUserData.setString(5, password);
+                psRegisterNewUserData.setString(6, birthDate);
+                psRegisterNewUserData.setString(7, medCard);
+                psRegisterNewUserData.setString(8, snils);
+                psRegisterNewUserData.setString(9, address);
 
                 psRegisterNewUserData.executeUpdate();
                 connection.close();
@@ -114,8 +129,6 @@ public class PatientRegisterController {
     }
 
     private StartApp startApp;
-
-
 
     public void setModelApp(StartApp startApp) {
         this.startApp = startApp;

@@ -4,6 +4,7 @@ import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -15,7 +16,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AdminListOfAllAdminsController implements Initializable {
 
@@ -80,6 +84,12 @@ public class AdminListOfAllAdminsController implements Initializable {
     private ChoiceBox<String> responsStatusChoice;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
+    private Button searchBtn;
+
+    @FXML
     private TextField secondNameField;
 
     private StartApp startApp;
@@ -95,6 +105,7 @@ public class AdminListOfAllAdminsController implements Initializable {
     }
 
     private ObservableList<AdminRecord> oblist = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -44,19 +44,23 @@
    <center>
       <AnchorPane prefHeight="639.0" prefWidth="707.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="listOfAdmins" layoutX="18.0" layoutY="103.0" prefHeight="515.0" prefWidth="855.0">
+            <TableView fx:id="listOfAdmins" layoutX="18.0" layoutY="86.0" prefHeight="532.0" prefWidth="855.0">
               <columns>
                 <TableColumn fx:id="columnSecondName" prefWidth="112.44447898864746" text="Фамилия" />
                   <TableColumn fx:id="columnName" prefWidth="112.44447898864746" text="Имя" />
                   <TableColumn fx:id="columnFatherName" prefWidth="112.44447898864746" text="Отчество" />
-                  <TableColumn fx:id="columnBirthDate" prefWidth="92.88885498046875" text="Дата рождения" />
-                  <TableColumn fx:id="columnDateEmpl" prefWidth="96.00003051757812" text="Дата устройства" />
+                  <TableColumn fx:id="columnBirthDate" prefWidth="94.66668701171875" text="Дата рождения" />
+                  <TableColumn fx:id="columnDateEmpl" prefWidth="94.66671752929688" text="Дата устройства" />
                   <TableColumn fx:id="columnRespons" prefWidth="118.66668701171875" text="Должность" />
                   <TableColumn fx:id="columnLogin" prefWidth="100.8887939453125" text="Логин" />
                   <TableColumn fx:id="columnPassword" prefWidth="106.66659206814234" text="Пароль" />
               </columns>
             </TableView>
-            <TextField layoutX="18.0" layoutY="47.0" prefHeight="25.0" prefWidth="370.0" promptText="Поиск по таблице" />
+            <Label layoutX="18.0" layoutY="43.0" text="Администраторы">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

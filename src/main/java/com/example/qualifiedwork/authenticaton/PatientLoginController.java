@@ -56,7 +56,7 @@ public class PatientLoginController {
         try {
             Connection connection = DBHandler.getConnection();
             ResultSet resultSet;
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patientsAuth WHERE login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patientDefaultData WHERE login = ?");
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
 
