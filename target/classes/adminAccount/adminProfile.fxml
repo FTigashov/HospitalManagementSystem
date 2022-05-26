@@ -34,7 +34,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="patientProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#adminOpenProfile" prefHeight="49.0" prefWidth="194.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
+            <Button fx:id="adminProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#adminOpenProfile" prefHeight="49.0" prefWidth="194.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="patientInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#adminOpenInfoPage" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
+            <Button fx:id="adminInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#adminOpenInfoPage" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +58,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="patientLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#adminLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выйти">
+            <Button fx:id="adminLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#adminLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выйти">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,31 +82,54 @@
                </image>
             </ImageView>
             <Label layoutX="14.0" layoutY="136.0" text="Фамилия" textFill="#949191" AnchorPane.leftAnchor="40.0" />
-            <Label layoutX="14.0" layoutY="153.0" text="Фамилия" AnchorPane.leftAnchor="40.0">
+            <Label fx:id="secondNameLabel" layoutX="14.0" layoutY="153.0" text="Фамилия" AnchorPane.leftAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="180.0" text="Имя" textFill="#949191" AnchorPane.leftAnchor="40.0" />
-            <Label layoutX="14.0" layoutY="197.0" text="Имя" AnchorPane.leftAnchor="40.0">
+            <Label layoutX="216.0" layoutY="132.0" text="Имя" textFill="#949191" AnchorPane.leftAnchor="216.0" />
+            <Label fx:id="nameLabel" layoutX="212.0" layoutY="153.0" text="Имя" AnchorPane.leftAnchor="212.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="224.0" text="Отчество" textFill="#949191" AnchorPane.leftAnchor="40.0" />
-            <Label layoutX="14.0" layoutY="241.0" text="Отчество" AnchorPane.leftAnchor="40.0">
+            <Label layoutX="370.0" layoutY="132.0" text="Отчество" textFill="#949191" AnchorPane.leftAnchor="370.0" />
+            <Label fx:id="fatherNameLabel" layoutX="362.0" layoutY="153.0" text="Отчество" AnchorPane.leftAnchor="362.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="268.0" text="Дата рождения" textFill="#949191" AnchorPane.leftAnchor="40.0" />
-            <Label layoutX="14.0" layoutY="285.0" text="Дата рождения" AnchorPane.leftAnchor="40.0">
+            <Label layoutX="37.0" layoutY="202.0" text="Дата рождения" textFill="#949191" AnchorPane.leftAnchor="40.0" />
+            <Label fx:id="birthDateLabel" layoutX="40.0" layoutY="220.0" text="Дата рождения" AnchorPane.leftAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="310.0" text="Дата начала работы" textFill="#949191" />
-            <Label layoutX="40.0" layoutY="327.0" text="Дата начала работы">
+            <Label layoutX="32.0" layoutY="279.0" text="Дата начала работы" textFill="#949191" AnchorPane.leftAnchor="40.0" />
+            <Label fx:id="emplDateLabel" layoutX="32.0" layoutY="296.0" text="Дата начала работы" AnchorPane.leftAnchor="40.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="279.0" layoutY="275.0" text="Должность" textFill="#949191" />
+            <Label fx:id="responsStatusLabel" layoutX="279.0" layoutY="292.0" text="Должность">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="358.0" text="Логин" textFill="#949191" AnchorPane.leftAnchor="40.0" />
+            <Label fx:id="loginLabel" layoutX="32.0" layoutY="375.0" text="Логин" AnchorPane.leftAnchor="40.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="216.0" layoutY="42.0" text="Данные об аккаунте">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="279.0" layoutY="358.0" text="Пароль" textFill="#949191" />
+            <Label fx:id="passwordLabel" layoutX="278.0" layoutY="375.0" text="Пароль">
                <font>
                   <Font size="16.0" />
                </font>

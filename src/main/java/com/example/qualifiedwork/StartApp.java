@@ -53,6 +53,8 @@ public class StartApp extends Application {
     private Scene adminMenuScene;
     private Scene adminInfoScene;
     private Scene listOfAllAdminsScene;
+    private String getSecondName;
+    private String getName;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -248,7 +250,14 @@ public class StartApp extends Application {
 
     public void switchToAdminProfileScene() {
         stage.setScene(adminProfileScene);
+        adminProfileController.getInfoAboutAccount(getSecondName, getName);
+
         stage.centerOnScreen();
+    }
+
+    public void getInfoAboutAccountFromController(String secondName, String name) {
+        getSecondName = secondName;
+        getName = name;
     }
 
     public void switchToAdminInfoScene() {

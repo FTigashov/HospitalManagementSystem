@@ -2,19 +2,24 @@ package com.example.qualifiedwork.authenticaton;
 
 import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
+import com.example.qualifiedwork.adminAccount.AdminInfoController;
+import com.example.qualifiedwork.adminAccount.AdminProfileController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class AdminLoginController {
+public class AdminLoginController{
     @FXML
     private Button adminAuthBtn;
 
@@ -55,8 +60,22 @@ public class AdminLoginController {
             if (passwordDB != null && passwordDB.equals(password)) {
                 adminLoginFiled.setText("");
                 adminPasswordField.setText("");
+
+                String secondName = resultSet.getString("secondName");
+                String name = resultSet.getString("name");
+                String fatherName = resultSet.getString("fatherName");
+                String birthDate = resultSet.getString("birthDate");
+                String emplDate = resultSet.getString("emplDate");
+                String responsStatus = resultSet.getString("responsStatus");
+                String log = resultSet.getString("login");
+                String pwd = resultSet.getString("password");
+
+                System.out.print(secondName + " " + name + " " + fatherName + " " + login);
+
                 connection.close();
+
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");
+                startApp.getInfoAboutAccountFromController(secondName, name);
                 startApp.switchToAdminMainMenuScene();
             } else {
                 connection.close();
