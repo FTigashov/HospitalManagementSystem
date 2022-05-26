@@ -4,7 +4,6 @@ import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,10 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class AdminListOfAllAdminsController implements Initializable {
 
@@ -123,74 +119,15 @@ public class AdminListOfAllAdminsController implements Initializable {
            });
             return row;
         });
-        showDataFromTable();
+        refreshDataFromTable();
     }
 
     @FXML
     void addNewRecordIntoTable(MouseEvent event) {
         startApp.switchToCreateNewRecordForm();
-
-        /*Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        PreparedStatement psCheckExistsLogin = null;
-        ResultSet resultSet = null;
-
-        String secondName = secondNameField.getText().trim();
-        String name = nameField.getText().trim();
-        String fatherName = fatherNameField.getText().trim();
-        String birthDate = birthDateField.getText().trim();
-        String employDate = dateEmplField.getText().trim();
-        String responsStatus = responsStatusChoice.getValue();
-        String login = loginField.getText().trim();
-        String password = passwordField.getText().trim();
-
-        if (secondName.length() == 0 &&
-                name.length() == 0 &&
-                fatherName.length() == 0 &&
-                birthDate.length() == 0 &&
-                employDate.length() == 0 &&
-                login.length() == 0 &&
-                password.length() == 0) {
-            startApp.showErrorLoginAlert("Ошибка добавления записи", "Убедитесь, что все поля заполнены.");
-            return;
-        }
-        try {
-            connection = DBHandler.getConnection();
-            psCheckExistsLogin = connection.prepareStatement("SELECT * FROM adminDefaultData WHERE login = ?");
-            psCheckExistsLogin.setString(1, login);
-
-            resultSet = psCheckExistsLogin.executeQuery();
-
-            if (resultSet.isBeforeFirst()) {
-                startApp.showErrorLoginAlert("Ошибка добавления записи", "Пользователь с данным логином уже есть в системе.");
-                return;
-            } else {
-                preparedStatement = connection.prepareStatement("INSERT INTO adminDefaultData (secondName, name, fatherName, birthDate, emplDate, responsStatus, login, password) VALUES" +
-                        " (?, ?, ?, ?, ?, ?, ?, ?) ");
-                preparedStatement.setString(1, secondName);
-                preparedStatement.setString(2, name);
-                preparedStatement.setString(3, fatherName);
-                preparedStatement.setString(4, birthDate);
-                preparedStatement.setString(5, employDate);
-                preparedStatement.setString(6, responsStatus);
-                preparedStatement.setString(7, login);
-                preparedStatement.setString(8, password);
-
-                preparedStatement.executeUpdate();
-
-                makeFieldsIsEmpty();
-
-                startApp.showSuccessMessage("Уведомление о создании записи", "Запись успешно создана", "Новая запись отобразится в таблице");
-
-                showDataFromTable();
-                connection.close();
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
-    private void showDataFromTable() {
+    public void refreshDataFromTable() {
         listOfAdmins.getItems().clear();
         try {
             Connection connection = DBHandler.getConnection();
@@ -241,8 +178,8 @@ public class AdminListOfAllAdminsController implements Initializable {
 
                 makeFieldsIsEmpty();
 
-                startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена");
-                showDataFromTable();
+                startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена.");
+                refreshDataFromTable();
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
@@ -293,7 +230,7 @@ public class AdminListOfAllAdminsController implements Initializable {
 
             makeFieldsIsEmpty();
 
-            showDataFromTable();
+            refreshDataFromTable();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -305,6 +242,7 @@ public class AdminListOfAllAdminsController implements Initializable {
         fatherNameField.setText("");
         birthDateField.setText("");
         dateEmplField.setText("");
+        responsStatusChoice.setText("");
         loginField.setText("");
         passwordField.setText("");
     }

@@ -63,12 +63,6 @@ public class AdminLoginController{
 
                 String secondName = resultSet.getString("secondName");
                 String name = resultSet.getString("name");
-                String fatherName = resultSet.getString("fatherName");
-                String birthDate = resultSet.getString("birthDate");
-                String emplDate = resultSet.getString("emplDate");
-                String responsStatus = resultSet.getString("responsStatus");
-                String log = resultSet.getString("login");
-                String pwd = resultSet.getString("password");
                 connection.close();
 
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");

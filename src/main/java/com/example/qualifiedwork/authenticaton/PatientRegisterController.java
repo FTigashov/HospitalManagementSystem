@@ -88,7 +88,7 @@ public class PatientRegisterController {
 
         try {
             connection = DBHandler.getConnection();
-            psCheckUser = connection.prepareStatement("SELECT * FROM patientsAuth WHERE login = ?");
+            psCheckUser = connection.prepareStatement("SELECT * FROM patientDefaultData WHERE login = ?");
             psCheckUser.setString(1, login);
 
             resultSet = psCheckUser.executeQuery();

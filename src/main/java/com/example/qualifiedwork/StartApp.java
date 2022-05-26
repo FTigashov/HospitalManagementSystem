@@ -281,6 +281,7 @@ public class StartApp extends Application {
 
     public void switchToListOfAdmins() {
         stage.setScene(listOfAllAdminsScene);
+        adminListOfAllAdminsController.refreshDataFromTable();
         stage.centerOnScreen();
     }
 
