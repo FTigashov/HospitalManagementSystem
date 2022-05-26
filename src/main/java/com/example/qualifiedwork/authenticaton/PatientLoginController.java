@@ -62,6 +62,11 @@ public class PatientLoginController {
 
             passwordDB = resultSet.getString("password");
             if (passwordDB != null && passwordDB.equals(password)) {
+
+                String secondName = resultSet.getString("secondName");
+                String name = resultSet.getString("name");
+                startApp.getInfoAboutAccountFromController(secondName, name);
+
                 patientLoginFiled.setText("");
                 patientPasswordField.setText("");
                 connection.close();

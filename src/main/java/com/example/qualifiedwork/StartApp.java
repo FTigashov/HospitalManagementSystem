@@ -235,6 +235,8 @@ public class StartApp extends Application {
 
     public void switchToPatientProfileScene() {
         stage.setScene(patientProfileScene);
+        patientProfileController.getInfoAboutAccount(getSecondName, getName);
+
         stage.centerOnScreen();
     }
 
@@ -255,6 +257,7 @@ public class StartApp extends Application {
         stage.centerOnScreen();
     }
 
+    //общий метод для получения информации об аккаунте
     public void getInfoAboutAccountFromController(String secondName, String name) {
         getSecondName = secondName;
         getName = name;
