@@ -6,7 +6,6 @@ import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
 import com.example.qualifiedwork.patientAccount.PatientProfileController;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -46,15 +45,19 @@ public class StartApp extends Application {
     private AdminInfoController adminInfoController;
     private AdminListOfAllAdminsController adminListOfAllAdminsController;
     private AdminCreateNewRecord adminCreateNewRecord;
+    private AdminChangeRecord adminChangeRecord;
 
     private Scene adminProfileScene;
     private Scene adminMenuScene;
     private Scene adminInfoScene;
     private Scene listOfAllAdminsScene;
     private Scene createNewAdminRecordScene;
+    private Scene changeAdminRecordScene;
 
     private String getSecondName;
     private String getName;
+
+    private String getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -78,10 +81,21 @@ public class StartApp extends Application {
         adminMenuScene = createAdminMenuScene();
         listOfAllAdminsScene = createListOfAllAdmins();
         createNewAdminRecordScene = createNewAdminRecordScene();
+        changeAdminRecordScene = createNewChangeAdminRecordScene();
 
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createNewChangeAdminRecordScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminChangeRecord.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        changeAdminRecordScene = new Scene(loader.load());
+        adminChangeRecord = loader.getController();
+        adminChangeRecord.setStartApp(this);
+
+        return changeAdminRecordScene;
     }
 
     private Scene createNewAdminRecordScene() throws IOException {
@@ -274,6 +288,20 @@ public class StartApp extends Application {
         getName = name;
     }
 
+    public void getInfoAboutAdminAccount(String secondNameField, String nameField, String fatherNameField, String birthDateField,
+                    String dateEmplField, String responsStatusChoice, String loginField, String passwordField) {
+        getAdminSecondName = secondNameField;
+        getAdminName = nameField;
+        getAdminfatherName = fatherNameField;
+        getAdminBirthDate = birthDateField;
+        getAdminEmplDate = dateEmplField;
+        getAdminResponsStatus = responsStatusChoice;
+        getAdminLogin = loginField;
+        getAdminPassword = passwordField;
+
+        adminChangeRecord.setDataInFields(getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword);
+    }
+
     public void switchToAdminInfoScene() {
         stage.setScene(adminInfoScene);
         stage.centerOnScreen();
@@ -307,6 +335,11 @@ public class StartApp extends Application {
 
     public void switchToCreateNewRecordForm() {
         stage.setScene(createNewAdminRecordScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToChangeAdminRecordScene() {
+        stage.setScene(changeAdminRecordScene);
         stage.centerOnScreen();
     }
 }

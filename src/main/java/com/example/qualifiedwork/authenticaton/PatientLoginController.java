@@ -52,26 +52,29 @@ public class PatientLoginController {
             startApp.showErrorLoginAlert("Ошибка авторизации", "Необходимо, чтобы все поля были заполнены!");
             return;
         }
-
         try {
             Connection connection = DBHandler.getConnection();
             ResultSet resultSet;
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patientDefaultData WHERE login = ?");
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
-
             passwordDB = resultSet.getString("password");
+
             if (passwordDB != null && passwordDB.equals(password)) {
+                if (resultSet.isBeforeFirst()) {
+                    startApp.showErrorLoginAlert("Ошибка авторизации", "По введенным вами данным\nаккаунт не был найден.");
+                    return;
+                } else {
+                    String secondName = resultSet.getString("secondName");
+                    String name = resultSet.getString("name");
+                    startApp.getInfoAboutAccountFromController(secondName, name);
 
-                String secondName = resultSet.getString("secondName");
-                String name = resultSet.getString("name");
-                startApp.getInfoAboutAccountFromController(secondName, name);
-
-                patientLoginFiled.setText("");
-                patientPasswordField.setText("");
-                connection.close();
-                startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента");
-                startApp.switchToPatientMainMenuScene();
+                    patientLoginFiled.setText("");
+                    patientPasswordField.setText("");
+                    connection.close();
+                    startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента");
+                    startApp.switchToPatientMainMenuScene();
+                }
             } else {
                 startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
             }

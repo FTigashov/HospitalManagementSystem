@@ -188,7 +188,28 @@ public class AdminListOfAllAdminsController implements Initializable {
 
     @FXML
     void changeRecord(MouseEvent event) {
-        Connection connection = null;
+        AdminRecord record = listOfAdmins.getSelectionModel().getSelectedItem();
+        if (record == null) {
+            startApp.showErrorLoginAlert("Ошибка выбора записи", "Для проведения изменения записи,\nнеобходимо выбрать нужную в таблице.");
+            return;
+        } else {
+            startApp.getInfoAboutAdminAccount(secondNameField.getText(), nameField.getText(), fatherNameField.getText(), birthDateField.getText(),
+                    dateEmplField.getText(), responsStatusChoice.getText(), loginField.getText(), passwordField.getText());
+
+            secondNameField.setText("");
+            nameField.setText("");
+            fatherNameField.setText("");
+            birthDateField.setText("");
+            dateEmplField.setText("");
+            responsStatusChoice.setText("");
+            loginField.setText("");
+            passwordField.setText("");
+
+            startApp.switchToChangeAdminRecordScene();
+        }
+
+
+        /*Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement psCheckExistsLogin = null;
         ResultSet resultSet = null;
@@ -233,7 +254,7 @@ public class AdminListOfAllAdminsController implements Initializable {
             refreshDataFromTable();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void makeFieldsIsEmpty() {
