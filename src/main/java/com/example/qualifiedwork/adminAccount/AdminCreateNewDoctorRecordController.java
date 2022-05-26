@@ -16,12 +16,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AdminCreateNewRecord implements Initializable {
+public class AdminCreateNewDoctorRecordController implements Initializable {
     @FXML
     private Button addNewRecordBtn;
 
     @FXML
-    private Button adminMenuMainBtn;
+    private Button backToListOfDoctorsBtn;
 
     @FXML
     private TextField birthDateField;
@@ -75,7 +75,7 @@ public class AdminCreateNewRecord implements Initializable {
         }
         try {
             connection = DBHandler.getConnection();
-            psCheckExistsLogin = connection.prepareStatement("SELECT * FROM adminDefaultData WHERE login = ?");
+            psCheckExistsLogin = connection.prepareStatement("SELECT * FROM doctorDefaultData WHERE login = ?");
             psCheckExistsLogin.setString(1, login);
 
             resultSet = psCheckExistsLogin.executeQuery();
@@ -84,7 +84,7 @@ public class AdminCreateNewRecord implements Initializable {
                 startApp.showErrorLoginAlert("Ошибка добавления записи", "Пользователь с данным логином уже есть в системе.");
                 return;
             } else {
-                preparedStatement = connection.prepareStatement("INSERT INTO adminDefaultData (secondName, name, fatherName, birthDate, emplDate, responsStatus, login, password) VALUES" +
+                preparedStatement = connection.prepareStatement("INSERT INTO doctorDefaultData (secondName, name, fatherName, birthDate, employDate, responsStatus, login, password) VALUES" +
                         " (?, ?, ?, ?, ?, ?, ?, ?) ");
                 preparedStatement.setString(1, secondName);
                 preparedStatement.setString(2, name);
@@ -100,7 +100,7 @@ public class AdminCreateNewRecord implements Initializable {
                 makeFieldsIsEmpty();
 
                 startApp.showSuccessMessage("Уведомление о создании записи", "Запись успешно создана", "Новая запись отобразится в таблице");
-                startApp.switchToListOfAdmins();
+                startApp.switchToListOfDoctors();
                 connection.close();
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -118,26 +118,24 @@ public class AdminCreateNewRecord implements Initializable {
         passwordField.setText("");
     }
 
-    @FXML
-    void backToListOfAdmins(MouseEvent event) {
-        startApp.switchToListOfAdmins();
-    }
-
     private StartApp startApp;
 
     public void setStartApp(StartApp startApp) {
         this.startApp = startApp;
     }
 
+    @FXML
+    void backToListOfDoctors(MouseEvent event) {
+        startApp.switchToListOfDoctors();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        responsStatusChoice.setValue("Зав. отделения");
-        responsStatusChoice.getItems().add("Зам. Гл. врача");
-        responsStatusChoice.getItems().add("Гл. бухгалгер");
-        responsStatusChoice.getItems().add("Зам. по мед. части");
-        responsStatusChoice.getItems().add("Зав. отделения");
-        responsStatusChoice.getItems().add("Зам. Гл. отделения");
-        responsStatusChoice.getItems().add("Гл. медсестра");
-        responsStatusChoice.getItems().add("Ст. медсестра");
+        responsStatusChoice.setValue("Терапевт");
+        responsStatusChoice.getItems().add("Терапевт");
+        responsStatusChoice.getItems().add("Офтальмолог");
+        responsStatusChoice.getItems().add("Оториноларинголог");
+        responsStatusChoice.getItems().add("Хирург");
+        responsStatusChoice.getItems().add("Уролог");
     }
 }

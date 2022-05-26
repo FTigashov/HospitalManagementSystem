@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminCreateNewAdminRecord">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminChangeDoctorRecord">
    <left>
       <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -24,7 +24,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="addNewRecordBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#addNewRecord" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Сохранить">
+            <Button fx:id="saveChangeRecordBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#changeDoctorRecord" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Сохранить">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -36,7 +36,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="adminMenuMainBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#backToListOfAdmins" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Вернуться">
+            <Button fx:id="backToListOfDoctorsBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#backToListOfDoctors" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Вернуться">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,36 +59,36 @@
                   <Image url="@../../../../../../Desktop/Диплом/icons/adminBlue.png" />
                </image>
             </ImageView>
-            <Label layoutX="153.0" layoutY="42.0" text="Добавление новой записи">
+            <Label layoutX="153.0" layoutY="42.0" text="Изменение записи">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="secondNameField" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Фамилия" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="secondLabel" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Фамилия">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
-            <TextField fx:id="nameField" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Имя" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            </Label>
+            <Label fx:id="nameLabel" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Имя">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
-            <TextField fx:id="fatherNameField" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Отчество" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            </Label>
+            <Label fx:id="fatherNameLabel" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Отчество">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
-            <TextField fx:id="birthDateField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Дата рождения" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            </Label>
+            <Label fx:id="birthDateLabel" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Дата рождения">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
-            <TextField fx:id="emplDateField" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Дата устройства" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            </Label>
+            <Label fx:id="emplDateLabel" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Дата устройства">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
+            </Label>
             <TextField fx:id="loginField" layoutX="40.0" layoutY="268.0" prefHeight="32.0" prefWidth="146.0" promptText="Логин" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />

@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -82,17 +83,57 @@ public class AdminListOfAllDoctorsController implements Initializable {
 
     @FXML
     void addNewRecordIntoTable(MouseEvent event) {
-
+        startApp.switchToCreateNewDoctorRecordForm();
     }
 
     @FXML
     void changeRecord(MouseEvent event) {
+        DoctorRecord record = listOfDoctors.getSelectionModel().getSelectedItem();
+        if (record == null) {
+            startApp.showErrorLoginAlert("Ошибка выбора записи", "Для проведения изменения записи,\nнеобходимо выбрать нужную в таблице.");
+            return;
+        } else {
+            startApp.getInfoAboutDoctorAccount(secondNameField.getText(), nameField.getText(), fatherNameField.getText(), birthDateField.getText(),
+                    dateEmplField.getText(), responsStatusChoice.getText(), loginField.getText(), passwordField.getText());
 
+            secondNameField.setText("");
+            nameField.setText("");
+            fatherNameField.setText("");
+            birthDateField.setText("");
+            dateEmplField.setText("");
+            responsStatusChoice.setText("");
+            loginField.setText("");
+            passwordField.setText("");
+
+            startApp.switchToChangeDoctorRecordScene();
+        }
     }
 
     @FXML
     void deleteRecord(MouseEvent event) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        DoctorRecord record = listOfDoctors.getSelectionModel().getSelectedItem();
+        if (record == null) {
+            startApp.showErrorLoginAlert("Ошибка удаления", "Необходимо выбрать запись в таблице.");
+            return;
+        } else {
+            String loginRecord = record.getLogin();
+            try {
+                connection = DBHandler.getConnection();
+                preparedStatement = connection.prepareStatement("DELETE FROM doctorDefaultData WHERE login = ?");
+                preparedStatement.setString(1, loginRecord);
 
+                preparedStatement.executeUpdate();
+
+                makeFieldsIsEmpty();
+
+                startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена.");
+                refreshDataFromTable();
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
@@ -133,7 +174,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
         refreshDataFromTable();
     }
 
-    private void refreshDataFromTable() {
+    public void refreshDataFromTable() {
         listOfDoctors.getItems().clear();
         try {
             Connection connection = DBHandler.getConnection();

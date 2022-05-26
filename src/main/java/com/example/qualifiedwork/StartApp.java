@@ -44,9 +44,11 @@ public class StartApp extends Application {
     private AdminMenuController adminMenuController;
     private AdminInfoController adminInfoController;
     private AdminListOfAllAdminsController adminListOfAllAdminsController;
-    private AdminCreateNewRecord adminCreateNewRecord;
+    private AdminCreateNewAdminRecord adminCreateNewAdminRecord;
     private AdminChangeRecord adminChangeRecord;
     private AdminListOfAllDoctorsController adminListOfAllDoctorsController;
+    private AdminCreateNewDoctorRecordController adminCreateNewDoctorRecordController;
+    private AdminChangeDoctorRecord adminChangeDoctorRecord;
 
     private Scene adminProfileScene;
     private Scene adminMenuScene;
@@ -55,6 +57,8 @@ public class StartApp extends Application {
     private Scene createNewAdminRecordScene;
     private Scene changeAdminRecordScene;
     private Scene listOfAllDoctorsScene;
+    private Scene createNewDoctorRecordScene;
+    private Scene changeDoctorRecordScene;
 
     private String getSecondName;
     private String getName;
@@ -85,14 +89,36 @@ public class StartApp extends Application {
         createNewAdminRecordScene = createNewAdminRecordScene();
         changeAdminRecordScene = createNewChangeAdminRecordScene();
         listOfAllDoctorsScene = createListOfAllDoctors();
+        createNewDoctorRecordScene = createNewDoctorScene();
+        changeDoctorRecordScene = createChangeDoctorRecordScene();
 
         stage.setScene(choiceViewScene);
         stage.show();
 
     }
 
+    private Scene createChangeDoctorRecordScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminChangeDoctorRecord.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        changeDoctorRecordScene = new Scene(loader.load());
+        adminChangeDoctorRecord = loader.getController();
+        adminChangeDoctorRecord.setStartApp(this);
+
+        return changeDoctorRecordScene;
+    }
+
+    private Scene createNewDoctorScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminCreateNewDoctorRecord.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        createNewDoctorRecordScene = new Scene(loader.load());
+        adminCreateNewDoctorRecordController = loader.getController();
+        adminCreateNewDoctorRecordController.setStartApp(this);
+
+        return createNewDoctorRecordScene;
+    }
+
     private Scene createListOfAllDoctors() throws IOException {
-        URL fxmLocation = getClass().getResource("/adminAccount/AdminListOfAllDoctors.fxml");
+        URL fxmLocation = getClass().getResource("/adminAccount/adminListOfAllDoctors.fxml");
         FXMLLoader loader = new FXMLLoader(fxmLocation);
         listOfAllDoctorsScene = new Scene(loader.load());
         adminListOfAllDoctorsController = loader.getController();
@@ -115,8 +141,8 @@ public class StartApp extends Application {
         URL fxmLocation = getClass().getResource("/adminAccount/adminCreateNewRecord.fxml");
         FXMLLoader loader = new FXMLLoader(fxmLocation);
         createNewAdminRecordScene = new Scene(loader.load());
-        adminCreateNewRecord = loader.getController();
-        adminCreateNewRecord.setStartApp(this);
+        adminCreateNewAdminRecord = loader.getController();
+        adminCreateNewAdminRecord.setStartApp(this);
 
         return createNewAdminRecordScene;
     }
@@ -301,6 +327,21 @@ public class StartApp extends Application {
         getName = name;
     }
 
+    public void getInfoAboutDoctorAccount(String secondNameField, String nameField, String fatherNameField, String birthDateField,
+                                          String dateEmplField, String responsStatusChoice, String loginField, String passwordField) {
+        getAdminSecondName = secondNameField;
+        getAdminName = nameField;
+        getAdminfatherName = fatherNameField;
+        getAdminBirthDate = birthDateField;
+        getAdminEmplDate = dateEmplField;
+        getAdminResponsStatus = responsStatusChoice;
+        getAdminLogin = loginField;
+        getAdminPassword = passwordField;
+
+        adminChangeDoctorRecord.setDataInFields(getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword);
+
+    }
+
     public void getInfoAboutAdminAccount(String secondNameField, String nameField, String fatherNameField, String birthDateField,
                     String dateEmplField, String responsStatusChoice, String loginField, String passwordField) {
         getAdminSecondName = secondNameField;
@@ -358,6 +399,17 @@ public class StartApp extends Application {
 
     public void switchToListOfDoctors() {
         stage.setScene(listOfAllDoctorsScene);
+        adminListOfAllDoctorsController.refreshDataFromTable();
+        stage.centerOnScreen();
+    }
+
+    public void switchToCreateNewDoctorRecordForm() {
+        stage.setScene(createNewDoctorRecordScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToChangeDoctorRecordScene() {
+        stage.setScene(changeDoctorRecordScene);
         stage.centerOnScreen();
     }
 }
