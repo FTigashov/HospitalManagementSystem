@@ -90,8 +90,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
     void changeRecord(MouseEvent event) {
         DoctorRecord record = listOfDoctors.getSelectionModel().getSelectedItem();
         if (record == null) {
-            startApp.showErrorLoginAlert("Ошибка выбора записи", "Для проведения изменения записи,\nнеобходимо выбрать нужную в таблице.");
-            return;
+
         } else {
             startApp.getInfoAboutDoctorAccount(secondNameField.getText(), nameField.getText(), fatherNameField.getText(), birthDateField.getText(),
                     dateEmplField.getText(), responsStatusChoice.getText(), loginField.getText(), passwordField.getText());

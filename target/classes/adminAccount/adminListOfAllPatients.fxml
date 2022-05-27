@@ -105,7 +105,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateEmplField" layoutX="10.0" layoutY="181.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="medCardField" layoutX="10.0" layoutY="181.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -113,7 +113,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="responsStatusChoice" layoutX="25.0" layoutY="226.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="snilsField" layoutX="25.0" layoutY="226.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -136,6 +136,14 @@
                      <font>
                         <Font size="14.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="addressField" layoutX="25.0" layoutY="269.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" />
+                     </VBox.margin>
                   </Label>
                </children>
             </VBox>

@@ -76,7 +76,7 @@ public class StartApp extends Application {
     private String getName;
 
     private String getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword;
-
+    private String getPatientSecondName, getPatientName, getPatientFatherName, getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress;
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
@@ -464,6 +464,7 @@ public class StartApp extends Application {
 
     public void switchToListOfPatients() {
         stage.setScene(listOfAllPatientsScene);
+        adminListOfAllPatientsController.refreshDataFromTable();
         stage.centerOnScreen();
     }
 
@@ -475,5 +476,21 @@ public class StartApp extends Application {
     public void switchToChangePatientRecordScene() {
         stage.setScene(changePatientRecordScene);
         stage.centerOnScreen();
+    }
+
+    public void getInfoAboutPatientAccount(String getPatientSecondName, String getPatientName, String getPatientFatherName, String getPatientBirthDate, String getPatientMedCard,
+                                           String getPatientSnilsCard, String getPatientLogin, String getPatientPassword, String getPatientAddress) {
+        this.getAdminSecondName = getPatientSecondName;
+        this.getPatientName = getPatientName;
+        this.getPatientFatherName = getPatientFatherName;
+        this.getPatientBirthDate = getPatientBirthDate;
+        this.getPatientMedCard = getPatientMedCard;
+        this.getPatientSnilsCard = getPatientSnilsCard;
+        this.getPatientLogin = getPatientLogin;
+        this.getAdminPassword = getPatientPassword;
+        this.getPatientAddress = getPatientAddress;
+
+        adminChangePatientRecord.setInfoInFields(getPatientSecondName, getPatientName, getPatientFatherName,
+                getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress);
     }
 }
