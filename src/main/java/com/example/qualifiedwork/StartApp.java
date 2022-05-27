@@ -43,22 +43,34 @@ public class StartApp extends Application {
     private AdminProfileController adminProfileController;
     private AdminMenuController adminMenuController;
     private AdminInfoController adminInfoController;
+
     private AdminListOfAllAdminsController adminListOfAllAdminsController;
     private AdminCreateNewAdminRecord adminCreateNewAdminRecord;
     private AdminChangeRecord adminChangeRecord;
+
     private AdminListOfAllDoctorsController adminListOfAllDoctorsController;
     private AdminCreateNewDoctorRecordController adminCreateNewDoctorRecordController;
     private AdminChangeDoctorRecord adminChangeDoctorRecord;
 
+    private AdminListOfAllPatientsController adminListOfAllPatientsController;
+    private AdminCreateNewPatientRecord adminCreateNewPatientRecord;
+    private AdminChangePatientRecord adminChangePatientRecord;
+
     private Scene adminProfileScene;
     private Scene adminMenuScene;
     private Scene adminInfoScene;
+
     private Scene listOfAllAdminsScene;
     private Scene createNewAdminRecordScene;
     private Scene changeAdminRecordScene;
+
     private Scene listOfAllDoctorsScene;
     private Scene createNewDoctorRecordScene;
     private Scene changeDoctorRecordScene;
+
+    private Scene listOfAllPatientsScene;
+    private Scene createNewPatientRecordScene;
+    private Scene changePatientRecordScene;
 
     private String getSecondName;
     private String getName;
@@ -73,6 +85,7 @@ public class StartApp extends Application {
         stage.setFullScreen(false);
 
         choiceViewScene = createChoiceViewScene();
+
         adminScene = createAdminScene();
         doctorScene = createDoctorScene();
         patientLoginScene = createPatientLoginScene();
@@ -85,16 +98,52 @@ public class StartApp extends Application {
         adminProfileScene = createAdminProfileScene();
         adminInfoScene = createAdminInfoScene();
         adminMenuScene = createAdminMenuScene();
+
         listOfAllAdminsScene = createListOfAllAdmins();
         createNewAdminRecordScene = createNewAdminRecordScene();
         changeAdminRecordScene = createNewChangeAdminRecordScene();
+
         listOfAllDoctorsScene = createListOfAllDoctors();
         createNewDoctorRecordScene = createNewDoctorScene();
         changeDoctorRecordScene = createChangeDoctorRecordScene();
 
+        listOfAllPatientsScene = createListOfAllPatientsScene();
+        createNewPatientRecordScene = createNewPatientScene();
+        changePatientRecordScene = createChangePatientRecordScene();
+
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createListOfAllPatientsScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminListOfAllPatients.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        listOfAllPatientsScene = new Scene(loader.load());
+        adminListOfAllPatientsController = loader.getController();
+        adminListOfAllPatientsController.setStartApp(this);
+
+        return listOfAllPatientsScene;
+    }
+
+    private Scene createNewPatientScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminCreateNewPatientRecord.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        createNewPatientRecordScene = new Scene(loader.load());
+        adminCreateNewPatientRecord = loader.getController();
+        adminCreateNewPatientRecord.setStartApp(this);
+
+        return createNewPatientRecordScene;
+    }
+
+    private Scene createChangePatientRecordScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/adminChangePatientRecord.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        changePatientRecordScene = new Scene(loader.load());
+        adminChangePatientRecord = loader.getController();
+        adminChangePatientRecord.setStartApp(this);
+
+        return changePatientRecordScene;
     }
 
     private Scene createChangeDoctorRecordScene() throws IOException {
@@ -410,6 +459,21 @@ public class StartApp extends Application {
 
     public void switchToChangeDoctorRecordScene() {
         stage.setScene(changeDoctorRecordScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToListOfPatients() {
+        stage.setScene(listOfAllPatientsScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToAddNewPatientRecordScene() {
+        stage.setScene(createNewPatientRecordScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToChangePatientRecordScene() {
+        stage.setScene(changePatientRecordScene);
         stage.centerOnScreen();
     }
 }

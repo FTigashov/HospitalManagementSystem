@@ -74,7 +74,7 @@ public class AdminMenuController {
 
     @FXML
     void openPatientsList(MouseEvent event) {
-
+        startApp.switchToListOfPatients();
     }
 
     @FXML
