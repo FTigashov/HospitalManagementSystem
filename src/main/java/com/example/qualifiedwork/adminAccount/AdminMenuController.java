@@ -79,7 +79,7 @@ public class AdminMenuController {
 
     @FXML
     void openSheduleOfDoctors(MouseEvent event) {
-
+        startApp.switchToShedulePage();
     }
 
     private StartApp startApp;

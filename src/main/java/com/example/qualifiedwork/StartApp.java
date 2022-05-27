@@ -56,6 +56,9 @@ public class StartApp extends Application {
     private AdminCreateNewPatientRecord adminCreateNewPatientRecord;
     private AdminChangePatientRecord adminChangePatientRecord;
 
+    private AdminSheduleController adminSheduleController;
+    private AddNewRowToShedule addNewRowToShedule;
+
     private Scene adminProfileScene;
     private Scene adminMenuScene;
     private Scene adminInfoScene;
@@ -71,6 +74,10 @@ public class StartApp extends Application {
     private Scene listOfAllPatientsScene;
     private Scene createNewPatientRecordScene;
     private Scene changePatientRecordScene;
+
+    private Scene sheduleScene;
+    private Scene addNewRowIntoSheduleScene;
+    private Scene changeTheRowInSheduleScene;
 
     private String getSecondName;
     private String getName;
@@ -111,9 +118,32 @@ public class StartApp extends Application {
         createNewPatientRecordScene = createNewPatientScene();
         changePatientRecordScene = createChangePatientRecordScene();
 
+        sheduleScene = createSheduleScene();
+        addNewRowIntoSheduleScene = createAddNewRowIntoShedule();
+
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createAddNewRowIntoShedule() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/addNewRowToShedule.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        addNewRowIntoSheduleScene = new Scene(loader.load());
+        addNewRowToShedule = loader.getController();
+        addNewRowToShedule.setStartApp(this);
+
+        return addNewRowIntoSheduleScene;
+    }
+
+    private Scene createSheduleScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/shedule.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        sheduleScene = new Scene(loader.load());
+        adminSheduleController = loader.getController();
+        adminSheduleController.setStartApp(this);
+
+        return sheduleScene;
     }
 
     private Scene createListOfAllPatientsScene() throws IOException {
@@ -493,4 +523,17 @@ public class StartApp extends Application {
         adminChangePatientRecord.setInfoInFields(getPatientSecondName, getPatientName, getPatientFatherName,
                 getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress);
     }
+
+    public void switchToShedulePage() {
+        stage.setScene(sheduleScene);
+        adminSheduleController.refreshDataFromTable();
+        stage.centerOnScreen();
+    }
+
+    public void switchToAddRowInShedule() {
+        stage.setScene(addNewRowIntoSheduleScene);
+        stage.centerOnScreen();
+    }
+
+
 }

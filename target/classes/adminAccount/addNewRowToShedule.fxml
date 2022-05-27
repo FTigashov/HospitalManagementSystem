@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AddNewRowToShedule">
+   <left>
+      <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="181.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Меню" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="addNewRowBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#addNewRow" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Сохранить">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+            <Button fx:id="backToSheduleBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#backToShedule" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Вернуться">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/main.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="57.0" layoutX="40.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/adminBlue.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="153.0" layoutY="42.0" text="Добавление новой записи">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fullnameField" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="ФИО" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="specialityField" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Специальность" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="cabNumField" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Кабинет" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="mnField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Понедельник" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tuesField" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Вторник" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="thurField" layoutX="40.0" layoutY="268.0" prefHeight="32.0" prefWidth="146.0" promptText="Четверг" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="friField" layoutX="216.0" layoutY="268.0" prefHeight="32.0" prefWidth="146.0" promptText="Пятница" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="wedsField" layoutX="389.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Среда" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
