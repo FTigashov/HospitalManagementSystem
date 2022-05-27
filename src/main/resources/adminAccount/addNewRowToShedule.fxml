@@ -55,7 +55,7 @@
          <children>
             <ImageView fitHeight="63.0" fitWidth="57.0" layoutX="40.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0">
                <image>
-                  <Image url="@../../../../../../Desktop/Диплом/icons/adminBlue.png" />
+                  <Image url="@../../../../../../Desktop/Диплом/icons/schedule.png" />
                </image>
             </ImageView>
             <Label layoutX="153.0" layoutY="42.0" text="Добавление новой записи">

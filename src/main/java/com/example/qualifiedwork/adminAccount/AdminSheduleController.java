@@ -94,7 +94,25 @@ public class AdminSheduleController implements Initializable {
 
     @FXML
     void changeRecord(MouseEvent event) {
+        SheduleRecord record = shedule.getSelectionModel().getSelectedItem();
+        if (record == null) {
+            startApp.showErrorLoginAlert("Ошибка выбора записи", "Для выполнения изменения,\nнеобходимо выбрать запись в таблице.");
+        } else {
+            startApp.getInfoAboutScheduleRow(fullnameLabel.getText(), specialityLabel.getText(), cabNumLabel.getText(), mondayLabel.getText(), tuesdayLabel.getText(), wednesdayLabel.getText(), thursdayLabel.getText(), fridayLabel.getText());
+            clearFields();
+            startApp.swichToChanScheduleRow();
+        }
+    }
 
+    private void clearFields() {
+        fullnameLabel.setText("");
+        specialityLabel.setText("");
+        cabNumLabel.setText("");
+        mondayLabel.setText("");
+        tuesdayLabel.setText("");
+        wednesdayLabel.setText("");
+        thursdayLabel.setText("");
+        fridayLabel.setText("");
     }
 
     @FXML

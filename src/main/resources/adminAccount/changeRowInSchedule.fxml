@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AddNewRowToShedule">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.ChangeRowInSchedule">
    <left>
       <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="addNewRowBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#addNewRow" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Сохранить">
+            <Button fx:id="saveRecord" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#saveChangeOfRow" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Сохранить">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,47 +58,47 @@
                   <Image url="@../../../../../../Desktop/Диплом/icons/schedule.png" />
                </image>
             </ImageView>
-            <Label layoutX="153.0" layoutY="42.0" text="Добавление новой записи">
+            <Label layoutX="153.0" layoutY="42.0" text="Изменение записи">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="fullnameField" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="ФИО" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="fullnameField" layoutX="28.0" layoutY="130.0" prefHeight="32.0" prefWidth="352.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="specialityField" layoutX="28.0" layoutY="188.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="cabNumField" layoutX="236.0" layoutY="188.0" prefHeight="32.0" prefWidth="146.0" promptText="Кабинет" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="specialityField" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Специальность" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="mnField" layoutX="28.0" layoutY="240.0" prefHeight="32.0" prefWidth="146.0" promptText="Понедельник" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="cabNumField" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" promptText="Кабинет" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="tuesField" layoutX="236.0" layoutY="240.0" prefHeight="32.0" prefWidth="146.0" promptText="Вторник" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="mnField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Понедельник" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="thurField" layoutX="28.0" layoutY="296.0" prefHeight="32.0" prefWidth="146.0" promptText="Четверг" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="tuesField" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Вторник" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="friField" layoutX="236.0" layoutY="296.0" prefHeight="32.0" prefWidth="146.0" promptText="Пятница" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="thurField" layoutX="40.0" layoutY="268.0" prefHeight="32.0" prefWidth="146.0" promptText="Четверг" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="friField" layoutX="216.0" layoutY="268.0" prefHeight="32.0" prefWidth="146.0" promptText="Пятница" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="wedsField" layoutX="389.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Среда" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="wedsField" layoutX="409.0" layoutY="240.0" prefHeight="32.0" prefWidth="146.0" promptText="Среда" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>

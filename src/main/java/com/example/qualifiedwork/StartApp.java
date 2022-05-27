@@ -58,6 +58,7 @@ public class StartApp extends Application {
 
     private AdminSheduleController adminSheduleController;
     private AddNewRowToShedule addNewRowToShedule;
+    private ChangeRowInSchedule changeRowInSchedule;
 
     private Scene adminProfileScene;
     private Scene adminMenuScene;
@@ -84,6 +85,16 @@ public class StartApp extends Application {
 
     private String getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword;
     private String getPatientSecondName, getPatientName, getPatientFatherName, getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress;
+
+    private String getFullName;
+    private String getSpeciality;
+    private String getCabNum;
+    private String getMonday;
+    private String getTuesday;
+    private String getWednesday;
+    private String getThursday;
+    private String getFriday;
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
@@ -120,10 +131,21 @@ public class StartApp extends Application {
 
         sheduleScene = createSheduleScene();
         addNewRowIntoSheduleScene = createAddNewRowIntoShedule();
+        changeTheRowInSheduleScene = createChangeScheduleRowScene();
 
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createChangeScheduleRowScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/adminAccount/changeRowInSchedule.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        changeTheRowInSheduleScene = new Scene(loader.load());
+        changeRowInSchedule = loader.getController();
+        changeRowInSchedule.setStartApp(this);
+
+        return changeTheRowInSheduleScene;
     }
 
     private Scene createAddNewRowIntoShedule() throws IOException {
@@ -421,6 +443,17 @@ public class StartApp extends Application {
 
     }
 
+    public void getInfoAboutScheduleRow(String fullName, String speciality, String cabNum, String mn, String tue, String wed, String thurs, String fri) {
+        getFullName = fullName;
+        getSpeciality = speciality;
+        getCabNum = cabNum;
+        getMonday = mn;
+        getTuesday = tue;
+        getWednesday = wed;
+        getThursday = thurs;
+        getFriday = fri;
+
+    }
     public void getInfoAboutAdminAccount(String secondNameField, String nameField, String fatherNameField, String birthDateField,
                     String dateEmplField, String responsStatusChoice, String loginField, String passwordField) {
         getAdminSecondName = secondNameField;
@@ -433,6 +466,22 @@ public class StartApp extends Application {
         getAdminPassword = passwordField;
 
         adminChangeRecord.setDataInFields(getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword);
+    }
+
+    public void getInfoAboutPatientAccount(String getPatientSecondName, String getPatientName, String getPatientFatherName, String getPatientBirthDate, String getPatientMedCard,
+                                           String getPatientSnilsCard, String getPatientLogin, String getPatientPassword, String getPatientAddress) {
+        this.getAdminSecondName = getPatientSecondName;
+        this.getPatientName = getPatientName;
+        this.getPatientFatherName = getPatientFatherName;
+        this.getPatientBirthDate = getPatientBirthDate;
+        this.getPatientMedCard = getPatientMedCard;
+        this.getPatientSnilsCard = getPatientSnilsCard;
+        this.getPatientLogin = getPatientLogin;
+        this.getAdminPassword = getPatientPassword;
+        this.getPatientAddress = getPatientAddress;
+
+        adminChangePatientRecord.setInfoInFields(getPatientSecondName, getPatientName, getPatientFatherName,
+                getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress);
     }
 
     public void switchToAdminInfoScene() {
@@ -508,21 +557,7 @@ public class StartApp extends Application {
         stage.centerOnScreen();
     }
 
-    public void getInfoAboutPatientAccount(String getPatientSecondName, String getPatientName, String getPatientFatherName, String getPatientBirthDate, String getPatientMedCard,
-                                           String getPatientSnilsCard, String getPatientLogin, String getPatientPassword, String getPatientAddress) {
-        this.getAdminSecondName = getPatientSecondName;
-        this.getPatientName = getPatientName;
-        this.getPatientFatherName = getPatientFatherName;
-        this.getPatientBirthDate = getPatientBirthDate;
-        this.getPatientMedCard = getPatientMedCard;
-        this.getPatientSnilsCard = getPatientSnilsCard;
-        this.getPatientLogin = getPatientLogin;
-        this.getAdminPassword = getPatientPassword;
-        this.getPatientAddress = getPatientAddress;
 
-        adminChangePatientRecord.setInfoInFields(getPatientSecondName, getPatientName, getPatientFatherName,
-                getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress);
-    }
 
     public void switchToShedulePage() {
         stage.setScene(sheduleScene);
@@ -536,4 +571,9 @@ public class StartApp extends Application {
     }
 
 
+    public void swichToChanScheduleRow() {
+        stage.setScene(changeTheRowInSheduleScene);
+        changeRowInSchedule.setInfoInFields(getFullName, getSpeciality, getCabNum, getMonday, getTuesday, getWednesday, getThursday, getFriday);
+        stage.centerOnScreen();
+    }
 }
