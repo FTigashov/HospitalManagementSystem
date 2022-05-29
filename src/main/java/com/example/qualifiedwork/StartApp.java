@@ -2,6 +2,9 @@ package com.example.qualifiedwork;
 
 import com.example.qualifiedwork.adminAccount.*;
 import com.example.qualifiedwork.authenticaton.*;
+import com.example.qualifiedwork.doctorAccount.DoctorInfoController;
+import com.example.qualifiedwork.doctorAccount.DoctorMenuController;
+import com.example.qualifiedwork.doctorAccount.DoctorProfileController;
 import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
 import com.example.qualifiedwork.patientAccount.PatientProfileController;
@@ -29,6 +32,20 @@ public class StartApp extends Application {
     private Scene doctorScene;
     private Scene patientLoginScene;
     private Scene patientRegisterScene;
+
+    // doctor
+    private DoctorMenuController doctorMenuController;
+    private DoctorProfileController doctorProfileController;
+    private DoctorInfoController doctorInfoController;
+
+
+
+    private Scene doctorMenuScene;
+    private Scene doctorListOfPatientsScene;
+    private Scene doctorArchiveOfVisitsScene;
+    private Scene doctorScheduleScene;
+    private Scene doctorProfileScene;
+    private Scene doctorInfoScene;
 
     //patientAccount
     private PatientMenuController patientMenuController;
@@ -80,6 +97,7 @@ public class StartApp extends Application {
     private Scene addNewRowIntoSheduleScene;
     private Scene changeTheRowInSheduleScene;
 
+
     private String getSecondName;
     private String getName;
 
@@ -109,6 +127,13 @@ public class StartApp extends Application {
         patientLoginScene = createPatientLoginScene();
         patientRegisterScene = createPatientRegisterScene();
 
+        doctorMenuScene = createDoctorMenuScene();
+        doctorListOfPatientsScene = createDoctorListOfPatientsScene();
+        doctorArchiveOfVisitsScene = createDoctorArchiveOfVisitsScene();
+        doctorScheduleScene = createDoctorScheduleScene();
+        doctorProfileScene = createDoctorProfileScene();
+        doctorInfoScene = createDoctorInfoScene();
+
         patientMenuScene = createPatientMenuScene();
         patientProfileScene = createPatientProfileScene();
         patientInfoScene = createPatientInfoScene();
@@ -136,6 +161,66 @@ public class StartApp extends Application {
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createDoctorInfoScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/doctorInfo.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorInfoScene = new Scene(loader.load());
+        doctorInfoController = loader.getController();
+        doctorInfoController.setStartApp(this);
+
+        return doctorInfoScene;
+    }
+
+    private Scene createDoctorMenuScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/doctorMainMenu.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorMenuScene = new Scene(loader.load());
+        doctorMenuController = loader.getController();
+        doctorMenuController.setStartApp(this);
+
+        return doctorMenuScene;
+    }
+
+    private Scene createDoctorListOfPatientsScene() throws IOException {
+//        URL fxmLocation = getClass().getResource("/doctorAccount/doctor.fxml");
+//        FXMLLoader loader = new FXMLLoader(fxmLocation);
+//        doctorListOfPatientsScene = new Scene(loader.load());
+//        doctorMenuController = loader.getController();
+//        doctorMenuController.setStartApp(this);
+
+        return doctorListOfPatientsScene;
+    }
+
+    private Scene createDoctorProfileScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/doctorProfile.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorProfileScene = new Scene(loader.load());
+        doctorProfileController = loader.getController();
+        doctorProfileController.setStartApp(this);
+
+        return doctorProfileScene;
+    }
+
+    private Scene createDoctorArchiveOfVisitsScene() throws IOException {
+//        URL fxmLocation = getClass().getResource("/doctorAccount/doctorMainMenu.fxml");
+//        FXMLLoader loader = new FXMLLoader(fxmLocation);
+//        doctorArchiveOfVisitsScene = new Scene(loader.load());
+//        doctorMenuController = loader.getController();
+//        doctorMenuController.setStartApp(this);
+
+        return doctorArchiveOfVisitsScene;
+    }
+
+    private Scene createDoctorScheduleScene() throws IOException {
+//        URL fxmLocation = getClass().getResource("/doctorAccount/doctorMainMenu.fxml");
+//        FXMLLoader loader = new FXMLLoader(fxmLocation);
+//        doctorScheduleScene = new Scene(loader.load());
+//        doctorMenuController = loader.getController();
+//        doctorMenuController.setStartApp(this);
+
+        return doctorScheduleScene;
     }
 
     private Scene createChangeScheduleRowScene() throws IOException {
@@ -574,6 +659,36 @@ public class StartApp extends Application {
     public void swichToChanScheduleRow() {
         stage.setScene(changeTheRowInSheduleScene);
         changeRowInSchedule.setInfoInFields(getFullName, getSpeciality, getCabNum, getMonday, getTuesday, getWednesday, getThursday, getFriday);
+        stage.centerOnScreen();
+    }
+
+    public void switchToDoctorMainMenuScene() {
+        stage.setScene(doctorMenuScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToDoctorInfoScene() {
+        stage.setScene(doctorInfoScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToDoctorArchiveOfVisitsScene() {
+        stage.setScene(doctorArchiveOfVisitsScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToDoctorProfileScene() {
+        stage.setScene(doctorProfileScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToDoctorScheduleScene() {
+        stage.setScene(doctorScheduleScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToDoctorListOfPatients() {
+        stage.setScene(doctorListOfPatientsScene);
         stage.centerOnScreen();
     }
 }

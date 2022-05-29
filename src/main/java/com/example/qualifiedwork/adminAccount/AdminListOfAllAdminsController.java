@@ -4,6 +4,8 @@ import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -74,6 +76,9 @@ public class AdminListOfAllAdminsController implements Initializable {
     private Label nameField;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
     private Label passwordField;
 
     @FXML
@@ -95,6 +100,46 @@ public class AdminListOfAllAdminsController implements Initializable {
     }
 
     private ObservableList<AdminRecord> oblist = FXCollections.observableArrayList();
+
+//    private FilteredList<AdminRecord> filteredList = new FilteredList<>(oblist, b-> true);
+
+
+
+    /*@FXML
+    void search(MouseEvent event) {
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(modelTable -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (modelTable.getSecondName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getFatherName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getResponsStatus().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getDateEmpl().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getBirthDate().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getLogin().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (modelTable.getPassword().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<AdminRecord> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(listOfAdmins.comparatorProperty());
+        listOfAdmins.setItems(sortedList);
+    }*/
 
 
     @Override
@@ -128,8 +173,8 @@ public class AdminListOfAllAdminsController implements Initializable {
     }
 
     public void refreshDataFromTable() {
-        listOfAdmins.getItems().clear();
         try {
+            listOfAdmins.getItems().clear();
             Connection connection = DBHandler.getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM adminDefaultData");
 

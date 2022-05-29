@@ -7,10 +7,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.DoctorMenuController">
    <left>
       <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +25,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="doctorMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMainMenu" prefHeight="49.0" prefWidth="184.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Главная">
+            <Button fx:id="doctorMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMainMenu" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Главная">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +49,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="doctorInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#doctorShowInfo" prefHeight="49.0" prefWidth="193.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
+            <Button fx:id="doctorInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#doctorShowInfo" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -74,6 +77,59 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="437.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane hgap="30.0" layoutX="77.0" layoutY="50.0" prefHeight="195.0" prefWidth="694.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="listOfPatientsBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openListOfPatients" prefHeight="258.0" prefWidth="277.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Пациенты">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/White.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="ArchiveOfProtocolsBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfVisits" prefHeight="258.0" prefWidth="277.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Архив осмотров" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/medCard.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="scheduleBtn" contentDisplay="TOP" layoutX="251.0" layoutY="10.0" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openDoctorSchedule" prefHeight="258.0" prefWidth="277.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="График работы" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/sheduleWhite.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></AnchorPane>
    </center>
 </BorderPane>

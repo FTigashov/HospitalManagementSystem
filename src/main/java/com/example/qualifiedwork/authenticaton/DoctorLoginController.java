@@ -58,6 +58,8 @@ public class DoctorLoginController {
 
                 connection.close();
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли врача");
+                startApp.switchToDoctorMainMenuScene();
+                cleanFields();
             } else {
                 startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
                 connection.close();
@@ -67,6 +69,11 @@ public class DoctorLoginController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void cleanFields() {
+        doctorLoginFiled.setText("");
+        doctorPasswordField.setText("");
     }
 
     private StartApp startApp;
