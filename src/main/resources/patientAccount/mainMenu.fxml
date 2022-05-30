@@ -113,7 +113,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="archiveOfRecords" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="266.0" prefWidth="361.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Архив записей" GridPane.columnIndex="2">
+                  <Button fx:id="archiveOfRecords" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openListOfVisits" prefHeight="266.0" prefWidth="361.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Архив осмотров" GridPane.columnIndex="2">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>

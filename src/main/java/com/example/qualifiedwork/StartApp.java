@@ -3,9 +3,7 @@ package com.example.qualifiedwork;
 import com.example.qualifiedwork.adminAccount.*;
 import com.example.qualifiedwork.authenticaton.*;
 import com.example.qualifiedwork.doctorAccount.*;
-import com.example.qualifiedwork.patientAccount.PatientInfoController;
-import com.example.qualifiedwork.patientAccount.PatientMenuController;
-import com.example.qualifiedwork.patientAccount.PatientProfileController;
+import com.example.qualifiedwork.patientAccount.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -41,11 +39,13 @@ public class StartApp extends Application {
 
 
     private Scene doctorMenuScene;
+    private Scene doctorProfileScene;
+    private Scene doctorInfoScene;
+
     private Scene doctorListOfPatientsScene;
     private Scene doctorArchiveOfVisitsScene;
     private Scene doctorScheduleScene;
-    private Scene doctorProfileScene;
-    private Scene doctorInfoScene;
+
     private Scene doctorMakeProtocolScene;
 
     //patientAccount
@@ -53,9 +53,15 @@ public class StartApp extends Application {
     private PatientInfoController patientInfoController;
     private PatientProfileController patientProfileController;
 
+    private PatientVisitsController patientVisitsController;
+    private PatientProtocolController patientProtocolController;
+
     private Scene patientMenuScene;
     private Scene patientProfileScene;
     private Scene patientInfoScene;
+
+    private Scene patientListOfProtocolsScene;
+    private Scene patientProtocolScene;
 
     //adminAccount
     private AdminProfileController adminProfileController;
@@ -141,6 +147,9 @@ public class StartApp extends Application {
         patientProfileScene = createPatientProfileScene();
         patientInfoScene = createPatientInfoScene();
 
+        patientListOfProtocolsScene = createPatientListOfVisits();
+        patientProtocolScene = createPatientProtocolScene();
+
         adminProfileScene = createAdminProfileScene();
         adminInfoScene = createAdminInfoScene();
         adminMenuScene = createAdminMenuScene();
@@ -164,6 +173,26 @@ public class StartApp extends Application {
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createPatientProtocolScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/patientAccount/showProtocol.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        patientProtocolScene = new Scene(loader.load());
+        patientProtocolController = loader.getController();
+        patientProtocolController.setStartApp(this);
+
+        return patientProtocolScene;
+    }
+
+    private Scene createPatientListOfVisits() throws IOException {
+        URL fxmLocation = getClass().getResource("/patientAccount/patientProtocolVisits.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        patientListOfProtocolsScene = new Scene(loader.load());
+        patientVisitsController = loader.getController();
+        patientVisitsController.setStartApp(this);
+
+        return patientListOfProtocolsScene;
     }
 
     private Scene createDoctorMakeProtocolScene() throws IOException {
@@ -526,6 +555,13 @@ public class StartApp extends Application {
         getName = name;
     }
 
+    public void getInfoForShowProtocol(String doctorSecondName, String doctorName, String patientSecondName, String patientName) {
+        getAdminSecondName = doctorSecondName;
+        getAdminName = doctorName;
+        getSecondName = patientSecondName;
+        getName = patientName;
+    }
+
     public void getInfoAboutDoctorAccount(String secondNameField, String nameField, String fatherNameField, String birthDateField,
                                           String dateEmplField, String responsStatusChoice, String loginField, String passwordField) {
         getAdminSecondName = secondNameField;
@@ -722,6 +758,19 @@ public class StartApp extends Application {
         stage.setScene(doctorMakeProtocolScene);
         doctorMakeProtocolController.setInfo(getAdminResponsStatus, getAdminSecondName, getAdminName, getAdminfatherName, getPatSecondName, getPatName, getPatFatherName,
                 getPatBirthDate, getPatMedCard, getPatSnilsCard);
+        stage.centerOnScreen();
+    }
+
+    public void switchToPatientListOfVisits() {
+        stage.setScene(patientListOfProtocolsScene);
+        patientVisitsController.setInfoAboutPatient(getSecondName, getName);
+        patientVisitsController.showTableOfVisits();
+        stage.centerOnScreen();
+    }
+
+    public void switchToPatientProtocol() {
+        stage.setScene(patientProtocolScene);
+        patientProtocolController.setInfo(getAdminSecondName, getAdminName, getSecondName, getName);
         stage.centerOnScreen();
     }
 }
