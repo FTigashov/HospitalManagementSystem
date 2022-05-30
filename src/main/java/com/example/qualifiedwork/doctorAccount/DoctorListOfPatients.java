@@ -2,6 +2,7 @@ package com.example.qualifiedwork.doctorAccount;
 
 import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
+import com.example.qualifiedwork.adminAccount.DoctorRecord;
 import com.example.qualifiedwork.adminAccount.PatientRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DoctorListOfPatients implements Initializable {
+
     @FXML
     private Label addressField;
 
@@ -88,9 +90,15 @@ public class DoctorListOfPatients implements Initializable {
 
     @FXML
     void makeProtocolBtn(MouseEvent event) {
-        startApp.getInfoAboutPatientAccountWithoutAuth(secondNameField.getText().trim(), nameField.getText().trim(), fatherNameField.getText().trim(), birthDateField.getText().trim(), medCardField.getText().trim(), snilsField.getText().trim());
-        makeFieldsIsEmpty();
-        startApp.switchToMakeProtocolForm();
+        PatientRecord record = listOfPatients.getSelectionModel().getSelectedItem();
+        if (record == null) {
+            startApp.showErrorLoginAlert("Ошибка открытия протокола", "Для выполнения осмотра,\nнеобходимо выбрать пациента в таблице.");
+            return;
+        } else {
+            startApp.getInfoAboutPatientAccountWithoutAuth(secondNameField.getText().trim(), nameField.getText().trim(), fatherNameField.getText().trim(), birthDateField.getText().trim(), medCardField.getText().trim(), snilsField.getText().trim());
+            makeFieldsIsEmpty();
+            startApp.switchToMakeProtocolForm();
+        }
     }
 
     @FXML
