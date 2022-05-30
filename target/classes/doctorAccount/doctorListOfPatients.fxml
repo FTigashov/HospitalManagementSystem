@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.DoctorListOfPatients">
+   <left>
+      <VBox prefHeight="662.0" prefWidth="141.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="284.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Меню" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="doctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="На главную">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/Диплом/icons/main.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="639.0" prefWidth="707.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="listOfPatients" layoutX="18.0" layoutY="86.0" prefHeight="532.0" prefWidth="835.0">
+               <columns>
+                  <TableColumn fx:id="columnSecondName" prefWidth="112.44447898864746" text="Фамилия" />
+                  <TableColumn fx:id="columnName" prefWidth="98.22222900390625" text="Имя" />
+                  <TableColumn fx:id="columnFatherName" prefWidth="143.5554962158203" text="Отчество" />
+                  <TableColumn fx:id="columnBirthDate" prefWidth="79.55551147460938" text="Дата рождения" />
+                  <TableColumn fx:id="columnSnils" prefWidth="105.33331298828125" text="Снилс" />
+                  <TableColumn fx:id="columnMedCard" prefWidth="117.33331298828125" text="Полис" />
+                  <TableColumn fx:id="columnAddress" prefWidth="177.3333740234375" text="Адрес" />
+               </columns>
+            </TableView>
+            <Label layoutX="18.0" layoutY="43.0" text="Пациенты">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane prefHeight="662.0" prefWidth="261.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="284.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Выбранная запись" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox layoutY="60.0" prefHeight="389.0" prefWidth="285.0">
+               <children>
+                  <Label fx:id="secondNameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fatherNameField" layoutX="10.0" layoutY="90.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="birthDateField" layoutX="10.0" layoutY="136.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="medCardField" layoutX="10.0" layoutY="181.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="snilsField" layoutX="25.0" layoutY="226.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="addressField" layoutX="25.0" layoutY="269.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutY="458.0" prefHeight="203.0" prefWidth="285.0" style="-fx-border-color: white; -fx-border-width: 1px 0px 0px 0px;">
+               <children>
+                  <Button fx:id="makeProtocolBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#makeProtocolBtn" prefHeight="49.0" prefWidth="289.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выполнить осмотр">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/makeRecord.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" right="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="makeDirectionBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#makeDirection" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выписать направление">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/receipts.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" right="15.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="makeReceiptBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#makeReceipt" prefHeight="49.0" prefWidth="286.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выписать рецепт">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/Диплом/icons/listRepWh.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" right="15.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

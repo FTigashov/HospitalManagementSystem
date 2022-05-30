@@ -12,3 +12,16 @@
     -fx-font-style: normal;
     -fx-text-fill: white;
 }
+
+.textFieldNormal {
+    -fx-background-color: transparent;
+    -fx-border-color:  #62ace0;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+.textProtocol {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-border-color:  black;
+    -fx-border-width: 0px 0px 1px 0px;
+}

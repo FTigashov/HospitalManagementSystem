@@ -56,6 +56,15 @@ public class DoctorLoginController {
                 doctorLoginFiled.setText("");
                 doctorPasswordField.setText("");
 
+                startApp.getInfoAboutDoctorAccount(resultSet.getString("secondName"),
+                        resultSet.getString("name"),
+                        resultSet.getString("fatherName"),
+                        resultSet.getString("birthDate"),
+                        resultSet.getString("employDate"),
+                        resultSet.getString("responsStatus"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password"));
+
                 connection.close();
                 startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли врача");
                 startApp.switchToDoctorMainMenuScene();

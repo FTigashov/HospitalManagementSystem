@@ -679,6 +679,7 @@ public class StartApp extends Application {
 
     public void switchToDoctorProfileScene() {
         stage.setScene(doctorProfileScene);
+        doctorProfileController.setDoctorInfo(getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword);
         stage.centerOnScreen();
     }
 
