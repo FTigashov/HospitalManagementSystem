@@ -37,6 +37,7 @@ public class StartApp extends Application {
     private DoctorInfoController doctorInfoController;
     private DoctorListOfPatients doctorListOfPatients;
     private DoctorMakeProtocolController doctorMakeProtocolController;
+    private DoctorSchedule doctorScheduleController;
 
 
     private Scene doctorMenuScene;
@@ -226,11 +227,11 @@ public class StartApp extends Application {
     }
 
     private Scene createDoctorScheduleScene() throws IOException {
-//        URL fxmLocation = getClass().getResource("/doctorAccount/doctorMainMenu.fxml");
-//        FXMLLoader loader = new FXMLLoader(fxmLocation);
-//        doctorScheduleScene = new Scene(loader.load());
-//        doctorMenuController = loader.getController();
-//        doctorMenuController.setStartApp(this);
+        URL fxmLocation = getClass().getResource("/doctorAccount/doctorSchedule.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorScheduleScene = new Scene(loader.load());
+        doctorScheduleController = loader.getController();
+        doctorScheduleController.setStartApp(this);
 
         return doctorScheduleScene;
     }
