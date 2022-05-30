@@ -2,9 +2,7 @@ package com.example.qualifiedwork;
 
 import com.example.qualifiedwork.adminAccount.*;
 import com.example.qualifiedwork.authenticaton.*;
-import com.example.qualifiedwork.doctorAccount.DoctorInfoController;
-import com.example.qualifiedwork.doctorAccount.DoctorMenuController;
-import com.example.qualifiedwork.doctorAccount.DoctorProfileController;
+import com.example.qualifiedwork.doctorAccount.*;
 import com.example.qualifiedwork.patientAccount.PatientInfoController;
 import com.example.qualifiedwork.patientAccount.PatientMenuController;
 import com.example.qualifiedwork.patientAccount.PatientProfileController;
@@ -37,7 +35,8 @@ public class StartApp extends Application {
     private DoctorMenuController doctorMenuController;
     private DoctorProfileController doctorProfileController;
     private DoctorInfoController doctorInfoController;
-
+    private DoctorListOfPatients doctorListOfPatients;
+    private DoctorMakeProtocolController doctorMakeProtocolController;
 
 
     private Scene doctorMenuScene;
@@ -46,6 +45,7 @@ public class StartApp extends Application {
     private Scene doctorScheduleScene;
     private Scene doctorProfileScene;
     private Scene doctorInfoScene;
+    private Scene doctorMakeProtocolScene;
 
     //patientAccount
     private PatientMenuController patientMenuController;
@@ -103,6 +103,7 @@ public class StartApp extends Application {
 
     private String getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword;
     private String getPatientSecondName, getPatientName, getPatientFatherName, getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress;
+    private String getPatSecondName, getPatName, getPatFatherName, getPatBirthDate, getPatMedCard, getPatSnilsCard;
 
     private String getFullName;
     private String getSpeciality;
@@ -133,6 +134,7 @@ public class StartApp extends Application {
         doctorScheduleScene = createDoctorScheduleScene();
         doctorProfileScene = createDoctorProfileScene();
         doctorInfoScene = createDoctorInfoScene();
+        doctorMakeProtocolScene = createDoctorMakeProtocolScene();
 
         patientMenuScene = createPatientMenuScene();
         patientProfileScene = createPatientProfileScene();
@@ -163,6 +165,16 @@ public class StartApp extends Application {
 
     }
 
+    private Scene createDoctorMakeProtocolScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/makeProtocol.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorMakeProtocolScene = new Scene(loader.load());
+        doctorMakeProtocolController = loader.getController();
+        doctorMakeProtocolController.setStartApp(this);
+
+        return doctorMakeProtocolScene;
+    }
+
     private Scene createDoctorInfoScene() throws IOException {
         URL fxmLocation = getClass().getResource("/doctorAccount/doctorInfo.fxml");
         FXMLLoader loader = new FXMLLoader(fxmLocation);
@@ -184,11 +196,11 @@ public class StartApp extends Application {
     }
 
     private Scene createDoctorListOfPatientsScene() throws IOException {
-//        URL fxmLocation = getClass().getResource("/doctorAccount/doctor.fxml");
-//        FXMLLoader loader = new FXMLLoader(fxmLocation);
-//        doctorListOfPatientsScene = new Scene(loader.load());
-//        doctorMenuController = loader.getController();
-//        doctorMenuController.setStartApp(this);
+        URL fxmLocation = getClass().getResource("/doctorAccount/doctorListOfPatients.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorListOfPatientsScene = new Scene(loader.load());
+        doctorListOfPatients = loader.getController();
+        doctorListOfPatients.setStartApp(this);
 
         return doctorListOfPatientsScene;
     }
@@ -569,6 +581,18 @@ public class StartApp extends Application {
                 getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress);
     }
 
+    public void getInfoAboutPatientAccountWithoutAuth(String getPatientSecondName, String getPatientName, String getPatientFatherName, String getPatientBirthDate, String getPatientMedCard,
+                                           String getPatientSnilsCard) {
+        getPatSecondName = getPatientSecondName;
+        getPatName = getPatientName;
+        getPatFatherName = getPatientFatherName;
+        getPatBirthDate = getPatientBirthDate;
+        getPatMedCard = getPatientMedCard;
+        getPatSnilsCard = getPatientSnilsCard;
+
+        System.out.println(getPatientSecondName + " " + getPatientName);
+    }
+
     public void switchToAdminInfoScene() {
         stage.setScene(adminInfoScene);
         stage.centerOnScreen();
@@ -690,6 +714,13 @@ public class StartApp extends Application {
 
     public void switchToDoctorListOfPatients() {
         stage.setScene(doctorListOfPatientsScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToMakeProtocolForm() {
+        stage.setScene(doctorMakeProtocolScene);
+        doctorMakeProtocolController.setInfo(getAdminResponsStatus, getAdminSecondName, getAdminName, getAdminfatherName, getPatSecondName, getPatName, getPatFatherName,
+                getPatBirthDate, getPatMedCard, getPatSnilsCard);
         stage.centerOnScreen();
     }
 }

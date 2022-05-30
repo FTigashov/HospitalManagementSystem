@@ -1,9 +1,14 @@
 package com.example.qualifiedwork.doctorAccount;
 
+import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class DoctorMakeProtocolController {
     @FXML
@@ -123,11 +128,100 @@ public class DoctorMakeProtocolController {
 
     @FXML
     void backToListOfPatients(MouseEvent event) {
-
+        startApp.switchToDoctorListOfPatients();
     }
 
     @FXML
     void createNewProtocol(MouseEvent event) {
+        String protocolDate = String.valueOf(dateOfProtocol.getValue());
+        String heightStr = height.getText().trim();
+        String wegihtStr = weight.getText().trim();
+        String indexBody = indexOfBody.getText().trim();
+        String ad = AD.getText().trim();
+        String temperature = t.getText().trim();
+        String chSS = CHSS.getText().trim();
+        String chDD = CHDD.getText().trim();
+        String comState = commonStatus.getText().trim();
+        String pulsState = puls.getText().trim();
+        String skinState = skin.getText().trim();
+        String spinState = spine.getText().trim();
+        String respiratorySystemState = respiratorySystem.getText().trim();
+        String ribCageState = ribCage.getText().trim();
+        String urinationState = urination.getText().trim();
+        String kidneysState = kidneys.getText().trim();
+        String mainDiagnosState = mainDiagnos.getText().trim();
+        String diseaseState = disease.getText().trim();
+        String recommendState = recommendation.getText().trim();
 
+        if (protocolDate == null) {
+            startApp.showErrorLoginAlert("Ошибка сохранения протокола", "Убедитесь, чтобы все поля были заполнены.");
+            return;
+        } else if (heightStr.length() == 0 &&
+                wegihtStr.length() == 0 &&
+                indexBody.length() == 0 &&
+                ad.length() == 0 &&
+                temperature.length() == 0 &&
+                chSS.length() == 0 &&
+                chDD.length() == 0 &&
+                comState.length() == 0 &&
+                pulsState.length() == 0 &&
+                skinState.length() == 0 &&
+                spinState.length() == 0 &&
+                respiratorySystemState.length() == 0 &&
+                ribCageState.length() == 0 &&
+                urinationState.length() == 0 &&
+                kidneysState.length() == 0 &&
+                mainDiagnosState.length() == 0 &&
+                diseaseState.length() == 0 &&
+                recommendState.length() == 0) {
+            startApp.showErrorLoginAlert("Ошибка сохранения протокола", "Убедитесь, чтобы все поля были заполнены.");
+            return;
+        } else {
+            try {
+                Connection connection = DBHandler.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO patientProtocols (docSecondName, docName, docFatherName, docResponsStatus, " +
+                        "patSecondName, patName, patFatherName, patBirthDate, patMedCard, patSnilsCard, height, weight, " +
+                        "indexOfBody, AD, t, CHSS, CHDD, commonStatus, puls, skin, spine, respiratorySystem, ribCage, urination, kidneys, mainDiagnos, disease, recommendation, protocolDate) VALUES " +
+                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+                preparedStatement.setString(1, doctorSecondName.getText().trim());
+                preparedStatement.setString(2, doctorName.getText().trim());
+                preparedStatement.setString(3, doctorFatherName.getText().trim());
+                preparedStatement.setString(4, doctorResponsStatus.getText().trim());
+                preparedStatement.setString(5, patientSecondName.getText().trim());
+                preparedStatement.setString(6, patientName.getText().trim());
+                preparedStatement.setString(7, patientFatherName.getText().trim());
+                preparedStatement.setString(8, birthDate.getText().trim());
+                preparedStatement.setString(9, medCard.getText().trim());
+                preparedStatement.setString(10, snilsCard.getText().trim());
+                preparedStatement.setString(11, heightStr);
+                preparedStatement.setString(12, wegihtStr);
+                preparedStatement.setString(13, indexBody);
+                preparedStatement.setString(14, ad);
+                preparedStatement.setString(15, temperature);
+                preparedStatement.setString(16, chSS);
+                preparedStatement.setString(17, chDD);
+                preparedStatement.setString(18, comState);
+                preparedStatement.setString(19, pulsState);
+                preparedStatement.setString(20, skinState);
+                preparedStatement.setString(21, spinState);
+                preparedStatement.setString(22, respiratorySystemState);
+                preparedStatement.setString(23, ribCageState);
+                preparedStatement.setString(24, urinationState);
+                preparedStatement.setString(25, kidneysState);
+                preparedStatement.setString(26,  mainDiagnosState);
+                preparedStatement.setString(27, diseaseState);
+                preparedStatement.setString(28, recommendState);
+                preparedStatement.setString(29, dateOfProtocol.getValue().toString());
+
+                preparedStatement.executeUpdate();
+
+                startApp.showSuccessMessage("Сообщие об успехе", "Осмотр проведен", "Протокол осмотра успешно сохранен и добавлен в базу данных.");
+                startApp.switchToDoctorListOfPatients();
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

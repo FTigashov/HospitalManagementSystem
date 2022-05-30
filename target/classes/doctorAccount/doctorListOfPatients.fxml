@@ -64,7 +64,7 @@
    <right>
       <AnchorPane prefHeight="662.0" prefWidth="261.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="60.0" prefWidth="284.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Выбранная запись" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="284.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" text="Выбранный пациент" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

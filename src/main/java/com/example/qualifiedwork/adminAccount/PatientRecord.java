@@ -15,6 +15,16 @@ public class PatientRecord {
         this.snilsCard = snilsCard;
     }
 
+    public PatientRecord(String secondName, String name, String fatherName, String birthDate, String address, String medCard, String snilsCard) {
+        this.secondName = secondName;
+        this.name = name;
+        this.fatherName = fatherName;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.medCard = medCard;
+        this.snilsCard = snilsCard;
+    }
+
     public String getSecondName() {
         return secondName;
     }
