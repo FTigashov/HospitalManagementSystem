@@ -83,7 +83,7 @@ public class AdminChangePatientRecord {
 
             makeFieldsIsEmpty();
             startApp.switchToListOfPatients();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

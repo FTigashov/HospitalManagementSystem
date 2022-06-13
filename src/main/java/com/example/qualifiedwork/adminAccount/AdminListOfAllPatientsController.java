@@ -91,8 +91,15 @@ public class AdminListOfAllPatientsController implements Initializable{
     @FXML
     private Label addressField;
 
+    @FXML
+    private TextField searchField;
+
 
     private StartApp startApp;
+    private Connection connection = DBHandler.getConnection();;
+
+    public AdminListOfAllPatientsController() throws SQLException {
+    }
 
     public void setStartApp(StartApp startApp) {
         this.startApp = startApp;
@@ -100,6 +107,7 @@ public class AdminListOfAllPatientsController implements Initializable{
 
     @FXML
     void addNewRecordIntoTable(MouseEvent event) {
+        makeFieldsIsEmpty();
         startApp.switchToAddNewPatientRecordScene();
     }
 
@@ -129,7 +137,6 @@ public class AdminListOfAllPatientsController implements Initializable{
 
     @FXML
     void deleteRecord(MouseEvent event) {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         PatientRecord record = listOfPatients.getSelectionModel().getSelectedItem();
         if (record == null) {
@@ -138,8 +145,7 @@ public class AdminListOfAllPatientsController implements Initializable{
         } else {
             String loginRecord = record.getLogin();
             try {
-                connection = DBHandler.getConnection();
-                preparedStatement = connection.prepareStatement("DELETE FROM patientDefaultData WHERE login = ?");
+                preparedStatement = connection.prepareStatement("DELETE FROM patient_default_data WHERE login = ?");
                 preparedStatement.setString(1, loginRecord);
 
                 preparedStatement.executeUpdate();
@@ -148,14 +154,56 @@ public class AdminListOfAllPatientsController implements Initializable{
 
                 startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена.");
                 refreshDataFromTable();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    private void searchMethod() {
+        oblist.clear();
+        searchField.setOnKeyReleased(e->{
+            if (searchField.getText().equals("")) {
+                refreshDataFromTable();
+                return;
+            } else {
+                try {
+                    String searchText = searchField.getText().trim();
+                    String query = "select * from patient_default_data where father_name like '%" + searchText + "%'" +
+                            "or name like '%" + searchText + "%'" +
+                            "or father_name like '%" + searchText + "%'" +
+                            "or birth_date like '%" + searchText + "%'" +
+                            "or address like '%" + searchText + "%'" +
+                            "or login like '%" + searchText + "%'" +
+                            "or password like '%" + searchText + "%'" +
+                            "or med_card like '%" + searchText + "%'" +
+                            "or snils_card like '%" + searchText + "%'";
+
+                    PreparedStatement pr = connection.prepareStatement(query);
+                    ResultSet rs = pr.executeQuery();
+                    oblist.clear();
+                    while (rs.next()) {
+                        oblist.add(new PatientRecord(rs.getString("second_name"),
+                                rs.getString("name"),
+                                rs.getString("father_name"),
+                                rs.getString("birth_date"),
+                                rs.getString("address"),
+                                rs.getString("login"),
+                                rs.getString("password"),
+                                rs.getString("med_card"),
+                                rs.getString("snils_card")));
+                        listOfPatients.setItems(oblist);
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+    }
+
     @FXML
     void openMainMenu(MouseEvent event) {
+        makeFieldsIsEmpty();
         startApp.switchToAdminMainMenuScene();
     }
 
@@ -185,26 +233,27 @@ public class AdminListOfAllPatientsController implements Initializable{
             return row;
         });
         refreshDataFromTable();
+        searchMethod();
     }
 
     public void refreshDataFromTable() {
         listOfPatients.getItems().clear();
         try {
             Connection connection = DBHandler.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM patientDefaultData");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM patient_default_data");
 
             while (resultSet.next()) {
-                oblist.add(new PatientRecord(resultSet.getString("secondName"),
+                oblist.add(new PatientRecord(resultSet.getString("second_name"),
                         resultSet.getString("name"),
-                        resultSet.getString("fatherName"),
-                        resultSet.getString("birthDate"),
+                        resultSet.getString("father_name"),
+                        resultSet.getString("birth_date"),
                         resultSet.getString("address"),
                         resultSet.getString("login"),
                         resultSet.getString("password"),
-                        resultSet.getString("medCard"),
-                        resultSet.getString("snilsCard")));
+                        resultSet.getString("med_card"),
+                        resultSet.getString("snils_card")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -222,6 +271,7 @@ public class AdminListOfAllPatientsController implements Initializable{
     }
 
     private void makeFieldsIsEmpty() {
+        searchField.setText("");
         secondNameField.setText("");
         nameField.setText("");
         fatherNameField.setText("");

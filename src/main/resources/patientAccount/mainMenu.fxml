@@ -89,7 +89,7 @@
                 <RowConstraints maxHeight="253.22222222222229" minHeight="10.0" prefHeight="232.00002034505212" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="doctorsDirection" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="293.0" prefWidth="186.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Направления">
+                  <Button fx:id="doctorsDirection" alignment="CENTER" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="293.0" prefWidth="186.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Направления">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -101,7 +101,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="listOfReceipts" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="264.0" prefWidth="380.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Рецепты" GridPane.columnIndex="1">
+                  <Button fx:id="listOfReceipts" alignment="CENTER" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="264.0" prefWidth="380.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Рецепты" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.DatePicker?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminCreateNewDoctorRecordController">
    <left>
       <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
@@ -79,16 +80,10 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="birthDateField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Дата рождения" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="emplDateField" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Дата устройства" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
+            <DatePicker fx:id="birthDateField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Дата рождения" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            </DatePicker>
+            <DatePicker fx:id="emplDateField" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" promptText="Дата устройства" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            </DatePicker>
             <TextField fx:id="loginField" layoutX="40.0" layoutY="268.0" prefHeight="32.0" prefWidth="146.0" promptText="Логин" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />

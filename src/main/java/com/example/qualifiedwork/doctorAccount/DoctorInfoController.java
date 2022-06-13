@@ -2,7 +2,11 @@ package com.example.qualifiedwork.doctorAccount;
 
 import com.example.qualifiedwork.StartApp;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+
+import java.util.Optional;
 
 public class DoctorInfoController {
 
@@ -13,7 +17,15 @@ public class DoctorInfoController {
     public void setStartApp(StartApp startApp) { this.startApp = startApp; }
     @FXML
     void doctorLogOut(MouseEvent event) {
-        startApp.switchToChoiceScene();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Подтверждение действия");
+        alert.setHeaderText("Выход из учетной записи");
+        alert.setContentText("Вы уверены, что хотите выйти?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            startApp.switchToChoiceScene();
+        } else { return; }
     }
 
     @FXML

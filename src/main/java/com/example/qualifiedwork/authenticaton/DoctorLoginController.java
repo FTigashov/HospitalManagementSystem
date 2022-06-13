@@ -47,33 +47,39 @@ public class DoctorLoginController {
         try {
             Connection connection = DBHandler.getConnection();
             ResultSet resultSet;
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doctorDefaultData WHERE login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doc_default_data WHERE login = ? AND type_of_account = 'doctor'");
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
 
-            passwordDB = resultSet.getString("password");
-            if (passwordDB != null && passwordDB.equals(password)) {
-                doctorLoginFiled.setText("");
-                doctorPasswordField.setText("");
+            if (resultSet.next()) {
+                passwordDB = resultSet.getString("password");
+                if (passwordDB != null && passwordDB.equals(password)) {
+                    doctorLoginFiled.setText("");
+                    doctorPasswordField.setText("");
 
-                startApp.getInfoAboutDoctorAccount(resultSet.getString("secondName"),
-                        resultSet.getString("name"),
-                        resultSet.getString("fatherName"),
-                        resultSet.getString("birthDate"),
-                        resultSet.getString("employDate"),
-                        resultSet.getString("responsStatus"),
-                        resultSet.getString("login"),
-                        resultSet.getString("password"));
+                    startApp.getInfoAboutDoctorAccount(resultSet.getString("second_name"),
+                            resultSet.getString("name"),
+                            resultSet.getString("father_name"),
+                            resultSet.getString("birth_date"),
+                            resultSet.getString("employee_date"),
+                            resultSet.getString("responsibility_status"),
+                            resultSet.getString("login"),
+                            resultSet.getString("password"));
 
-                connection.close();
-                startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли врача");
-                startApp.switchToDoctorMainMenuScene();
-                cleanFields();
+                    connection.close();
+                    startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли врача");
+                    startApp.switchToDoctorMainMenuScene();
+                    cleanFields();
+                } else {
+                    startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
+                    connection.close();
+                }
             } else {
-                startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
-                connection.close();
+                startApp.showErrorLoginAlert("Ошибка авторизации", "Аккаунт по введенным данным не был найден.");
+                return;
             }
-        } catch (ClassNotFoundException | SQLException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

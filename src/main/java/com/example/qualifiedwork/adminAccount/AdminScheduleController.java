@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AdminSheduleController implements Initializable {
+public class AdminScheduleController implements Initializable {
     @FXML
     private Button DeleteRecordBtn;
 
@@ -127,7 +127,7 @@ public class AdminSheduleController implements Initializable {
             String speciality = record.getSpeciality();
             try {
                 connection = DBHandler.getConnection();
-                preparedStatement = connection.prepareStatement("DELETE FROM shedule WHERE speciality = ?");
+                preparedStatement = connection.prepareStatement("DELETE FROM schedule WHERE speciality = ?");
                 preparedStatement.setString(1, speciality);
 
                 preparedStatement.executeUpdate();
@@ -136,7 +136,7 @@ public class AdminSheduleController implements Initializable {
 
                 startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена.");
                 refreshDataFromTable();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -190,19 +190,19 @@ public class AdminSheduleController implements Initializable {
         shedule.getItems().clear();
         try {
             Connection connection = DBHandler.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM shedule");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM schedule");
 
             while (resultSet.next()) {
-                oblist.add(new SheduleRecord(resultSet.getString("fullName"),
+                oblist.add(new SheduleRecord(resultSet.getString("full_name"),
                         resultSet.getString("speciality"),
-                        resultSet.getString("cabNum"),
+                        resultSet.getString("cab_num"),
                         resultSet.getString("monday"),
                         resultSet.getString("tuesday"),
                         resultSet.getString("wednesday"),
                         resultSet.getString("thursday"),
                         resultSet.getString("friday")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -80,8 +81,8 @@ public class StartApp extends Application {
     private AdminCreateNewPatientRecord adminCreateNewPatientRecord;
     private AdminChangePatientRecord adminChangePatientRecord;
 
-    private AdminSheduleController adminSheduleController;
-    private AddNewRowToShedule addNewRowToShedule;
+    private AdminScheduleController adminScheduleController;
+    private AddNewRowToSchedule addNewRowToSchedule;
     private ChangeRowInSchedule changeRowInSchedule;
 
     private Scene adminProfileScene;
@@ -127,6 +128,7 @@ public class StartApp extends Application {
         stage.setTitle("Hospital management system");
         stage.setResizable(false);
         stage.setFullScreen(false);
+        stage.getIcons().add(new Image("D:/JavaProjects/QualifiedWork/src/main/resources/main_icon.png"));
 
         choiceViewScene = createChoiceViewScene();
 
@@ -279,18 +281,18 @@ public class StartApp extends Application {
         URL fxmLocation = getClass().getResource("/adminAccount/addNewRowToShedule.fxml");
         FXMLLoader loader = new FXMLLoader(fxmLocation);
         addNewRowIntoSheduleScene = new Scene(loader.load());
-        addNewRowToShedule = loader.getController();
-        addNewRowToShedule.setStartApp(this);
+        addNewRowToSchedule = loader.getController();
+        addNewRowToSchedule.setStartApp(this);
 
         return addNewRowIntoSheduleScene;
     }
 
     private Scene createSheduleScene() throws IOException {
-        URL fxmLocation = getClass().getResource("/adminAccount/shedule.fxml");
+        URL fxmLocation = getClass().getResource("/adminAccount/schedule.fxml");
         FXMLLoader loader = new FXMLLoader(fxmLocation);
         sheduleScene = new Scene(loader.load());
-        adminSheduleController = loader.getController();
-        adminSheduleController.setStartApp(this);
+        adminScheduleController = loader.getController();
+        adminScheduleController.setStartApp(this);
 
         return sheduleScene;
     }
@@ -707,7 +709,7 @@ public class StartApp extends Application {
 
     public void switchToShedulePage() {
         stage.setScene(sheduleScene);
-        adminSheduleController.refreshDataFromTable();
+        adminScheduleController.refreshDataFromTable();
         stage.centerOnScreen();
     }
 
@@ -751,6 +753,7 @@ public class StartApp extends Application {
 
     public void switchToDoctorListOfPatients() {
         stage.setScene(doctorListOfPatientsScene);
+        doctorListOfPatients.refreshDataFromTable();
         stage.centerOnScreen();
     }
 

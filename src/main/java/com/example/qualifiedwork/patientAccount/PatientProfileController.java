@@ -87,25 +87,27 @@ public class PatientProfileController {
     public void getInfoAboutAccount(String sName, String nm) {
         try {
             Connection connection = DBHandler.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patientDefaultData WHERE secondName = ? AND name = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patient_default_data WHERE second_name = ? AND name = ?");
             ResultSet resultSet;
             preparedStatement.setString(1, sName);
             preparedStatement.setString(2, nm);
             resultSet = preparedStatement.executeQuery();
 
-            String secondNameDb = resultSet.getString("secondName");
-            String nameDB = resultSet.getString("name");
+            if (resultSet.next()) {
+                String secondNameDb = resultSet.getString("second_name");
+                String nameDB = resultSet.getString("name");
 
-            secondNameLabel.setText(secondNameDb);
-            nameLabel.setText(nameDB);
-            fatherNameLabel.setText(resultSet.getString("fatherName"));
-            birthDateLabel.setText(resultSet.getString("birthDate"));
-            addressLabel.setText(resultSet.getString("address"));
-            medCardLabel.setText(resultSet.getString("medCard"));
-            snilsLabel.setText(resultSet.getString("snilsCard"));
-            loginLabel.setText(resultSet.getString("login"));
-            passwordLabel.setText(resultSet.getString("password"));
-        } catch (ClassNotFoundException | SQLException e) {
+                secondNameLabel.setText(secondNameDb);
+                nameLabel.setText(nameDB);
+                fatherNameLabel.setText(resultSet.getString("father_name"));
+                birthDateLabel.setText(resultSet.getString("birth_date"));
+                addressLabel.setText(resultSet.getString("address"));
+                medCardLabel.setText(resultSet.getString("med_card"));
+                snilsLabel.setText(resultSet.getString("snils_card"));
+                loginLabel.setText(resultSet.getString("login"));
+                passwordLabel.setText(resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

@@ -71,7 +71,7 @@ public class ChangeRowInSchedule {
         } else {
             try {
                 Connection connection = DBHandler.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE shedule SET cabNum = ?, monday = ?, tuesday = ?, wednesday = ?, thursday = ?, friday = ? WHERE fullName = ? AND speciality = ?");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE schedule SET cab_num = ?, monday = ?, tuesday = ?, wednesday = ?, thursday = ?, friday = ? WHERE full_name = ? AND speciality = ?");
 
                 preparedStatement.setString(1, cabNumField.getText().trim());
                 preparedStatement.setString(2, mnField.getText().trim());
@@ -87,7 +87,7 @@ public class ChangeRowInSchedule {
                 makeFieldsIsEmpty();
                 startApp.switchToShedulePage();
 
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

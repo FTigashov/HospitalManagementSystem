@@ -67,19 +67,19 @@ public class DoctorSchedule {
     public void refreshDataFromTable() {
         try {
             Connection connection = DBHandler.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM shedule");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM schedule");
 
             while (resultSet.next()) {
-                oblist.add(new SheduleRecord(resultSet.getString("fullName"),
+                oblist.add(new SheduleRecord(resultSet.getString("full_name"),
                         resultSet.getString("speciality"),
-                        resultSet.getString("cabNum"),
+                        resultSet.getString("cab_num"),
                         resultSet.getString("monday"),
                         resultSet.getString("tuesday"),
                         resultSet.getString("wednesday"),
                         resultSet.getString("thursday"),
                         resultSet.getString("friday")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

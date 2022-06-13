@@ -68,7 +68,7 @@ public class AdminChangeRecord {
         }
         try {
             connection = DBHandler.getConnection();
-            preparedStatement = connection.prepareStatement("UPDATE adminDefaultData SET responsStatus = ?, login = ?, password = ? WHERE secondName = ? AND name = ? AND birthDate = ?");
+            preparedStatement = connection.prepareStatement("UPDATE doc_default_data SET responsibility_status = ?, login = ?, password = ? WHERE second_name = ? AND name = ? AND birth_date = ?");
 
             preparedStatement.setString(1, updateResponsibleStatus);
             preparedStatement.setString(2, updateLogin);
@@ -82,7 +82,7 @@ public class AdminChangeRecord {
 
             makeFieldsIsEmpty();
             startApp.switchToListOfAdmins();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

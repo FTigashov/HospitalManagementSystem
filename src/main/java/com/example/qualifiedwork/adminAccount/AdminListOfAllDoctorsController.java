@@ -64,6 +64,9 @@ public class AdminListOfAllDoctorsController implements Initializable {
     private Label fatherNameField;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
     private TableView<DoctorRecord> listOfDoctors;
 
     @FXML
@@ -80,9 +83,14 @@ public class AdminListOfAllDoctorsController implements Initializable {
 
     @FXML
     private Label secondNameField;
+    private Connection connection = DBHandler.getConnection();
+
+    public AdminListOfAllDoctorsController() throws SQLException {
+    }
 
     @FXML
     void addNewRecordIntoTable(MouseEvent event) {
+        makeFieldsIsEmpty();
         startApp.switchToCreateNewDoctorRecordForm();
     }
 
@@ -95,15 +103,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
             startApp.getInfoAboutDoctorAccount(secondNameField.getText(), nameField.getText(), fatherNameField.getText(), birthDateField.getText(),
                     dateEmplField.getText(), responsStatusChoice.getText(), loginField.getText(), passwordField.getText());
 
-            secondNameField.setText("");
-            nameField.setText("");
-            fatherNameField.setText("");
-            birthDateField.setText("");
-            dateEmplField.setText("");
-            responsStatusChoice.setText("");
-            loginField.setText("");
-            passwordField.setText("");
-
+            makeFieldsIsEmpty();
             startApp.switchToChangeDoctorRecordScene();
         }
     }
@@ -120,7 +120,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
             String loginRecord = record.getLogin();
             try {
                 connection = DBHandler.getConnection();
-                preparedStatement = connection.prepareStatement("DELETE FROM doctorDefaultData WHERE login = ?");
+                preparedStatement = connection.prepareStatement("DELETE FROM doc_default_data WHERE login = ?");
                 preparedStatement.setString(1, loginRecord);
 
                 preparedStatement.executeUpdate();
@@ -129,7 +129,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
 
                 startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена.");
                 refreshDataFromTable();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -137,6 +137,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
 
     @FXML
     void openMainMenu(MouseEvent event) {
+        makeFieldsIsEmpty();
         startApp.switchToAdminMainMenuScene();
     }
 
@@ -171,25 +172,64 @@ public class AdminListOfAllDoctorsController implements Initializable {
             return row;
         });
         refreshDataFromTable();
+        searchMethod();
+    }
+
+    private void searchMethod() {
+        oblist.clear();
+        searchField.setOnKeyReleased(e->{
+            if (searchField.getText().equals("")) {
+                refreshDataFromTable();
+                return;
+            } else {
+                try {
+                    String searchText = searchField.getText().trim();
+                    PreparedStatement pr = connection.prepareStatement("select * from doc_default_data where type_of_account = 'doctor' and " +
+                            "(second_name like '%" + searchText + "%'\n" +
+                            "    or name like '%" + searchText + "%'\n" +
+                            "    or father_name like '%" + searchText + "%'\n" +
+                            "    or birth_date like '%" + searchText + "%'\n" +
+                            "    or employee_date like '%" + searchText + "%'\n" +
+                            "    or responsibility_status like '%" + searchText + "%'\n" +
+                            "    or login like '%" + searchText +"%'\n" +
+                            "    or password like '%" + searchText + "%')");
+                    ResultSet rs = pr.executeQuery();
+                    oblist.clear();
+                    while (rs.next()) {
+                        oblist.add(new DoctorRecord(rs.getString("second_name"),
+                                rs.getString("name"),
+                                rs.getString("father_name"),
+                                rs.getString("birth_date"),
+                                rs.getString("employee_date"),
+                                rs.getString("responsibility_status"),
+                                rs.getString("login"),
+                                rs.getString("password")));
+                        listOfDoctors.setItems(oblist);
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public void refreshDataFromTable() {
         listOfDoctors.getItems().clear();
         try {
-            Connection connection = DBHandler.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM doctorDefaultData");
+            connection = DBHandler.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM doc_default_data WHERE type_of_account = 'doctor'");
 
             while (resultSet.next()) {
-                oblist.add(new DoctorRecord(resultSet.getString("secondName"),
+                oblist.add(new DoctorRecord(resultSet.getString("second_name"),
                         resultSet.getString("name"),
-                        resultSet.getString("fatherName"),
-                        resultSet.getString("birthDate"),
-                        resultSet.getString("employDate"),
-                        resultSet.getString("responsStatus"),
+                        resultSet.getString("father_name"),
+                        resultSet.getString("birth_date"),
+                        resultSet.getString("employee_date"),
+                        resultSet.getString("responsibility_status"),
                         resultSet.getString("login"),
                         resultSet.getString("password")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -206,6 +246,7 @@ public class AdminListOfAllDoctorsController implements Initializable {
     }
 
     private void makeFieldsIsEmpty() {
+        searchField.setText("");
         secondNameField.setText("");
         nameField.setText("");
         fatherNameField.setText("");

@@ -120,15 +120,13 @@ public class PatientProtocolController {
         this.patN = patN;
 
         showProtocol();
-
-//        System.out.println(doctorSecName + " " + docN + " " + patSecondName + " " + patN + " ");
     }
 
     public void showProtocol() {
         Connection connection = null;
         try {
             connection = DBHandler.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patientProtocols WHERE docSecondName = ? AND docName = ? AND patSecondName = ? AND patName = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patient_protocol WHERE doc_father_name = ? AND doc_name = ? AND pat_second_name = ? AND pat_name = ?");
 
             preparedStatement.setString(1, doctorSecName);
             preparedStatement.setString(2, docN);
@@ -137,45 +135,49 @@ public class PatientProtocolController {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            protocolDate.setText(resultSet.getString("protocolDate"));
+            if (resultSet.next()) {
+                protocolDate.setText(resultSet.getString("protocol_date"));
 
-            doctorSecondName.setText(resultSet.getString("docSecondName"));
-            doctorName.setText(resultSet.getString("docName"));
-            doctorFatherName.setText(resultSet.getString("docFatherName"));
-            doctorResponsStatus.setText(resultSet.getString("docResponsStatus"));
+                doctorSecondName.setText(resultSet.getString("doc_second_name"));
+                doctorName.setText(resultSet.getString("doc_name"));
+                doctorFatherName.setText(resultSet.getString("doc_father_name"));
+                doctorResponsStatus.setText(resultSet.getString("doc_respons_status"));
 
-            patientSecondName.setText(resultSet.getString("patSecondName"));
-            patientName.setText(resultSet.getString("patName"));
-            patientFatherName.setText(resultSet.getString("patFatherName"));
-            birthDate.setText(resultSet.getString("patBirthDate"));
-            medCard.setText(resultSet.getString("patMedCard"));
-            snilsCard.setText(resultSet.getString("patSnilsCard"));
+                patientSecondName.setText(resultSet.getString("pat_second_name"));
+                patientName.setText(resultSet.getString("pat_name"));
+                patientFatherName.setText(resultSet.getString("pat_father_name"));
+                birthDate.setText(resultSet.getString("pat_birth_date"));
+                medCard.setText(resultSet.getString("pat_polis_card"));
+                snilsCard.setText(resultSet.getString("pat_snils_card"));
 
-            height.setText(resultSet.getString("height"));
-            weight.setText(resultSet.getString("weight"));
-            indexOfBody.setText(resultSet.getString("indexOfBody"));
-            AD.setText(resultSet.getString("AD"));
-            t.setText(resultSet.getString("t"));
-            CHSS.setText(resultSet.getString("CHSS"));
-            CHDD.setText(resultSet.getString("CHDD"));
+                height.setText(resultSet.getString("height"));
+                weight.setText(resultSet.getString("weight"));
+                indexOfBody.setText(resultSet.getString("index_of_body"));
+                AD.setText(resultSet.getString("AD"));
+                t.setText(resultSet.getString("temperature"));
+                CHSS.setText(resultSet.getString("CHSS"));
+                CHDD.setText(resultSet.getString("CHDD"));
 
-            commonStatus.setText(resultSet.getString("commonStatus"));
-            puls.setText(resultSet.getString("puls"));
-            skin.setText(resultSet.getString("skin"));
-            spine.setText(resultSet.getString("spine"));
+                commonStatus.setText(resultSet.getString("common_status"));
+                puls.setText(resultSet.getString("pulse"));
+                skin.setText(resultSet.getString("skin"));
+                spine.setText(resultSet.getString("spine"));
 
-            respiratorySystem.setText(resultSet.getString("respiratorySystem"));
-            ribCage.setText(resultSet.getString("ribCage"));
-            urination.setText(resultSet.getString("urination"));
-            kidneys.setText(resultSet.getString("kidneys"));
+                respiratorySystem.setText(resultSet.getString("respiratory_system"));
+                ribCage.setText(resultSet.getString("rib_cage"));
+                urination.setText(resultSet.getString("urination"));
+                kidneys.setText(resultSet.getString("kidneys"));
 
-            mainDiagnos.setText(resultSet.getString("mainDiagnos"));
-            disease.setText(resultSet.getString("disease"));
-            recommendation.setText(resultSet.getString("recommendation"));
+                mainDiagnos.setText(resultSet.getString("main_diagnos"));
+                disease.setText(resultSet.getString("disease"));
+                recommendation.setText(resultSet.getString("recommendation"));
 
-            resultSet.close();
-            connection.close();
-        } catch (ClassNotFoundException | SQLException e) {
+                resultSet.close();
+                connection.close();
+            } else {
+                startApp.showErrorLoginAlert("Ошибка открытия протокола", "Данные не были найдены.");
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

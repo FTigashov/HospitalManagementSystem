@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AdminCreateNewAdminRecord implements Initializable {
@@ -24,10 +26,10 @@ public class AdminCreateNewAdminRecord implements Initializable {
     private Button adminMenuMainBtn;
 
     @FXML
-    private TextField birthDateField;
+    private DatePicker birthDateField;
 
     @FXML
-    private TextField emplDateField;
+    private DatePicker emplDateField;
 
     @FXML
     private TextField fatherNameField;
@@ -54,57 +56,58 @@ public class AdminCreateNewAdminRecord implements Initializable {
         PreparedStatement psCheckExistsLogin = null;
         ResultSet resultSet = null;
 
-        String secondName = secondNameField.getText().trim();
-        String name = nameField.getText().trim();
-        String fatherName = fatherNameField.getText().trim();
-        String birthDate = birthDateField.getText().trim();
-        String employDate = emplDateField.getText().trim();
-        String responsStatus = responsStatusChoice.getValue();
-        String login = loginField.getText().trim();
-        String password = passwordField.getText().trim();
-
-        if (secondName.length() == 0 &&
-                name.length() == 0 &&
-                fatherName.length() == 0 &&
-                birthDate.length() == 0 &&
-                employDate.length() == 0 &&
-                login.length() == 0 &&
-                password.length() == 0) {
+        if (nameField.getText().trim().length() == 0 ||
+                nameField.getText().trim().length() == 0 ||
+                fatherNameField.getText().trim().length() == 0 ||
+                birthDateField.getValue() == null ||
+                emplDateField.getValue() == null ||
+                loginField.getText().trim().length() == 0 ||
+                passwordField.getText().trim().length() == 0) {
             startApp.showErrorLoginAlert("Ошибка добавления записи", "Убедитесь, что все поля заполнены.");
             return;
-        }
-        try {
-            connection = DBHandler.getConnection();
-            psCheckExistsLogin = connection.prepareStatement("SELECT * FROM adminDefaultData WHERE login = ?");
-            psCheckExistsLogin.setString(1, login);
+        } else {
+            try {
+                String secondName = secondNameField.getText().trim();
+                String name = nameField.getText().trim();
+                String fatherName = fatherNameField.getText().trim();
+                String birthDate = birthDateField.getValue().toString();
+                String employDate = emplDateField.getValue().toString();
+                String responsStatus = responsStatusChoice.getValue();
+                String login = loginField.getText().trim();
+                String password = passwordField.getText().trim();
 
-            resultSet = psCheckExistsLogin.executeQuery();
+                connection = DBHandler.getConnection();
+                psCheckExistsLogin = connection.prepareStatement("SELECT * FROM doc_default_data WHERE login = ?");
+                psCheckExistsLogin.setString(1, login);
 
-            if (resultSet.isBeforeFirst()) {
-                startApp.showErrorLoginAlert("Ошибка добавления записи", "Пользователь с данным логином уже есть в системе.");
-                return;
-            } else {
-                preparedStatement = connection.prepareStatement("INSERT INTO adminDefaultData (secondName, name, fatherName, birthDate, emplDate, responsStatus, login, password) VALUES" +
-                        " (?, ?, ?, ?, ?, ?, ?, ?) ");
-                preparedStatement.setString(1, secondName);
-                preparedStatement.setString(2, name);
-                preparedStatement.setString(3, fatherName);
-                preparedStatement.setString(4, birthDate);
-                preparedStatement.setString(5, employDate);
-                preparedStatement.setString(6, responsStatus);
-                preparedStatement.setString(7, login);
-                preparedStatement.setString(8, password);
+                resultSet = psCheckExistsLogin.executeQuery();
 
-                preparedStatement.executeUpdate();
+                if (resultSet.isBeforeFirst()) {
+                    startApp.showErrorLoginAlert("Ошибка добавления записи", "Пользователь с данным логином уже есть в системе.");
+                    return;
+                } else {
+                    preparedStatement = connection.prepareStatement("INSERT INTO doc_default_data (second_name, name, father_name, birth_date, employee_date, responsibility_status, login, password, type_of_account) VALUES" +
+                            " (?, ?, ?, ?, ?, ?, ?, ?, 'admin') ");
+                    preparedStatement.setString(1, secondName);
+                    preparedStatement.setString(2, name);
+                    preparedStatement.setString(3, fatherName);
+                    preparedStatement.setString(4, birthDate);
+                    preparedStatement.setString(5, employDate);
+                    preparedStatement.setString(6, responsStatus);
+                    preparedStatement.setString(7, login);
+                    preparedStatement.setString(8, password);
 
-                makeFieldsIsEmpty();
+                    preparedStatement.executeUpdate();
 
-                startApp.showSuccessMessage("Уведомление о создании записи", "Запись успешно создана", "Новая запись отобразится в таблице");
-                startApp.switchToListOfAdmins();
-                connection.close();
+                    makeFieldsIsEmpty();
+
+                    startApp.showSuccessMessage("Уведомление о создании записи", "Запись успешно создана", "Новая запись отобразится в таблице");
+                    startApp.switchToListOfAdmins();
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -112,14 +115,15 @@ public class AdminCreateNewAdminRecord implements Initializable {
         secondNameField.setText("");
         nameField.setText("");
         fatherNameField.setText("");
-        birthDateField.setText("");
-        emplDateField.setText("");
+        birthDateField.getEditor().clear();
+        emplDateField.getEditor().clear();
         loginField.setText("");
         passwordField.setText("");
     }
 
     @FXML
     void backToListOfAdmins(MouseEvent event) {
+        makeFieldsIsEmpty();
         startApp.switchToListOfAdmins();
     }
 

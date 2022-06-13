@@ -101,7 +101,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="ArchiveOfProtocolsBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfVisits" prefHeight="258.0" prefWidth="277.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Архив осмотров" GridPane.columnIndex="1">
+                  <Button fx:id="ArchiveOfProtocolsBtn" contentDisplay="TOP" disable="true" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfVisits" prefHeight="258.0" prefWidth="277.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Архив осмотров" GridPane.columnIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>

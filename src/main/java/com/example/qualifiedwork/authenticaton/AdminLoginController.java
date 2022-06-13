@@ -31,6 +31,8 @@ public class AdminLoginController{
 
     @FXML
     private PasswordField adminPasswordField;
+    private Connection connection;
+    private ResultSet resultSet;
 
     @FXML
     void backToChoiceView(MouseEvent event) {
@@ -50,30 +52,30 @@ public class AdminLoginController{
         }
 
         try {
-            Connection connection = DBHandler.getConnection();
-            ResultSet resultSet;
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM adminDefaultData WHERE login = ?");
+            connection = DBHandler.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doc_default_data WHERE login = ?");
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                passwordDB = resultSet.getString("password");
+                if (passwordDB != null && passwordDB.equals(password)) {
+                    adminLoginFiled.setText("");
+                    adminPasswordField.setText("");
 
-            passwordDB = resultSet.getString("password");
-            if (passwordDB != null && passwordDB.equals(password)) {
-                adminLoginFiled.setText("");
-                adminPasswordField.setText("");
+                    String secondName = resultSet.getString("second_name");
+                    String name = resultSet.getString("name");
+                    connection.close();
 
-                String secondName = resultSet.getString("secondName");
-                String name = resultSet.getString("name");
-                connection.close();
-
-                startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");
-                startApp.getInfoAboutAccountFromController(secondName, name);
-                startApp.switchToAdminMainMenuScene();
+                    startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли администратора");
+                    startApp.getInfoAboutAccountFromController(secondName, name);
+                    startApp.switchToAdminMainMenuScene();
+                } else {
+                    connection.close();
+                    startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
+                }
             } else {
-                connection.close();
-                startApp.showErrorLoginAlert("Ошибка авторизации. Некорректный логин или пароль", "Проверьте правильность введенных данных");
+                startApp.showErrorLoginAlert("Ошибка авторизации", "По введенным данным аккаунт не был найден.");
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -64,27 +64,27 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="secondLabel" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Фамилия">
+            <Label fx:id="secondLabel" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Фамилия" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="nameLabel" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Имя">
+            <Label fx:id="nameLabel" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Имя" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="fatherNameLabel" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Отчество">
+            <Label fx:id="fatherNameLabel" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Отчество" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="birthDateLabel" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Дата рождения">
+            <Label fx:id="birthDateLabel" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Дата рождения" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="emplDateLabel" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Дата устройства">
+            <Label fx:id="emplDateLabel" layoutX="216.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" text="Дата устройства" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>

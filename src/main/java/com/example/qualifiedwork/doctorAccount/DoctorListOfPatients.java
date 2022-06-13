@@ -135,18 +135,18 @@ public class DoctorListOfPatients implements Initializable {
         listOfPatients.getItems().clear();
         try {
             Connection connection = DBHandler.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM patientDefaultData");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM patient_default_data");
 
             while (resultSet.next()) {
-                oblist.add(new PatientRecord(resultSet.getString("secondName"),
+                oblist.add(new PatientRecord(resultSet.getString("second_name"),
                         resultSet.getString("name"),
-                        resultSet.getString("fatherName"),
-                        resultSet.getString("birthDate"),
+                        resultSet.getString("father_name"),
+                        resultSet.getString("birth_date"),
                         resultSet.getString("address"),
-                        resultSet.getString("medCard"),
-                        resultSet.getString("snilsCard")));
+                        resultSet.getString("med_card"),
+                        resultSet.getString("snils_card")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

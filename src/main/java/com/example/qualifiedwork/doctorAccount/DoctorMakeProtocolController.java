@@ -105,6 +105,7 @@ public class DoctorMakeProtocolController {
     private TextField weight;
 
     private StartApp startApp;
+    private Connection connection;
 
     public void setStartApp(StartApp startApp) {
         this.startApp = startApp;
@@ -133,7 +134,7 @@ public class DoctorMakeProtocolController {
 
     @FXML
     void createNewProtocol(MouseEvent event) {
-        String protocolDate = String.valueOf(dateOfProtocol.getValue());
+//        String protocolDate = String.valueOf(dateOfProtocol.getValue());
         String heightStr = height.getText().trim();
         String wegihtStr = weight.getText().trim();
         String indexBody = indexOfBody.getText().trim();
@@ -153,7 +154,7 @@ public class DoctorMakeProtocolController {
         String diseaseState = disease.getText().trim();
         String recommendState = recommendation.getText().trim();
 
-        if (protocolDate == null) {
+        if (dateOfProtocol.getValue() == null) {
             startApp.showErrorLoginAlert("Ошибка сохранения протокола", "Убедитесь, чтобы все поля были заполнены.");
             return;
         } else if (heightStr.length() == 0 &&
@@ -178,10 +179,10 @@ public class DoctorMakeProtocolController {
             return;
         } else {
             try {
-                Connection connection = DBHandler.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO patientProtocols (docSecondName, docName, docFatherName, docResponsStatus, " +
-                        "patSecondName, patName, patFatherName, patBirthDate, patMedCard, patSnilsCard, height, weight, " +
-                        "indexOfBody, AD, t, CHSS, CHDD, commonStatus, puls, skin, spine, respiratorySystem, ribCage, urination, kidneys, mainDiagnos, disease, recommendation, protocolDate) VALUES " +
+                connection = DBHandler.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO patient_protocol (doc_second_name, doc_name, doc_father_name, doc_respons_status, " +
+                        "pat_second_name, pat_name, pat_father_name, pat_birth_date, pat_polis_card, pat_snils_card, height, weight, " +
+                        "index_of_body, AD, temperature, CHSS, CHDD, common_status, pulse, skin, spine, respiratory_system, rib_cage, urination, kidneys, main_diagnos, disease, recommendation, protocol_date) VALUES " +
                         "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                 preparedStatement.setString(1, doctorSecondName.getText().trim());
@@ -216,9 +217,9 @@ public class DoctorMakeProtocolController {
 
                 preparedStatement.executeUpdate();
 
-                startApp.showSuccessMessage("Сообщие об успехе", "Осмотр проведен", "Протокол осмотра успешно сохранен и добавлен в базу данных.");
+                startApp.showSuccessMessage("Сообщение об успехе", "Осмотр проведен", "Протокол осмотра успешно сохранен и добавлен в базу данных.");
                 startApp.switchToDoctorListOfPatients();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 

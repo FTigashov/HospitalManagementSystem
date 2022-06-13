@@ -108,7 +108,7 @@ public class PatientVisitsController{
         listOfVisits.getItems().clear();
         try {
             Connection connection = DBHandler.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT protocolDate, docSecondName, docName, docFatherName, docResponsStatus, mainDiagnos FROM patientProtocols WHERE patSecondName = ? AND patName = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT protocol_date, doc_second_name, doc_name, doc_father_name, doc_respons_status, main_diagnos FROM patient_protocol WHERE pat_second_name = ? AND pat_name = ?");
             preparedStatement.setString(1, patientSecondNameLabel.getText().trim());
             preparedStatement.setString(2, patientNameLabel.getText().trim());
 
@@ -116,14 +116,14 @@ public class PatientVisitsController{
 
 
             while (resultSet.next()) {
-                oblist.add(new ProtocolRecord(resultSet.getString("protocolDate"),
-                        resultSet.getString("docSecondName"),
-                        resultSet.getString("docName"),
-                        resultSet.getString("docFatherName"),
-                        resultSet.getString("docResponsStatus"),
-                        resultSet.getString("mainDiagnos")));
+                oblist.add(new ProtocolRecord(resultSet.getString("protocol_date"),
+                        resultSet.getString("doc_second_name"),
+                        resultSet.getString("doc_name"),
+                        resultSet.getString("doc_father_name"),
+                        resultSet.getString("doc_respons_status"),
+                        resultSet.getString("main_diagnos")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

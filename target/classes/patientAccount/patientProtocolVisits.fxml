@@ -57,10 +57,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="doctorSecondNameLabel" layoutX="48.0" layoutY="631.0" text="Label" />
-            <Label fx:id="doctorNameLabel" layoutX="119.0" layoutY="631.0" text="Label" />
-            <Label fx:id="patientSecondNameLabel" layoutX="184.0" layoutY="631.0" text="Label" />
-            <Label fx:id="patientNameLabel" layoutX="252.0" layoutY="631.0" text="Label" />
+            <Label fx:id="doctorSecondNameLabel" layoutX="48.0" layoutY="631.0" text="Label" visible="false" />
+            <Label fx:id="doctorNameLabel" layoutX="119.0" layoutY="631.0" text="Label" visible="false" />
+            <Label fx:id="patientSecondNameLabel" layoutX="184.0" layoutY="631.0" text="Label" visible="false" />
+            <Label fx:id="patientNameLabel" layoutX="252.0" layoutY="631.0" text="Label" visible="false" />
             <Button fx:id="openProtocolBtn" layoutX="670.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#openProtocol" prefHeight="34.0" prefWidth="168.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Открыть протокол осмотра" />
          </children>
       </AnchorPane>

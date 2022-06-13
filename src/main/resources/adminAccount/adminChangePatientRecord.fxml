@@ -63,22 +63,22 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="secondNameLabel" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="secondNameLabel" layoutX="40.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="nameField" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="nameField" layoutX="216.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="fatherNameField" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="fatherNameField" layoutX="389.0" layoutY="152.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="birthDateField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="birthDateField" layoutX="40.0" layoutY="212.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Label fx:id="addressField" layoutX="39.0" layoutY="324.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
+            <Label fx:id="addressField" layoutX="39.0" layoutY="324.0" prefHeight="32.0" prefWidth="146.0" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" textFill="#b7b0b0">
                <font>
                   <Font size="14.0" />
                </font>

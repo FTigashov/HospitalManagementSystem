@@ -30,14 +30,17 @@ public class PatientLoginController {
 
     @FXML
     private Hyperlink patientRegisterBtn;
+    private Connection connection;
 
     @FXML
     void backToChoiceView(MouseEvent event) {
+        clearFields();
         startApp.switchToChoiceScene();
     }
 
     @FXML
     void openRegisterView(MouseEvent event) {
+        clearFields();
         startApp.switchToPatientRegisterScene();
     }
 
@@ -46,41 +49,50 @@ public class PatientLoginController {
         String login = patientLoginFiled.getText().trim();
         String password = patientPasswordField.getText().trim();
 
+        String name = null;
+        String secondName = null;
         String passwordDB = null;
 
         if (login.length() == 0 || password.length() == 0) {
             startApp.showErrorLoginAlert("Ошибка авторизации", "Необходимо, чтобы все поля были заполнены!");
             return;
-        }
-        try {
-            Connection connection = DBHandler.getConnection();
-            ResultSet resultSet;
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patientDefaultData WHERE login = ?");
-            preparedStatement.setString(1, login);
-            resultSet = preparedStatement.executeQuery();
-            passwordDB = resultSet.getString("password");
+        } else {
+            try {
+                connection = DBHandler.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patient_default_data WHERE login = ?");
+                preparedStatement.setString(1, login);
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (passwordDB != null && passwordDB.equals(password)) {
-                if (resultSet.isBeforeFirst()) {
-                    String secondName = resultSet.getString("secondName");
-                    String name = resultSet.getString("name");
-                    startApp.getInfoAboutAccountFromController(secondName, name);
+                if (resultSet.next()) {
+                    secondName = resultSet.getString("second_name");
+                    name = resultSet.getString("name");
+                    passwordDB = resultSet.getString("password");
 
-                    patientLoginFiled.setText("");
-                    patientPasswordField.setText("");
-                    connection.close();
-                    startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента.");
-                    startApp.switchToPatientMainMenuScene();
+                    if (passwordDB != null && passwordDB.equals(password)) {
+
+                        startApp.getInfoAboutAccountFromController(secondName, name);
+                        startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента.");
+                        clearFields();
+                        connection.close();
+                        startApp.switchToPatientMainMenuScene();
+                    } else {
+                        startApp.showErrorLoginAlert("Ошибка авторизации", "Неккоретный ввод пароля.");
+                        return;
+                    }
                 } else {
-                    startApp.showErrorLoginAlert("Ошибка авторизации", "По введенным вами данным\nаккаунт не был найден.");
+                    startApp.showErrorLoginAlert("Ошибка авторизации", "Аккаунт по введенным данным не был найден.");
                     return;
                 }
-            } else {
-                startApp.showErrorLoginAlert("Ошибка авторизации", "Некорректный логин или пароль.\nПроверьте правильность введенных данных.");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
         }
+    }
+
+    public void clearFields() {
+        patientLoginFiled.setText("");
+        patientPasswordField.setText("");
     }
 
     private StartApp startApp;

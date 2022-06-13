@@ -90,56 +90,21 @@ public class AdminListOfAllAdminsController implements Initializable {
     private StartApp startApp;
 
     private DBHandler dbHandler;
+    private Connection connection = DBHandler.getConnection();;
+
+    public AdminListOfAllAdminsController() throws SQLException {
+    }
 
     public void setStartApp(StartApp startApp) {
         this.startApp = startApp;
     }
 
     public void openMainMenu(MouseEvent mouseEvent) {
+        makeFieldsIsEmpty();
         startApp.switchToAdminMainMenuScene();
     }
 
     private ObservableList<AdminRecord> oblist = FXCollections.observableArrayList();
-
-//    private FilteredList<AdminRecord> filteredList = new FilteredList<>(oblist, b-> true);
-
-
-
-    /*@FXML
-    void search(MouseEvent event) {
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(modelTable -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (modelTable.getSecondName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getFatherName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getResponsStatus().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getDateEmpl().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getBirthDate().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getLogin().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (modelTable.getPassword().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        SortedList<AdminRecord> sortedList = new SortedList<>(filteredList);
-        sortedList.comparatorProperty().bind(listOfAdmins.comparatorProperty());
-        listOfAdmins.setItems(sortedList);
-    }*/
 
 
     @Override
@@ -165,30 +130,68 @@ public class AdminListOfAllAdminsController implements Initializable {
             return row;
         });
         refreshDataFromTable();
+        searchMethod();
+    }
+
+    private void searchMethod() {
+        oblist.clear();
+        searchField.setOnKeyReleased(e->{
+            if (searchField.getText().equals("")) {
+                refreshDataFromTable();
+            } else {
+                try {
+                    String searchText = searchField.getText().trim();
+                    PreparedStatement pr = connection.prepareStatement("select * from doc_default_data where type_of_account = 'admin' and " +
+                            "(second_name like '%" + searchText + "%'\n" +
+                            "    or name like '%" + searchText + "%'\n" +
+                            "    or father_name like '%" + searchText + "%'\n" +
+                            "    or birth_date like '%" + searchText + "%'\n" +
+                            "    or employee_date like '%" + searchText + "%'\n" +
+                            "    or responsibility_status like '%" + searchText + "%'\n" +
+                            "    or login like '%" + searchText +"%'\n" +
+                            "    or password like '%" + searchText + "%')");
+                    ResultSet rs = pr.executeQuery();
+                    oblist.clear();
+                    while (rs.next()) {
+                        oblist.add(new AdminRecord(rs.getString("second_name"),
+                                rs.getString("name"),
+                                rs.getString("father_name"),
+                                rs.getString("birth_date"),
+                                rs.getString("employee_date"),
+                                rs.getString("responsibility_status"),
+                                rs.getString("login"),
+                                rs.getString("password")));
+                        listOfAdmins.setItems(oblist);
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     @FXML
     void addNewRecordIntoTable(MouseEvent event) {
+        makeFieldsIsEmpty();
         startApp.switchToCreateNewRecordForm();
     }
 
     public void refreshDataFromTable() {
         try {
             listOfAdmins.getItems().clear();
-            Connection connection = DBHandler.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM adminDefaultData");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM doc_default_data WHERE type_of_account = 'admin'");
 
             while (resultSet.next()) {
-                oblist.add(new AdminRecord(resultSet.getString("secondName"),
+                oblist.add(new AdminRecord(resultSet.getString("second_name"),
                         resultSet.getString("name"),
-                        resultSet.getString("fatherName"),
-                        resultSet.getString("birthDate"),
-                        resultSet.getString("emplDate"),
-                        resultSet.getString("responsStatus"),
+                        resultSet.getString("father_name"),
+                        resultSet.getString("birth_date"),
+                        resultSet.getString("employee_date"),
+                        resultSet.getString("responsibility_status"),
                         resultSet.getString("login"),
                         resultSet.getString("password")));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -206,7 +209,6 @@ public class AdminListOfAllAdminsController implements Initializable {
 
     @FXML
     void deleteRecord(MouseEvent event) {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         AdminRecord record = listOfAdmins.getSelectionModel().getSelectedItem();
         if (record == null) {
@@ -215,8 +217,7 @@ public class AdminListOfAllAdminsController implements Initializable {
         } else {
             String loginRecord = record.getLogin();
             try {
-                connection = DBHandler.getConnection();
-                preparedStatement = connection.prepareStatement("DELETE FROM adminDefaultData WHERE login = ?");
+                preparedStatement = connection.prepareStatement("DELETE FROM doc_default_data WHERE login = ?");
                 preparedStatement.setString(1, loginRecord);
 
                 preparedStatement.executeUpdate();
@@ -225,7 +226,7 @@ public class AdminListOfAllAdminsController implements Initializable {
 
                 startApp.showSuccessMessage("Уведомление об удалении  записи", "Запись успешно удалена", "Таблица обновлена.");
                 refreshDataFromTable();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -238,71 +239,16 @@ public class AdminListOfAllAdminsController implements Initializable {
             startApp.showErrorLoginAlert("Ошибка выбора записи", "Для проведения изменения записи,\nнеобходимо выбрать нужную в таблице.");
             return;
         } else {
+            makeFieldsIsEmpty();
             startApp.getInfoAboutAdminAccount(secondNameField.getText(), nameField.getText(), fatherNameField.getText(), birthDateField.getText(),
                     dateEmplField.getText(), responsStatusChoice.getText(), loginField.getText(), passwordField.getText());
 
-            secondNameField.setText("");
-            nameField.setText("");
-            fatherNameField.setText("");
-            birthDateField.setText("");
-            dateEmplField.setText("");
-            responsStatusChoice.setText("");
-            loginField.setText("");
-            passwordField.setText("");
-
             startApp.switchToChangeAdminRecordScene();
         }
-
-
-        /*Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        PreparedStatement psCheckExistsLogin = null;
-        ResultSet resultSet = null;
-
-        String secondName = secondNameField.getText().trim();
-        String name = nameField.getText().trim();
-        String fatherName = fatherNameField.getText().trim();
-        String birthDate = birthDateField.getText().trim();
-        String employDate = dateEmplField.getText().trim();
-        String responsStatus = responsStatusChoice.getText().trim();
-        String login = loginField.getText().trim();
-        String password = passwordField.getText().trim();
-
-        if (secondName.length() == 0 &&
-                name.length() == 0 &&
-                fatherName.length() == 0 &&
-                birthDate.length() == 0 &&
-                employDate.length() == 0 &&
-                login.length() == 0 &&
-                password.length() == 0) {
-            startApp.showErrorLoginAlert("Ошибка изменения записи", "Убедитесь, что все поля заполнены.");
-            return;
-        }
-
-        try {
-            connection = DBHandler.getConnection();
-            preparedStatement = connection.prepareStatement("UPDATE adminDefaultData SET emplDate = ?, responsStatus = ?, login = ?, password = ? WHERE secondName = ? AND name = ? AND birthDate = ?");
-
-            preparedStatement.setString(1, employDate);
-            preparedStatement.setString(2, responsStatus);
-            preparedStatement.setString(3, login);
-            preparedStatement.setString(4, password);
-            preparedStatement.setString(5, secondName);
-            preparedStatement.setString(6, name);
-            preparedStatement.setString(7, birthDate);
-
-            preparedStatement.executeUpdate();
-            startApp.showSuccessMessage("Изменение записи", "Изменение применено успешно", "Результат изменения отображен в таблице.");
-
-            makeFieldsIsEmpty();
-
-            refreshDataFromTable();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
     private void makeFieldsIsEmpty() {
+        searchField.setText("");
         secondNameField.setText("");
         nameField.setText("");
         fatherNameField.setText("");

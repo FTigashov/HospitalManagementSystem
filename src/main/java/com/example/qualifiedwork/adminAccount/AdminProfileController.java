@@ -91,24 +91,26 @@ public class AdminProfileController {
     public void getInfoAboutAccount(String sName, String nm) {
         try {
             Connection connection = DBHandler.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM adminDefaultData WHERE secondName = ? AND name = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doc_default_data WHERE second_name = ? AND name = ?");
             ResultSet resultSet;
             preparedStatement.setString(1, sName);
             preparedStatement.setString(2, nm);
             resultSet = preparedStatement.executeQuery();
 
-            String secondNameDb = resultSet.getString("secondName");
-            String nameDB = resultSet.getString("name");
+            if (resultSet.next()) {
+                String secondNameDb = resultSet.getString("second_name");
+                String nameDB = resultSet.getString("name");
 
-            secondNameLabel.setText(secondNameDb);
-            nameLabel.setText(nameDB);
-            fatherNameLabel.setText(resultSet.getString("fatherName"));
-            birthDateLabel.setText(resultSet.getString("birthDate"));
-            emplDateLabel.setText(resultSet.getString("emplDate"));
-            responsStatusLabel.setText(resultSet.getString("responsStatus"));
-            loginLabel.setText(resultSet.getString("login"));
-            passwordLabel.setText(resultSet.getString("password"));
-        } catch (ClassNotFoundException | SQLException e) {
+                secondNameLabel.setText(secondNameDb);
+                nameLabel.setText(nameDB);
+                fatherNameLabel.setText(resultSet.getString("father_name"));
+                birthDateLabel.setText(resultSet.getString("birth_date"));
+                emplDateLabel.setText(resultSet.getString("employee_date"));
+                responsStatusLabel.setText(resultSet.getString("responsibility_status"));
+                loginLabel.setText(resultSet.getString("login"));
+                passwordLabel.setText(resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

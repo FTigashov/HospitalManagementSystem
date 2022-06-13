@@ -4,6 +4,7 @@ import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -22,7 +23,7 @@ public class AdminCreateNewPatientRecord {
     private Button backToListOfPatients;
 
     @FXML
-    private TextField birthDateField;
+    private DatePicker birthDateField;
 
     @FXML
     private TextField fatherNameField;
@@ -59,33 +60,32 @@ public class AdminCreateNewPatientRecord {
         String secondName = secondNameField.getText().trim();
         String name = nameField.getText().trim();
         String fatherName = fatherNameField.getText().trim();
-        String birthDate = birthDateField.getText().trim();
         String medCard = medCardField.getText().trim();
         String snilsCard = snils.getText().trim();
         String login = loginField.getText().trim();
         String password = passwordField.getText().trim();
         String address = addressField.getText().trim();
 
-        if (secondName.length() == 0 &&
-        name.length() == 0 &&
-        fatherName.length() == 0 &&
-        birthDate.length() == 0 &&
-        medCard.length() == 0 &&
-        snilsCard.length() == 0 &&
-        login.length() == 0 &&
-        password.length() == 0 &&
+        if (secondName.length() == 0 ||
+        name.length() == 0 ||
+        fatherName.length() == 0 ||
+        birthDateField.getValue() == null ||
+        medCard.length() == 0 ||
+        snilsCard.length() == 0 ||
+        login.length() == 0 ||
+        password.length() == 0 ||
         address.length() == 0) {
             startApp.showErrorLoginAlert("Ошибка добавления записи", "Убедитесь, что все поля заполнены.");
             return;
         }
         try {
             connection = DBHandler.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO patientDefaultData (secondName, name, fatherName, login, password, birthDate, medCard, snilsCard, address) VALUES" +
+            preparedStatement = connection.prepareStatement("INSERT INTO patient_default_data (second_name, name, father_name, login, password, birth_date, med_card, snils_card, address) VALUES" +
                     " (?, ?, ?, ?, ?, ?, ?, ?, ?) ");
             preparedStatement.setString(1, secondName);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, fatherName);
-            preparedStatement.setString(6, birthDate);
+            preparedStatement.setString(6, birthDateField.getValue().toString());
             preparedStatement.setString(4, login);
             preparedStatement.setString(5, password);
             preparedStatement.setString(7, medCard);
@@ -99,7 +99,7 @@ public class AdminCreateNewPatientRecord {
             startApp.showSuccessMessage("Уведомление о создании записи", "Запись успешно создана", "Новая запись отобразится в таблице");
             startApp.switchToListOfPatients();
             connection.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -114,7 +114,7 @@ public class AdminCreateNewPatientRecord {
         secondNameField.setText("");
         nameField.setText("");
         fatherNameField.setText("");
-        birthDateField.setText("");
+        birthDateField.getEditor().clear();
         addressField.setText("");
         loginField.setText("");
         passwordField.setText("");
