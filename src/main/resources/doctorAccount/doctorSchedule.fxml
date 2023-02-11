@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.DoctorSchedule">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.controllers.DoctorSchedule">
    <left>
       <VBox prefHeight="662.0" prefWidth="141.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -24,7 +24,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="backToDoctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="На главную">
+            <Button fx:id="backToDoctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="На главную">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>

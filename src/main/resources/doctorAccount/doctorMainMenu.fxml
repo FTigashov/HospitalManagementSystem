@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.DoctorMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.controllers.DoctorMenuController">
    <left>
       <VBox prefHeight="600.0" prefWidth="181.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -25,7 +25,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="doctorMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMainMenu" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Главная">
+            <Button fx:id="doctorMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openDoctorMainMenu" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #6495ed;" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Главная">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +37,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="doctorProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#openDoctorProfile" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Профиль">
+            <Button fx:id="doctorProfileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#openDoctorProfile" prefHeight="49.0" prefWidth="194.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Профиль">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,7 +49,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="doctorInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#doctorShowInfo" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Инфо">
+            <Button fx:id="doctorInfoBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#doctorShowInfo" prefHeight="49.0" prefWidth="193.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Инфо">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +61,7 @@
                   <Insets left="15.0" />
                </padding>
             </Button>
-            <Button fx:id="doctorLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#doctorLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выйти">
+            <Button fx:id="doctorLogOutBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#doctorLogOut" prefHeight="49.0" prefWidth="188.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Выйти">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -89,7 +89,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="listOfPatientsBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openListOfPatients" prefHeight="229.0" prefWidth="342.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Пациенты на прием">
+                  <Button fx:id="listOfPatientsBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openListOfPatients" prefHeight="229.0" prefWidth="342.0" styleClass="patientMenuButton" stylesheets="@../styles/styleForAuth.css" text="Пациенты на прием">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -101,7 +101,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="archiveOfPatients" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfVisits" prefHeight="199.0" prefWidth="271.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Архив пациентов" GridPane.columnIndex="1">
+                  <Button fx:id="archiveOfPatients" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfVisits" prefHeight="199.0" prefWidth="271.0" styleClass="patientMenuButton" stylesheets="@../styles/styleForAuth.css" text="Архив пациентов" GridPane.columnIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -113,7 +113,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="scheduleBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openDoctorSchedule" prefHeight="280.0" prefWidth="271.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="График работы" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="scheduleBtn" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openDoctorSchedule" prefHeight="280.0" prefWidth="271.0" styleClass="patientMenuButton" stylesheets="@../styles/styleForAuth.css" text="График работы" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -125,7 +125,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="listOfDirections" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfDirections" prefHeight="194.0" prefWidth="295.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Выписанные направления" GridPane.rowIndex="1">
+                  <Button fx:id="listOfDirections" contentDisplay="TOP" lineSpacing="10.0" mnemonicParsing="false" onMouseClicked="#openArchiveOfDirections" prefHeight="194.0" prefWidth="295.0" styleClass="patientMenuButton" stylesheets="@../styles/styleForAuth.css" text="Выписанные направления" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>

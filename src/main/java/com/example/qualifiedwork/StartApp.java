@@ -1,9 +1,10 @@
 package com.example.qualifiedwork;
 
-import com.example.qualifiedwork.adminAccount.*;
-import com.example.qualifiedwork.authenticaton.*;
-import com.example.qualifiedwork.doctorAccount.*;
-import com.example.qualifiedwork.patientAccount.*;
+import com.example.qualifiedwork.adminAccount.controllers.*;
+import com.example.qualifiedwork.adminAccount.functional.*;
+import com.example.qualifiedwork.authenticaton.controllers.*;
+import com.example.qualifiedwork.doctorAccount.controllers.*;
+import com.example.qualifiedwork.patientAccount.controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

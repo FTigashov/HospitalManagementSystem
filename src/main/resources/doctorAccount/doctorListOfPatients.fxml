@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.DoctorListOfPatients">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.controllers.DoctorListOfPatients">
    <left>
       <VBox prefHeight="662.0" prefWidth="141.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -24,7 +24,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="doctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="На главную">
+            <Button fx:id="doctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="На главную">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,7 +71,7 @@
             </Label>
             <VBox layoutY="60.0" prefHeight="389.0" prefWidth="285.0">
                <children>
-                  <Label fx:id="secondNameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="secondNameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                      </VBox.margin>
@@ -79,7 +79,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="nameField" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -87,7 +87,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="fatherNameField" layoutX="10.0" layoutY="90.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="fatherNameField" layoutX="10.0" layoutY="90.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -95,7 +95,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="birthDateField" layoutX="10.0" layoutY="136.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="birthDateField" layoutX="10.0" layoutY="136.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -103,7 +103,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="medCardField" layoutX="10.0" layoutY="181.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="medCardField" layoutX="10.0" layoutY="181.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -111,7 +111,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="snilsField" layoutX="25.0" layoutY="226.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="snilsField" layoutX="25.0" layoutY="226.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="15.0" right="15.0" />
                      </VBox.margin>
@@ -119,7 +119,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="addressField" layoutX="25.0" layoutY="269.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../fontColor.css">
+                  <Label fx:id="addressField" layoutX="25.0" layoutY="269.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px 0px;" styleClass="textField" stylesheets="@../styles/fontColor.css">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -131,7 +131,7 @@
             </VBox>
             <VBox layoutY="458.0" prefHeight="203.0" prefWidth="285.0" style="-fx-border-color: white; -fx-border-width: 1px 0px 0px 0px;">
                <children>
-                  <Button fx:id="makeProtocolBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#makeProtocolBtn" prefHeight="49.0" prefWidth="289.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выполнить осмотр">
+                  <Button fx:id="makeProtocolBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#makeProtocolBtn" prefHeight="49.0" prefWidth="289.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Выполнить осмотр">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -146,7 +146,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="makeDirectionBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#makeDirection" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выписать направление">
+                  <Button fx:id="makeDirectionBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#makeDirection" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Выписать направление">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>

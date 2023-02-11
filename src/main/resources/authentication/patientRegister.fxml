@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.DatePicker?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.authenticaton.PatientRegisterController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.authenticaton.controllers.PatientRegisterController">
    <right>
       <AnchorPane prefHeight="590.0" prefWidth="573.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,12 +25,12 @@
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="patientRegisterBtn" layoutX="71.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#startRegistration" prefHeight="46.0" prefWidth="170.0" styleClass="buttonLogin" stylesheets="@../styleForAuth.css" text="Зарегистрироваться" textFill="WHITE">
+            <Button fx:id="patientRegisterBtn" layoutX="71.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#startRegistration" prefHeight="46.0" prefWidth="170.0" styleClass="buttonLogin" stylesheets="@../styles/styleForAuth.css" text="Зарегистрироваться" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="patientBackToLoginBtn" layoutX="327.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="47.0" prefWidth="170.0" styleClass="buttonToGo" stylesheets="@../styleForAuth.css" text="Отмена" textFill="WHITE">
+            <Button fx:id="patientBackToLoginBtn" layoutX="327.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="47.0" prefWidth="170.0" styleClass="buttonToGo" stylesheets="@../styles/styleForAuth.css" text="Отмена" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

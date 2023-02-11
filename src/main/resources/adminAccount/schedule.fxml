@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1054.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.AdminScheduleController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1054.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.adminAccount.controllers.AdminScheduleController">
    <left>
       <VBox prefHeight="662.0" prefWidth="141.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -24,7 +24,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="adminMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMainMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="На главную">
+            <Button fx:id="adminMenuMainBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMainMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="На главную">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,7 +79,7 @@
             </VBox>
             <VBox layoutY="458.0" prefHeight="203.0" prefWidth="178.0" style="-fx-border-color: white; -fx-border-width: 1px 0px 0px 0px;">
                <children>
-                  <Button fx:id="addNewRecordBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#addNewRecordIntoTable" prefHeight="49.0" prefWidth="289.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Добавить">
+                  <Button fx:id="addNewRecordBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#addNewRecordIntoTable" prefHeight="49.0" prefWidth="289.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Добавить">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -94,7 +94,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="changeRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeRecord" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Изменить">
+                  <Button fx:id="changeRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeRecord" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Изменить">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -106,7 +106,7 @@
                         <Insets left="30.0" right="15.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="DeleteRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#deleteRecord" prefHeight="49.0" prefWidth="286.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Удалить">
+                  <Button fx:id="DeleteRecordBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#deleteRecord" prefHeight="49.0" prefWidth="286.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="Удалить">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>

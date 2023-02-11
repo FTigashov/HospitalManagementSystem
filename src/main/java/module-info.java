@@ -15,4 +15,16 @@ module com.example.qualifiedwork {
     exports com.example.qualifiedwork.authenticaton;
     exports com.example.qualifiedwork.adminAccount;
     exports com.example.qualifiedwork.doctorAccount;
+    exports com.example.qualifiedwork.adminAccount.controllers;
+    opens com.example.qualifiedwork.adminAccount.controllers;
+    exports com.example.qualifiedwork.adminAccount.functional;
+    opens com.example.qualifiedwork.adminAccount.functional;
+    exports com.example.qualifiedwork.doctorAccount.controllers;
+    opens com.example.qualifiedwork.doctorAccount.controllers;
+    exports com.example.qualifiedwork.patientAccount.controllers;
+    opens com.example.qualifiedwork.patientAccount.controllers;
+    exports com.example.qualifiedwork.db_connection;
+    opens com.example.qualifiedwork.db_connection to javafx.fxml;
+    exports com.example.qualifiedwork.authenticaton.controllers;
+    opens com.example.qualifiedwork.authenticaton.controllers;
 }

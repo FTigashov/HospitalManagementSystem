@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.ListOfDirections">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qualifiedwork.doctorAccount.controllers.ListOfDirections">
    <left>
       <VBox prefHeight="662.0" prefWidth="141.0" style="-fx-background-color: #62ace0;" BorderPane.alignment="CENTER">
          <children>
@@ -25,7 +25,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="doctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="На главную">
+            <Button fx:id="doctorMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#openMenu" prefHeight="49.0" prefWidth="274.0" styleClass="patientButton" stylesheets="@../styles/styleForAuth.css" text="На главную">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,7 +59,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="showInfoAboutPatient" layoutX="743.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#showInfoAboutPatient" prefHeight="35.0" prefWidth="109.0" styleClass="patientMenuButton" stylesheets="@../styleForAuth.css" text="Открыть запись" />
+            <Button fx:id="showInfoAboutPatient" layoutX="743.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#showInfoAboutPatient" prefHeight="35.0" prefWidth="109.0" styleClass="patientMenuButton" stylesheets="@../styles/styleForAuth.css" text="Открыть запись" />
             <TextField fx:id="searchField" layoutX="208.0" layoutY="40.0" prefHeight="32.0" prefWidth="215.0" promptText="Поиск" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
