@@ -125,7 +125,6 @@ public class AddNewRowToSchedule {
 
                     startApp.showSuccessMessage("Уведомление о создании записи", "Запись успешно создана", "Новая запись отобразится в таблице");
                     startApp.switchToShedulePage();
-                    connection.close();
 
                 } catch (SQLException e) {
                     e.printStackTrace();

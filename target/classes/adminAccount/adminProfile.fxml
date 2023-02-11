@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -128,12 +129,37 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="217.0" layoutY="362.0" text="Пароль" textFill="#949191" />
+            <Label fx:id="nameOfPwd" layoutX="217.0" layoutY="362.0" text="Пароль" textFill="#949191" />
             <Label fx:id="passwordLabel" layoutX="216.0" layoutY="379.0" text="Пароль">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <ImageView fx:id="changePasswordBtn" accessibleRole="BUTTON" fitHeight="37.0" fitWidth="29.0" layoutX="407.0" layoutY="41.0" onMouseClicked="#beginChangePassword" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/editProfile.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="newPwdField" layoutX="210.0" layoutY="374.0" promptText="Новый пароль" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="newPwdConfirnField" layoutX="405.0" layoutY="374.0" promptText="Подтвердите пароль" style="-fx-background-color: transparent; -fx-border-color: #62ace0; -fx-border-width: 0px 0px 2px 0px;" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="confirmNewPasswordBtn" accessibleRole="BUTTON" fitHeight="37.0" fitWidth="29.0" layoutX="596.0" layoutY="386.0" onMouseClicked="#setNewPassword" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/confirm.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cancelBtn" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" layoutX="635.0" layoutY="386.0" onMouseClicked="#cancelMethod" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/cancel.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

@@ -47,7 +47,7 @@ public class DoctorLoginController {
         try {
             Connection connection = DBHandler.getConnection();
             ResultSet resultSet;
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doc_default_data WHERE login = ? AND type_of_account = 'doctor'");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doc_default_data WHERE login = ?");
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
 
@@ -66,8 +66,11 @@ public class DoctorLoginController {
                             resultSet.getString("login"),
                             resultSet.getString("password"));
 
+                    startApp.getDocSecondName = resultSet.getString("second_name");
+                    startApp.getDocName = resultSet.getString("name");
                     connection.close();
                     startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли врача");
+//                    System.out.println(doc_id);
                     startApp.switchToDoctorMainMenuScene();
                     cleanFields();
                 } else {

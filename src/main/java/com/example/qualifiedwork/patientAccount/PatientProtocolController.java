@@ -106,6 +106,10 @@ public class PatientProtocolController {
     private TextField weight;
 
     private StartApp startApp;
+    private Connection connection = DBHandler.getConnection();;
+
+    public PatientProtocolController() throws SQLException {
+    }
 
     public void setStartApp(StartApp startApp) {
         this.startApp = startApp;
@@ -123,10 +127,8 @@ public class PatientProtocolController {
     }
 
     public void showProtocol() {
-        Connection connection = null;
         try {
-            connection = DBHandler.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patient_protocol WHERE doc_father_name = ? AND doc_name = ? AND pat_second_name = ? AND pat_name = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM patient_protocol WHERE doc_second_name = ? AND doc_name = ? AND pat_second_name = ? AND pat_name = ?");
 
             preparedStatement.setString(1, doctorSecName);
             preparedStatement.setString(2, docN);
@@ -172,10 +174,11 @@ public class PatientProtocolController {
                 disease.setText(resultSet.getString("disease"));
                 recommendation.setText(resultSet.getString("recommendation"));
 
-                resultSet.close();
-                connection.close();
+//                resultSet.close();
+//                connection.close();
             } else {
                 startApp.showErrorLoginAlert("Ошибка открытия протокола", "Данные не были найдены.");
+                return;
             }
         } catch (SQLException e) {
             e.printStackTrace();

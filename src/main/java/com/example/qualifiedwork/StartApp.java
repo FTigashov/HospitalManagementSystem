@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 
 public class StartApp extends Application {
     private Stage stage;
@@ -38,6 +39,14 @@ public class StartApp extends Application {
     private DoctorMakeProtocolController doctorMakeProtocolController;
     private DoctorSchedule doctorScheduleController;
 
+    private ArchiveOfPatients archiveOfPatientsController;
+
+    private ListOfDirections listOfDirectionsController;
+
+    private MakeDirectionController makeDirectionController;
+
+    private ShowDirectionController showDirectionController;
+
 
     private Scene doctorMenuScene;
     private Scene doctorProfileScene;
@@ -49,6 +58,12 @@ public class StartApp extends Application {
 
     private Scene doctorMakeProtocolScene;
 
+    private Scene listOfDirectionsScene;
+
+    private Scene makeDirectionScene;
+
+    private Scene showDirectionScene;
+
     //patientAccount
     private PatientMenuController patientMenuController;
     private PatientInfoController patientInfoController;
@@ -57,12 +72,17 @@ public class StartApp extends Application {
     private PatientVisitsController patientVisitsController;
     private PatientProtocolController patientProtocolController;
 
+    private PatListOfDirectionsController patListOfDirectionsController;
+
+
     private Scene patientMenuScene;
     private Scene patientProfileScene;
     private Scene patientInfoScene;
 
     private Scene patientListOfProtocolsScene;
     private Scene patientProtocolScene;
+
+    private Scene patListOfDirectionsScene;
 
     //adminAccount
     private AdminProfileController adminProfileController;
@@ -109,9 +129,11 @@ public class StartApp extends Application {
     private String getSecondName;
     private String getName;
 
+    public String getDocSecondName, getDocName;
+
     private String getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword;
     private String getPatientSecondName, getPatientName, getPatientFatherName, getPatientBirthDate, getPatientMedCard, getPatientSnilsCard, getPatientLogin, getPatientPassword, getPatientAddress;
-    private String getPatSecondName, getPatName, getPatFatherName, getPatBirthDate, getPatMedCard, getPatSnilsCard;
+    public String getPatSecondName, getPatName, getPatFatherName, getPatBirthDate, getPatMedCard, getPatSnilsCard;
 
     private String getFullName;
     private String getSpeciality;
@@ -141,9 +163,13 @@ public class StartApp extends Application {
         doctorListOfPatientsScene = createDoctorListOfPatientsScene();
         doctorArchiveOfVisitsScene = createDoctorArchiveOfVisitsScene();
         doctorScheduleScene = createDoctorScheduleScene();
+
         doctorProfileScene = createDoctorProfileScene();
         doctorInfoScene = createDoctorInfoScene();
+
         doctorMakeProtocolScene = createDoctorMakeProtocolScene();
+        listOfDirectionsScene = createListOfDirectionsScene();
+        makeDirectionScene = createMakeDirectionScene();
 
         patientMenuScene = createPatientMenuScene();
         patientProfileScene = createPatientProfileScene();
@@ -151,6 +177,8 @@ public class StartApp extends Application {
 
         patientListOfProtocolsScene = createPatientListOfVisits();
         patientProtocolScene = createPatientProtocolScene();
+
+        patListOfDirectionsScene = createPatListOfDirectionsScene();
 
         adminProfileScene = createAdminProfileScene();
         adminInfoScene = createAdminInfoScene();
@@ -172,9 +200,32 @@ public class StartApp extends Application {
         addNewRowIntoSheduleScene = createAddNewRowIntoShedule();
         changeTheRowInSheduleScene = createChangeScheduleRowScene();
 
+        showDirectionScene = createShowDirectionScene();
+
         stage.setScene(choiceViewScene);
         stage.show();
 
+    }
+
+    private Scene createPatListOfDirectionsScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/patientAccount/patListOfDirections.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        patListOfDirectionsScene = new Scene(loader.load());
+        patListOfDirectionsController = loader.getController();
+        patListOfDirectionsController.setStartApp(this);
+
+        return patListOfDirectionsScene;
+
+    }
+
+    private Scene createShowDirectionScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/showDirection.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        showDirectionScene = new Scene(loader.load());
+        showDirectionController = loader.getController();
+        showDirectionController.setStartApp(this);
+
+        return showDirectionScene;
     }
 
     private Scene createPatientProtocolScene() throws IOException {
@@ -248,13 +299,33 @@ public class StartApp extends Application {
     }
 
     private Scene createDoctorArchiveOfVisitsScene() throws IOException {
-//        URL fxmLocation = getClass().getResource("/doctorAccount/doctorMainMenu.fxml");
-//        FXMLLoader loader = new FXMLLoader(fxmLocation);
-//        doctorArchiveOfVisitsScene = new Scene(loader.load());
-//        doctorMenuController = loader.getController();
-//        doctorMenuController.setStartApp(this);
+        URL fxmLocation = getClass().getResource("/doctorAccount/archiveOfPatients.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        doctorArchiveOfVisitsScene = new Scene(loader.load());
+        archiveOfPatientsController = loader.getController();
+        archiveOfPatientsController.setStartApp(this);
 
         return doctorArchiveOfVisitsScene;
+    }
+
+    private Scene createListOfDirectionsScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/listOfDirections.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        listOfDirectionsScene = new Scene(loader.load());
+        listOfDirectionsController = loader.getController();
+        listOfDirectionsController.setStartApp(this);
+
+        return listOfDirectionsScene;
+    }
+
+    private Scene createMakeDirectionScene() throws IOException {
+        URL fxmLocation = getClass().getResource("/doctorAccount/makeDirection.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmLocation);
+        makeDirectionScene = new Scene(loader.load());
+        makeDirectionController = loader.getController();
+        makeDirectionController.setStartApp(this);
+
+        return makeDirectionScene;
     }
 
     private Scene createDoctorScheduleScene() throws IOException {
@@ -523,6 +594,9 @@ public class StartApp extends Application {
     }
 
     public void switchToPatientMainMenuScene() {
+        patListOfDirectionsController.patSecondName = getPatSecondName;
+        patListOfDirectionsController.patName = getPatName;
+        showDirectionController.typeOfAccount = "patient";
         stage.setScene(patientMenuScene);
         stage.centerOnScreen();
     }
@@ -558,8 +632,8 @@ public class StartApp extends Application {
     }
 
     public void getInfoForShowProtocol(String doctorSecondName, String doctorName, String patientSecondName, String patientName) {
-        getAdminSecondName = doctorSecondName;
-        getAdminName = doctorName;
+        getDocSecondName = doctorSecondName;
+        getDocName = doctorName;
         getSecondName = patientSecondName;
         getName = patientName;
     }
@@ -590,18 +664,15 @@ public class StartApp extends Application {
         getFriday = fri;
 
     }
-    public void getInfoAboutAdminAccount(String secondNameField, String nameField, String fatherNameField, String birthDateField,
-                    String dateEmplField, String responsStatusChoice, String loginField, String passwordField) {
+    public void getInfoAboutAdminAccount(String secondNameField, String nameField) {
         getAdminSecondName = secondNameField;
         getAdminName = nameField;
-        getAdminfatherName = fatherNameField;
-        getAdminBirthDate = birthDateField;
-        getAdminEmplDate = dateEmplField;
-        getAdminResponsStatus = responsStatusChoice;
-        getAdminLogin = loginField;
-        getAdminPassword = passwordField;
-
-        adminChangeRecord.setDataInFields(getAdminSecondName, getAdminName, getAdminfatherName, getAdminBirthDate, getAdminEmplDate, getAdminResponsStatus, getAdminLogin, getAdminPassword);
+//        System.out.println("Get data: " + getAdminSecondName + " " + getAdminName);
+        try {
+            adminChangeRecord.setDataInFields(getAdminSecondName, getAdminName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void getInfoAboutPatientAccount(String getPatientSecondName, String getPatientName, String getPatientFatherName, String getPatientBirthDate, String getPatientMedCard,
@@ -726,6 +797,13 @@ public class StartApp extends Application {
     }
 
     public void switchToDoctorMainMenuScene() {
+        makeDirectionController.docSecondName = getDocSecondName;
+        makeDirectionController.docName = getDocName;
+        listOfDirectionsController.docSecondName = getDocSecondName;
+        listOfDirectionsController.docName = getDocName;
+        showDirectionController.getDocSecondName = getDocSecondName;
+        showDirectionController.getDocName = getDocName;
+        showDirectionController.typeOfAccount = "doctor";
         stage.setScene(doctorMenuScene);
         stage.centerOnScreen();
     }
@@ -736,6 +814,11 @@ public class StartApp extends Application {
     }
 
     public void switchToDoctorArchiveOfVisitsScene() {
+//        System.out.println(getDocSecondName + " " + getDocName);
+
+        archiveOfPatientsController.docSecondName = getDocSecondName;
+        archiveOfPatientsController.docName = getDocName;
+        archiveOfPatientsController.refreshTable();
         stage.setScene(doctorArchiveOfVisitsScene);
         stage.centerOnScreen();
     }
@@ -773,7 +856,48 @@ public class StartApp extends Application {
 
     public void switchToPatientProtocol() {
         stage.setScene(patientProtocolScene);
-        patientProtocolController.setInfo(getAdminSecondName, getAdminName, getSecondName, getName);
+        patientProtocolController.setInfo(getDocSecondName, getDocName, getSecondName, getName);
+        stage.centerOnScreen();
+    }
+
+    public void switchToListOfDirections() {
+        listOfDirectionsController.refreshTable();
+        stage.setScene(listOfDirectionsScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToMakeDirectionScene() {
+        makeDirectionController.patSecondName = getPatSecondName;
+        makeDirectionController.patName = getPatName;
+        makeDirectionController.setInfo();
+        stage.setScene(makeDirectionScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToShowDirectionScene(String date, String patSecondName, String patName) {
+        System.out.println(date + " " + patSecondName + " " + patName);
+        showDirectionController.getDateOfDirection = date;
+        showDirectionController.getPatSecondName = patSecondName;
+        showDirectionController.getPatName = patName;
+        showDirectionController.setInfo();
+        stage.setScene(showDirectionScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToPatListOfDirections() {
+        showDirectionController.getPatSecondName = getPatSecondName;
+        showDirectionController.getPatName = getPatName;
+        patListOfDirectionsController.refreshTable();
+        stage.setScene(patListOfDirectionsScene);
+        stage.centerOnScreen();
+    }
+
+    public void switchToShowPatDirectionScene(String date, String docSecondName, String docName) {
+        showDirectionController.getDateOfDirection = date;
+        showDirectionController.getDocSecondName = docSecondName;
+        showDirectionController.getDocName = docName;
+        showDirectionController.setInfo();
+        stage.setScene(showDirectionScene);
         stage.centerOnScreen();
     }
 }

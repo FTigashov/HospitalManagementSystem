@@ -69,7 +69,8 @@ public class PatientLoginController {
                     passwordDB = resultSet.getString("password");
 
                     if (passwordDB != null && passwordDB.equals(password)) {
-
+                        startApp.getPatSecondName = secondName;
+                        startApp.getPatName = name;
                         startApp.getInfoAboutAccountFromController(secondName, name);
                         startApp.showSuccessMessage("Уведомление об авторизации", "Авторизация произошла успешно", "Вы вошли в учетную запись в роли пациента.");
                         clearFields();

@@ -12,6 +12,8 @@ public class ProtocolRecord {
         this.doctorResponsStatus = doctorResponsStatus;
     }
 
+
+
     public String getDoctorResponsStatus() {
         return doctorResponsStatus;
     }

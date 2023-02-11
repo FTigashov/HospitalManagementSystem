@@ -48,6 +48,11 @@ public class AdminChangeRecord {
 
     private StartApp startApp;
 
+    private Connection connection = DBHandler.getConnection();
+
+    public AdminChangeRecord() throws SQLException {
+    }
+
     @FXML
     void backToListOfAdmins(MouseEvent event) {
         startApp.switchToListOfAdmins();
@@ -55,35 +60,34 @@ public class AdminChangeRecord {
 
     @FXML
     void changeRecord(MouseEvent event) {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         String updateResponsibleStatus = responsStatusChoice.getValue();
         String updateLogin = loginField.getText();
         String updatePassword = passwordField.getText();
 
-        if (updateLogin.length() == 0 && updatePassword.length() == 0) {
+        if (updateLogin.length() == 0 || updatePassword.length() == 0) {
             startApp.showErrorLoginAlert("Ошибка изменения записи", "Убедитесь, что все поля заполнены.");
             return;
-        }
-        try {
-            connection = DBHandler.getConnection();
-            preparedStatement = connection.prepareStatement("UPDATE doc_default_data SET responsibility_status = ?, login = ?, password = ? WHERE second_name = ? AND name = ? AND birth_date = ?");
+        } else {
+            try {
+                preparedStatement = connection.prepareStatement("UPDATE doc_default_data SET responsibility_status = ?, login = ?, password = ? WHERE second_name = ? AND name = ? AND birth_date = ?");
 
-            preparedStatement.setString(1, updateResponsibleStatus);
-            preparedStatement.setString(2, updateLogin);
-            preparedStatement.setString(3, updatePassword);
-            preparedStatement.setString(4, secondLabel.getText());
-            preparedStatement.setString(5, nameLabel.getText());
-            preparedStatement.setString(6, birthDateLabel.getText());
+                preparedStatement.setString(1, updateResponsibleStatus);
+                preparedStatement.setString(2, updateLogin);
+                preparedStatement.setString(3, updatePassword);
+                preparedStatement.setString(4, secondLabel.getText());
+                preparedStatement.setString(5, nameLabel.getText());
+                preparedStatement.setString(6, birthDateLabel.getText());
 
-            preparedStatement.executeUpdate();
-            startApp.showSuccessMessage("Изменение записи", "Изменение применено успешно", "Результат изменения отображен в таблице.");
+                preparedStatement.executeUpdate();
+                startApp.showSuccessMessage("Изменение записи", "Изменение применено успешно", "Результат изменения отображен в таблице.");
 
-            makeFieldsIsEmpty();
-            startApp.switchToListOfAdmins();
-        } catch (SQLException e) {
-            e.printStackTrace();
+                makeFieldsIsEmpty();
+                startApp.switchToListOfAdmins();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -105,16 +109,26 @@ public class AdminChangeRecord {
         responsStatusChoice.getItems().add("Ст. медсестра");
     }
 
-    public void setDataInFields(String getAdminSecondName, String getAdminName, String getAdminfatherName,
-                                String getAdminBirthDate, String getAdminEmplDate, String getAdminResponsStatus, String getAdminLogin, String getAdminPassword) {
-        secondLabel.setText(getAdminSecondName);
-        nameLabel.setText(getAdminName);
-        fatherNameLabel.setText(getAdminfatherName);
-        birthDateLabel.setText(getAdminBirthDate);
-        emplDateLabel.setText(getAdminEmplDate);
-        responsStatusChoice.setValue(getAdminResponsStatus);
-        loginField.setText(getAdminLogin);
-        passwordField.setText(getAdminPassword);
+    public void setDataInFields(String getAdminSecondName, String getAdminName) throws SQLException {
+//        System.out.println("controller data: " + getAdminSecondName + " " + getAdminName);
+
+        PreparedStatement pr = connection.prepareStatement("SELECT * FROM doc_default_data WHERE second_name = ? AND name = ? AND type_of_account = 'admin'");
+        pr.setString(1, getAdminSecondName);
+        pr.setString(2, getAdminName);
+        ResultSet rs = pr.executeQuery();
+
+        if (rs.next()) {
+            secondLabel.setText(rs.getString("second_name"));
+            nameLabel.setText(rs.getString("name"));
+            fatherNameLabel.setText(rs.getString("father_name"));
+            birthDateLabel.setText(rs.getString("birth_date"));
+            emplDateLabel.setText(rs.getString("employee_date"));
+            responsStatusChoice.setValue(rs.getString("responsibility_status"));
+            loginField.setText(rs.getString("login"));
+            passwordField.setText(rs.getString("password"));
+
+            System.out.println("Информация установлена!");
+        }
     }
 
 

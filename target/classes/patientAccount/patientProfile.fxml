@@ -135,6 +135,11 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <ImageView fitHeight="24.0" fitWidth="28.0" layoutX="132.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/Диплом/icons/editProfile.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
    </center>
 </BorderPane>

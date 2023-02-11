@@ -85,7 +85,10 @@ public class DoctorListOfPatients implements Initializable {
 
     @FXML
     void makeDirection(MouseEvent event) {
+        startApp.getPatSecondName = secondNameField.getText().trim();
+        startApp.getPatName = nameField.getText().trim();
         makeFieldsIsEmpty();
+        startApp.switchToMakeDirectionScene();
     }
 
     @FXML
@@ -99,11 +102,6 @@ public class DoctorListOfPatients implements Initializable {
             makeFieldsIsEmpty();
             startApp.switchToMakeProtocolForm();
         }
-    }
-
-    @FXML
-    void makeReceipt(MouseEvent event) {
-        makeFieldsIsEmpty();
     }
 
     private ObservableList<PatientRecord> oblist = FXCollections.observableArrayList();

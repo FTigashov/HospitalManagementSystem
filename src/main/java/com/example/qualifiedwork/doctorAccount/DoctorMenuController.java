@@ -6,12 +6,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import javafx.fxml.Initializable;
 
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class DoctorMenuController {
     @FXML
-    private Button ArchiveOfProtocolsBtn;
+    private Button archiveOfPatients;
 
     @FXML
     private Button doctorInfoBtn;
@@ -76,5 +79,10 @@ public class DoctorMenuController {
     @FXML
     void openListOfPatients(MouseEvent event) {
         startApp.switchToDoctorListOfPatients();
+    }
+
+    @FXML
+    void openArchiveOfDirections(MouseEvent event) {
+        startApp.switchToListOfDirections();
     }
 }

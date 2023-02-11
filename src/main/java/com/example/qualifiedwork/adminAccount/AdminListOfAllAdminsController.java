@@ -129,6 +129,7 @@ public class AdminListOfAllAdminsController implements Initializable {
            });
             return row;
         });
+
         refreshDataFromTable();
         searchMethod();
     }
@@ -209,7 +210,7 @@ public class AdminListOfAllAdminsController implements Initializable {
 
     @FXML
     void deleteRecord(MouseEvent event) {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
         AdminRecord record = listOfAdmins.getSelectionModel().getSelectedItem();
         if (record == null) {
             startApp.showErrorLoginAlert("Ошибка удаления", "Необходимо выбрать запись в таблице.");
@@ -239,10 +240,9 @@ public class AdminListOfAllAdminsController implements Initializable {
             startApp.showErrorLoginAlert("Ошибка выбора записи", "Для проведения изменения записи,\nнеобходимо выбрать нужную в таблице.");
             return;
         } else {
+            startApp.getInfoAboutAdminAccount(secondNameField.getText().trim(), nameField.getText().trim());
+//            System.out.println("send data: " + secondNameField.getText().trim() + " " + nameField.getText().trim());
             makeFieldsIsEmpty();
-            startApp.getInfoAboutAdminAccount(secondNameField.getText(), nameField.getText(), fatherNameField.getText(), birthDateField.getText(),
-                    dateEmplField.getText(), responsStatusChoice.getText(), loginField.getText(), passwordField.getText());
-
             startApp.switchToChangeAdminRecordScene();
         }
     }

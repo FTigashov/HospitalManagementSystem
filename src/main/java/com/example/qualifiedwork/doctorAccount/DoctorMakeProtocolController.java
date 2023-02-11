@@ -217,7 +217,7 @@ public class DoctorMakeProtocolController {
 
                 preparedStatement.executeUpdate();
 
-                startApp.showSuccessMessage("Сообщение об успехе", "Осмотр проведен", "Протокол осмотра успешно сохранен и добавлен в базу данных.");
+                startApp.showSuccessMessage("Сообщение об успехе", "Осмотр проведен", "Протокол осмотра успешно сохранен\nи добавлен в базу данных.");
                 startApp.switchToDoctorListOfPatients();
             } catch (SQLException e) {
                 e.printStackTrace();

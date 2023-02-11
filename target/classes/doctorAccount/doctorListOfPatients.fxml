@@ -146,23 +146,11 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="makeDirectionBtn" alignment="BASELINE_LEFT" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#makeDirection" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выписать направление">
+                  <Button fx:id="makeDirectionBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#makeDirection" prefHeight="49.0" prefWidth="288.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выписать направление">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../Desktop/Диплом/icons/receipts.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="30.0" right="15.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="makeReceiptBtn" alignment="BASELINE_LEFT" disable="true" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#makeReceipt" prefHeight="49.0" prefWidth="286.0" styleClass="patientButton" stylesheets="@../styleForAuth.css" text="Выписать рецепт">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../Desktop/Диплом/icons/listRepWh.png" />
                            </image>
                         </ImageView>
                      </graphic>

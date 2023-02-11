@@ -4,10 +4,8 @@ import com.example.qualifiedwork.DBHandler;
 import com.example.qualifiedwork.StartApp;
 import com.example.qualifiedwork.authenticaton.AdminLoginController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.Connection;
@@ -80,6 +78,78 @@ public class AdminProfileController {
     @FXML
     void adminOpenProfile(MouseEvent event) {
         startApp.switchToAdminProfileScene();
+    }
+
+    @FXML
+    private ImageView cancelBtn;
+
+    @FXML
+    private ImageView changePasswordBtn;
+
+    @FXML
+    private ImageView confirmNewPasswordBtn;
+
+    @FXML
+    private TextField newPwdConfirnField;
+
+    @FXML
+    private TextField newPwdField;
+
+    @FXML
+    void beginChangePassword(MouseEvent event) {
+        changePasswordBtn.setVisible(false);
+        passwordLabel.setVisible(false);
+        newPwdField.setVisible(true);
+        newPwdConfirnField.setVisible(true);
+        confirmNewPasswordBtn.setVisible(true);
+        cancelBtn.setVisible(true);
+    }
+
+    @FXML
+    void cancelMethod(MouseEvent event) {
+        changePasswordBtn.setVisible(true);
+        passwordLabel.setVisible(true);
+        newPwdField.setVisible(false);
+        newPwdField.setText("");
+        newPwdConfirnField.setVisible(false);
+        newPwdConfirnField.setText("");
+        confirmNewPasswordBtn.setVisible(false);
+        cancelBtn.setVisible(false);
+    }
+
+    void finishChange() {
+        changePasswordBtn.setVisible(true);
+        passwordLabel.setVisible(true);
+        newPwdField.setVisible(false);
+        newPwdField.setText("");
+        newPwdConfirnField.setVisible(false);
+        newPwdConfirnField.setText("");
+        confirmNewPasswordBtn.setVisible(false);
+        cancelBtn.setVisible(false);
+    }
+
+    @FXML
+    void setNewPassword(MouseEvent event) {
+        if (newPwdField.getText().trim().length() == 0 || newPwdConfirnField.getText().trim().length() == 0) {
+            startApp.showErrorLoginAlert("Ошибка изменения пароля", "Убедитесь, что все поля заполены.");
+            return;
+        } else if (!newPwdField.getText().trim().equals(newPwdConfirnField.getText().trim())) {
+            startApp.showErrorLoginAlert("Ошибка изменения пароля", "Введенные пароли должны совпадать.");
+            return;
+        } else {
+            try {
+                Connection connection = DBHandler.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE doc_default_data SET password = ? WHERE login = ?");
+                preparedStatement.setString(1, newPwdField.getText().trim());
+                preparedStatement.setString(2, loginLabel.getText());
+                preparedStatement.executeUpdate();
+                passwordLabel.setText(newPwdField.getText().trim());
+                startApp.showSuccessMessage("Сообщение об успехе", "Пароль успешно изменен", "На учетной записи установлен новый пароль.");
+                finishChange();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private StartApp startApp;
